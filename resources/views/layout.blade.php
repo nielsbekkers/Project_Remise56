@@ -52,6 +52,22 @@
     <!--[if lt IE 9]>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <!-- Jquerry -->
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#footerClose').on('click', function(){
+                $('#footerClose').toggle();
+                $('#footerContent').toggle(400);
+                $('#footerOpen').toggle();
+            });
+            $('#footerOpen').on('click', function(){
+                $('#footerOpen').toggle();
+                $('#footerContent').toggle(400);
+                $('#footerClose').toggle();
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -85,21 +101,36 @@
 @yield('content')
 
 
-<div class="navbar navbar-reversed navbar-fixed-bottom" style="width: 100%;">
-    <div class="container" style="width: 100%;text-align: center; background: #2f4f4f;opacity:1;background-color: rgba(0,0,0,0.6);">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-4">
+<div class="navbar navbar-reversed navbar-fixed-bottom" id="footer" style="width: 100%;">
+
+    <button id="footerClose" type="button" class="btn btn-default pull-right"  style="margin-right:0px; margin-top:-40px;" aria-label="Center">
+        <span class="" aria-hidden="true">&#9660;</span>
+    </button>
+
+    <button id="footerOpen" type="button" class="btn btn-default pull-right pull-down"  style="margin-bottom: 0px; margin-right:0px; margin-top:auto;display: none" aria-label="Center">
+        <span class="" aria-hidden="true">&#9650;</span>
+    </button>
+
+    <div class="container text-footer" style="width: 100%;text-align: center; background: #2f4f4f;opacity:1;background-color: rgba(0,0,0,0.6);  -webkit-transition: max-height 0.5s;
+			transition: max-height 0.5s;" id="footerContent">
+
+        <div class="col-md-6">
             <p class="navbar-text pull-left" style="color:white;">Openingsuren: maandag-vrijdag vanaf 11u doorlopend <br>
                 zaterdag-zondag vanaf 9u doorlopend, gezellig ontbijten!
             </p>
         </div>
-        <div class="col-md-4">
-            <a href="https://www.facebook.com/Remise56/" target="_blank" class="btn btn-primary" style="transform: translate(-50%, 50%);">Facebook</a>
+
+        <div class="col-md-3">
+            <a href="tel:011183193" class="btn" style="color:white; margin-top:10%; margin-left: auto; margin-right: auto; text-align:center;">Tel: 011/18 31 93</a>
+            </p>
         </div>
-        <div class="col-md-2">
+
+        <div class="col-md-3">
+            <a href="https://www.facebook.com/Remise56/" target="_blank" class="btn btn-social btn-facebook" style="margin-top:10%; margin-left: auto; margin-right: auto; text-align:center;">Facebook</a>
         </div>
+
     </div>
+
 </div>
 </body>
 

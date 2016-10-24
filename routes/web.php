@@ -22,3 +22,5 @@ Route::get('contact','Contact_Controller@home');
 Route::get('foto','Foto_Controller@home');
 
 Route::get('reservatie','Reservatie_Controller@home');
+
+Route::get('rondleiding','Rondleiding_Controller@home');

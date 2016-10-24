@@ -595,16 +595,4 @@
 
 	});
 
-
-	$('#footerClose').on('click', function(){
-		$('#footerClose').toggle();
-		$('#footerContent').toggle(400);
-		$('#footerOpen').toggle();
-	});
-	$('#footerOpen').on('click', function(){
-		$('#footerOpen').toggle();
-		$('#footerContent').toggle(400);
-		$('#footerClose').toggle();
-	});
-	
 }());
