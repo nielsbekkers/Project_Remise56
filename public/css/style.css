@@ -1513,3 +1513,38 @@ input {
   position: relative;
   z-index: 9999;
 }
+
+/* Large Devices, Wide Screens */
+@media screen and(max-width : 1200px) {
+  #footer {
+    font-size:18px;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media screen and (max-width : 992px) {
+  #footer {
+    font-size:15px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media screen and (max-width : 768px) {
+  #footer {
+    font-size:12px;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media screen and (max-width : 480px) {
+  #footer {
+    font-size:9px;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media screen and (max-width : 320px) {
+  .footer-text {
+    font-size:6px;
+  }
+}

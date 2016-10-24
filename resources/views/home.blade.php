@@ -54,6 +54,50 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        .button {
+            border-radius: 15px;
+            background-color: transparent;
+            border : 1px solid white;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: ' »';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -10px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .pullright{
+            float:right;
+        }
+    </style>
 </head>
 <body>
 
@@ -70,111 +114,51 @@
                         <hr class="hidden-sm hidden-xs">
                         <div class="container-fluid">
                             <div class="fh5co-menu-1">
-                                <a href="#" class="col-lg-2 hidden-sm hidden-xs MainPageMenuItem">Home</a>
-                                <a href="{{url('menu')}}" class="col-lg-2 hidden-sm hidden-xs MainPageMenuItem">Menu</a>
-                                <a href="{{url('brouwerij')}}" class="col-lg-2 hidden-sm hidden-xs MainPageMenuItem">Brouwerij</a>
-                                <a href="#" class="col-lg-2 hidden-sm hidden-xs MainPageMenuItem">Foto´s</a>
-                                <a href="#" class="col-lg-2 hidden-sm hidden-xs MainPageMenuItem">Reservatie</a>
-                                <a href="#" class="col-lg-2 hidden-sm hidden-xs MainPageMenuItem">Contact</a>
+                                <a href="#" class="button col-lg-2 hidden-sm hidden-xs Brouwerij"><span>Brouwerij </span></a>
+                                <a href="#" class="button col-lg-2 hidden-sm hidden-xs pullright GC"><span>Grand Café </span></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <ul class="slides">
-                <li style="background-image: url(images/ketel1.jpg);" data-stellar-background-ratio="0.5"></li>
-                <li style="background-image: url(images/slide2.jpg);" data-stellar-background-ratio="0.5"></li>
-                <li style="background-image: url(images/slide3.jpg);" data-stellar-background-ratio="0.5"></li>
+                <li id="achtergrond" style="background-image: url(images/slide3.jpg);"></li>
+                <li id="achtergrondgc" style="background-image: url(images/slide2.jpg);"></li>
+                <li id="achtergrondb" style="background-image: url(images/ketel1.jpg);"></li>
             </ul>
-
-        </div>
-
-    </div>
-
-    <div class="js-sticky">
-        <div class="fh5co-main-nav">
-            <div class="container-fluid">
-                <div class="fh5co-menu-1">
-                    <a href="#">Home</a>
-                    <a href="{{url('menu')}}">Menu</a>
-                    <a href="{{url('brouwerij')}}">Brouwerij</a>
-                </div>
-                <div class="fh5co-logo">
-                    <a href="index.html" style="background-image: url(images/logo.gif)">Remise 56</a>
-                </div>
-                <div class="fh5co-menu-2">
-                    <a href="#">Foto´s</a>
-                    <a href="#">Reservatie</a>
-                    <a href="#">Contact</a>
-                </div>
-            </div>
-
         </div>
     </div>
 
-</div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(".Brouwerij").hover(function(){
 
-<div>
-    <div class="container" style="padding-top: 40px;">
-        <div class="row fh5co-heading row-padded text-center">
-            <div class="col-md-6">
-                <img src="images/image002.jpg" style="width: 100%; height: 100%" alt="Welkomsfoto" />
-            </div>
-            <div class="col-md-6">
-                <h2 class="heading">Welkom bij remise 56</h2>
-                <p class="sub-heading">Onze keuken is pas opgestart en momenteel is onze eetkaart nog zeer beperkt.
-                    In de loop van de volgende dagen en weken zal deze zeker nog uitgebreid worden.
-                    Dank voor uw begrip!
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="background-color: #fafafa;">
-    <div class="container" style="padding-top: 40px;">
-        <div class="row fh5co-heading row-padded text-center">
-            <div class="col-md-12">
-                <h2 class="heading">Geschiedenis</h2>
-                <p>
-                    Dit authentieke pand werd gebouwd in 1907 om dienst te doen als stelplaats voor de locomotieven en de passagiersrijtuigen van de tramlijn Diest - Koersel.
-                    Aanvankelijk werd hier de stoomtram gestald (jawel, stoomtram), daarna kwamen de gemotoriseerde rijtuigen.
-                    In 1954 werd de tramlijn vervangen door een busdienst, en dus werden hier lijnbussen gestald.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+            var index = $('#achtergrondb').index();   // will give you 2
+            $('.flexslider').flexslider(index);   // will take you to that slide
+        },function() {
+            var index = $('#achtergrond').index();   // will give you 2
+            $('.flexslider').flexslider(index);   // will take you to that slide
+        });
 
-<div id="fh5co-footer">
-    <div class="container">
-        <div class="row row-padded">
-            <div class="col-md-12 text-center">
-                <p class="to-animate">&copy; Remise 56 <br></p>
-                <p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p><br>
-                <img src="images/logo_Geen_Tekst.png" alt="logo van Remise 56" style="height:100px;"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <ul class="fh5co-social">
-                    <li class="to-animate-2"><a href="#"><i class="icon-facebook"></i></a></li>
-                    <li class="to-animate-2"><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li class="to-animate-2"><a href="#"><i class="icon-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+        $(".GC").hover(function(){
+            var index = $('#achtergrondgc').index();   // will give you 2
+            $('.flexslider').flexslider(index);   // will take you to that slide
+        },function() {
+            var index = $('#achtergrond').index();   // will give you 2
+            $('.flexslider').flexslider(index);   // will take you to that slide
+        });
 
+    $(window).load(function() {
+        $("#achtergrondb").css('opacity' , 0);
+        $("#achtergrondgc").css('opacity' , 0);
+        jQuery('.flexslider').flexslider("pause");
+    });
 
-
-
-
-
+    </script>
 <!-- jQuery -->
-<script src="js/jquery.min.js"></script>
+
 <!-- jQuery Easing -->
-<script src="js/jquery.easing.1.3.js"></script>
+
 <!-- Bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 <!-- Bootstrap DateTimePicker -->
