@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <td><label>Familienaam: </label></td>
-                                <td><input type="text" surname="name" id="surname" required="required"/></td>
+                                <td><input type="text" name="surname" id="surname" required="required"/></td>
                             </tr>
                             <tr>
                                 <td><label>Telefoonnummer: </label></td>
@@ -68,6 +68,10 @@
                                         <option>25 personen</option>
                                     </select>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td><label>Kies een zaterdag, </br> zondag of feestdag: </label></td>
+                                <td><input type="date" name="date" id="date" required="required"/></td>
                             </tr>
                             <tr>
                                 <td colspan="2"><button>Bevestigen reservatie</button></td>

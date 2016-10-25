@@ -24,3 +24,5 @@ Route::get('foto','Foto_Controller@home');
 Route::get('reservatie','Reservatie_Controller@home');
 
 Route::get('personeel/reservaties','Reservaties_Controller@home');
+
+Route::get('rondleiding','rondleiding_Controller@home');
