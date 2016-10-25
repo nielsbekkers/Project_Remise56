@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.grand_cafe_layout')
 
 @section('extra_css')
     <link href="css/lightbox.min.css" rel="stylesheet">

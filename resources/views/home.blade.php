@@ -77,16 +77,17 @@
         }
 
         .button span:after {
-            content: ' »';
             position: absolute;
             opacity: 0;
             top: 0;
-            right: -10px;
             transition: 0.5s;
         }
 
-        .button:hover span {
-            padding-right: 25px;
+        .button:hover {
+            /*opacity: 0.4;*/
+            background-color: rgba(245, 196, 91, 0.3) !important;
+            color:white;
+            /*border: 1px solid black;*/
         }
 
         .button:hover span:after {
@@ -114,7 +115,7 @@
                         <hr class="hidden-sm hidden-xs">
                         <div class="container-fluid">
                             <div class="fh5co-menu-1">
-                                <a href="#" class="button col-lg-2 hidden-sm hidden-xs Brouwerij"><span>Brouwerij </span></a>
+                                <a href="{{url('brouwerij')}}" class="button col-lg-2 hidden-sm hidden-xs Brouwerij"><span>Brouwerij </span></a>
                                 <a href="#" class="button col-lg-2 hidden-sm hidden-xs pullright GC"><span>Grand Café </span></a>
                             </div>
                         </div>

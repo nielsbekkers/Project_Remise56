@@ -27,33 +27,33 @@
     <link rel="shortcut icon" href="images/logo_Geen_Tekst.png" type="image/png">
 
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon"/>
     <!-- Animate.css -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="../css/animate.css">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <link rel="stylesheet" href="../css/simple-line-icons.css">
     <!-- Datetimepicker -->
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
     <!-- Flexslider -->
-    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="../css/flexslider.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     @yield('extra_css')
 
 
     <!-- Modernizr JS -->
-    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="../js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
-    <script src="js/respond.min.js"></script>
+    <script src="../js/respond.min.js"></script>
     <![endif]-->
     <!-- Jquerry -->
-    <script src="js/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <script>
         $(function(){
             $('#footerClose').on('click', function(){
@@ -93,10 +93,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div width="100%" height="400px;" style="width:100%;height:400px;background-position:center;background-image:url(images/slide2.jpg);margin-top:5px;background-repeat:no-repeat;background-size:cover;">
-    </div>
-</div>
+@yield('banner')
 
 @yield('content')
 

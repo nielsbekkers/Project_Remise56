@@ -1,4 +1,4 @@
-@extends('layouts.personeel')
+@extends('layouts.personeel_layout')
 
 @section('extra_css')
     <link rel="stylesheet" href="../scheduler/dhtmlxscheduler.css" type="text/css">
