@@ -2,8 +2,8 @@
 
 @section('banner')
     <div class="row">
-    <div width="100%" height="400px;" style="width:100%;height:400px;background-position:center;background-image:url(images/slide2.jpg);margin-top:5px;background-repeat:no-repeat;background-size:cover;">
-    </div>
+        <div width="100%" height="400px;" style="width:100%;height:400px;background-position:center;background-image:url(images/slide2.jpg);margin-top:5px;background-repeat:no-repeat;background-size:cover;">
+        </div>
     </div>
 @stop
 
@@ -12,89 +12,61 @@
         <div class="container">
             <div class="row text-center fh5co-heading row-padded">
                 <div class="col-md-8 col-md-offset-2">
-                    <form action="{{ action('Menu_Controller@editMenu') }}" method="get">
-                        <div align="right"><input type="submit" name="EditMenuButton" value="Wijzig Menu"/></div>
+
+                    <form action="{{ action('Menu_Controller@home') }}" method="get">
+                        <div align="right"><input type="submit" name="EditMenuButton" value="Sla Wijzigingen op!"/></div>
                     </form>
-                    <h2 class="heading to-animate">Menukaart</h2>
 
-                    <h2 class="to-animate">DRANKEN</h2>
-                    <button type="button" class="btn btn-menukaart to-animate" data-toggle="collapse" data-target="#dranken">Open/Sluit de drankkaart</button>
-                </div>
-            </div>
-            <div class="row row-padded">
-                <div id="dranken" class="collapse">
-                    <div class="col-md-12">
-                        <div class="fh5co-food-menu to-animate-2">
-                            <h2 class="fh5co-drinks">Bieren</h2>
-                            <ul>
-                                <li>
-                                    <div class="fh5co-food-desc">
+                    <table>
+                        <tr>
+                            <td colspan="3"><h2><u>Bieren</u></h2></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Remise Trippel 33cl"/></td>
+                            <td><input type="text" placeholder="8,5% Alcohol" /></td>
+                            <td><input type="number" placeholder="€ 3,50" /></td>
+                            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijder</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="Remise Dubbel 33cl"/></td>
+                            <td><input type="text" placeholder="7% Alcohol" /></td>
+                            <td><input type="number" placeholder="€ 3,20" /></td>
+                            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijder</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" placeholder="'56' Superpils 33cl"/></td>
+                            <td><input type="text" placeholder="5,6% Alcohol" /></td>
+                            <td><input type="number" placeholder="€ 2,90" /></td>
+                            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijder</a></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><h2><u>Bubbels</u></h2></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="text" placeholder="CAVA Don Jaime Brut"/></td>
+                            <td><input type="number" placeholder="€ 5,90" /></td>
+                            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijder</a></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="text" placeholder="PROSECCO La Tordera"/></td>
+                            <td><input type="number" placeholder="€ 5,90" /></td>
+                            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijder</a></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><h2><u>Sterke Dranken</u></h2></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="text" placeholder="RUM HAVANA 3 ANOS"/></td>
+                            <td><input type="number" placeholder="€ 6,00" /></td>
+                            <td><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijder</a></td>
+                        </tr>
 
-                                        <div>
-                                            <h3>Remise Trippel 33cl</h3>
-                                            <p>8,5% Alcohol</p>
-                                        </div>
-                                    </div>
-                                    <div class="fh5co-food-pricing">
-                                        € 3,50
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="fh5co-food-desc">
+                    </table>
 
-                                        <div>
-                                            <h3>Remise Dubbel 33cl</h3>
-                                            <p>7% Alcohol</p>
-                                        </div>
-                                    </div>
-                                    <div class="fh5co-food-pricing">
-                                        € 3,20
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="fh5co-food-desc">
 
-                                        <div>
-                                            <h3>"56" Superpils 33cl</h3>
-                                            <p>5,6% Alcohol</p>
-                                        </div>
-                                    </div>
-                                    <div class="fh5co-food-pricing">
-                                        € 2,90
-                                    </div>
-                                </li>
 
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="fh5co-food-menu to-animate-2">
-                            <h2 class="fh5co-dishes">Bubbels</h2>
-                            <ul>
-                                <li>
-                                    <div class="fh5co-food-desc">
+                    <!--
 
-                                        <div>
-                                            <h3>CAVA Don Jaime Brut</h3>
-                                        </div>
-                                    </div>
-                                    <div class="fh5co-food-pricing">
-                                        € 5,90
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="fh5co-food-desc">
-
-                                        <div>
-                                            <h3>PROSECCO La Tordera </h3>
-                                        </div>
-                                    </div>
-                                    <div class="fh5co-food-pricing">
-                                        € 5,90
-                                    </div>
-                            </ul>
-                        </div>
-                    </div>
 
                     <div class="col-md-12">
                         <div class="fh5co-food-menu to-animate-2">
@@ -1008,15 +980,14 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+
             </div>
             <div class="row text-center fh5co-heading row-padded">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="to-animate">GERECHTEN</h2>
-                    <button type="button" class="btn btn-menukaart to-animate" data-toggle="collapse" data-target="#gerechten">Open/Sluit de gerechtenkaart</button>
                 </div>
             </div>
-            <div id="gerechten" class="collapse">
+
                 <div class="col-md-12">
                     <div class="fh5co-food-menu to-animate-2">
                         <h2 class="fh5co-dishes">Fingerfood</h2>
@@ -1485,37 +1456,17 @@
                                     € 4,00
                                 </div>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                 </div>
 
-            </div>
+
         </div>
     </div>
 @stop
 
-@section('extra_scripts')
-        <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- jQuery Easing -->
-    <script src="js/jquery.easing.1.3.js"></script>
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Bootstrap DateTimePicker -->
-    <script src="js/moment.js"></script>
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <!-- Waypoints -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <!-- Stellar Parallax -->
-    <script src="js/jquery.stellar.min.js"></script>
 
-    <!-- Flexslider -->
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script>
-        $(function () {
-            $('#date').datetimepicker();
-        });
-    </script>
-    <!-- Main JS -->
-    <script src="js/main.js"></script>
+@section('extra_scripts')
+
+
 @stop

@@ -1548,3 +1548,8 @@ input {
     font-size:6px;
   }
 }
+
+td input {
+  width: 100%;
+  box-sizing: border-box;
+}

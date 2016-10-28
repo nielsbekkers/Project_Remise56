@@ -26,3 +26,8 @@ Route::get('reservatie','Reservatie_Controller@home');
 Route::get('personeel/reservaties','Reservaties_Controller@home');
 
 Route::get('rondleiding','rondleiding_Controller@home');
+
+
+
+
+Route::get('editMenu' , 'Menu_Controller@editMenu');
