@@ -56,9 +56,9 @@ return [
             'driver' => 'mysql',
             'host' => 'localhost',
             'port' =>  '3306',
-            'database' => 'remise',
+            'database' => 'remise56',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -77,6 +77,16 @@ return [
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'prefer',
+        ],
+
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST', 'localhost'),
+            'database' => 'remise56',
+            'username' =>  'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'prefix' => '',
         ],
 
     ],

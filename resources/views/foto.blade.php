@@ -11,7 +11,23 @@
     <div class="row">
 
         <div class="col-md-8">
-            Lijst zal hier komen
+            @if ($galleries->count() > 0)
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Name of the Gallery</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($galleries as $gallery)
+                        <tr>
+                            <td>{{$gallery->name}}</td>
+                            <td>view</td>
+                    @endforeach
+                    </tbody>
+                </table>
+                @endif
         </div>
 
         <div class="col-md-4">
