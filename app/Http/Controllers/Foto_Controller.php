@@ -15,7 +15,7 @@ class Foto_Controller extends Controller
         return view('foto',compact('menuTop'))->with('galleries',$galleries);
     }
 
-    public function viewGalleryList(){
+    public function viewGalleryList($id){
 
     }
 
@@ -34,8 +34,11 @@ class Foto_Controller extends Controller
 
     }
 
-    public function viewGalleryPics(){
+    public function viewGalleryPics($id)
+    {
+        $gallery = Gallery::findorfail($id);
 
+        return view('galleryview',compact('menuTop'))->with('gallery',$gallery);
     }
 
     public function doImageUpload(Request $request){
