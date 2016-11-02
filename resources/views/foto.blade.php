@@ -14,7 +14,7 @@
             @if ($galleries->count() > 0)
                 <table class="table table-bordered table-responsive">
                     <thead>
-                    <tr>
+                    <tr class="alert-info">
                         <th>Name of the Gallery</th>
                         <th></th>
                     </tr>
@@ -23,7 +23,7 @@
                     @foreach($galleries as $gallery)
                         <tr>
                             <td>{{$gallery->name}}</td>
-                            <td>view</td>
+                            <td><a href="{{'gallery/view/'. $gallery->id}}">view</a></td>
                     @endforeach
                     </tbody>
                 </table>
