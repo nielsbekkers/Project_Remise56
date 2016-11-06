@@ -105,6 +105,28 @@
         .blur   {
             filter: blur(0px);
         }
+
+        .popup_gc {
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 5px;
+            color:white;
+            width:200px;
+            float:right;
+            font-size: 14px;
+            padding:10px;
+            padding-bottom: 0px;
+        }
+
+        .popup_brouwerij {
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 5px;
+            color:white;
+            width:200px;
+            float:left;
+            font-size: 14px;
+            padding:10px;
+            padding-bottom: 0px;
+        }
     </style>
 </head>
 <body>
@@ -124,6 +146,9 @@
                             <div class="fh5co-menu-1">
                                 <a href="{{url('brouwerij')}}" class="button col-lg-2 hidden-sm hidden-xs Brouwerij"><span>Brouwerij </span></a>
                                 <a href="#" class="button col-lg-2 hidden-sm hidden-xs pullright GC"><span>Grand Café </span></a>
+                                <div id="popup_brouwerij" class="popup_brouwerij" style="display: none;z-index:100;">Hier treft u alle nodige informatie aan over onze brouwerij. Alle bieren zullen hier ook vermeld worden.</div>
+                                <div id="popup_gc" class="popup_gc" style="display: none;z-index:100;"><p>Hier treft u alle nodige informatie aan over onze Grand Cafe. Onze menukaart zal u hier ook kunnen bekijken. Reserveren is ook mogelijk.</p></div>
+
                             </div>
                         </div>
                     </div>
@@ -166,20 +191,24 @@
         }
 
         $(".Brouwerij").hover(function(){
-
             var index = $('#achtergrondb').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_brouwerij').css('display','block');
+
         },function() {
             var index = $('#achtergrond').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_brouwerij').css('display','none');
         });
 
         $(".GC").hover(function(){
             var index = $('#achtergrondgc').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_gc').css('display','block');
         },function() {
             var index = $('#achtergrond').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_gc').css('display','none');
         });
 
     $(window).load(function() {
