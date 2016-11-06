@@ -140,7 +140,7 @@
             <div class="fh5co-text">
                 <div class="container">
                     <div class="row">
-                       <img class="to-animate" src="images/test.png" alt="Logo Remise56"></img>
+                       <img class="to-animate" src="images/Remise56_Logo.png" alt="Logo Remise56"></img>
                         <hr class="hidden-sm hidden-xs">
                         <div class="container-fluid">
                             <div class="fh5co-menu-1">
