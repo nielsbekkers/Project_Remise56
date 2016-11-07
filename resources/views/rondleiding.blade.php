@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.grand_cafe_layout')
 
 @section('content')
     <div class="container">

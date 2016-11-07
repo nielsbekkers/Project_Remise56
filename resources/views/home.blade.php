@@ -15,17 +15,6 @@
     <meta name="keywords" content="brouwerij cafe restaurant koersel" />
     <meta name="author" content="3ICT_Projects2016-2017" />
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="images/logo_Geen_Tekst.png" type="image/png">
 
@@ -77,16 +66,17 @@
         }
 
         .button span:after {
-            content: ' »';
             position: absolute;
             opacity: 0;
             top: 0;
-            right: -10px;
             transition: 0.5s;
         }
 
-        .button:hover span {
-            padding-right: 25px;
+        .button:hover {
+            /*opacity: 0.4;*/
+            background-color: rgba(245, 196, 91, 0.3) !important;
+            color:white;
+            /*border: 1px solid black;*/
         }
 
         .button:hover span:after {
@@ -97,11 +87,51 @@
         .pullright{
             float:right;
         }
+
+        .news-item {
+            border-radius: 15px;
+            background-color: transparent;
+            border : 1px solid white;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
+            width: 150px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .blur   {
+            filter: blur(0px);
+        }
+
+        .popup_gc {
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 5px;
+            color:white;
+            width:200px;
+            float:right;
+            font-size: 14px;
+            padding:10px;
+            padding-bottom: 0px;
+        }
+
+        .popup_brouwerij {
+            background-color: rgba(0,0,0,0.4);
+            border-radius: 5px;
+            color:white;
+            width:200px;
+            float:left;
+            font-size: 14px;
+            padding:10px;
+            padding-bottom: 0px;
+        }
     </style>
 </head>
 <body>
 
-<div id="fh5co-container">
+<div id="fh5co-container" class="blur">
     <div id="fh5co-home" class="js-fullheight" data-section="home">
 
         <div class="flexslider">
@@ -110,12 +140,15 @@
             <div class="fh5co-text">
                 <div class="container">
                     <div class="row">
-                        <h1 class="to-animate" style="font-size: 200px;">Remise 56</h1>
+                       <img class="to-animate" src="images/Remise56_Logo.png" alt="Logo Remise56"></img>
                         <hr class="hidden-sm hidden-xs">
                         <div class="container-fluid">
                             <div class="fh5co-menu-1">
-                                <a href="#" class="button col-lg-2 hidden-sm hidden-xs Brouwerij"><span>Brouwerij </span></a>
+                                <a href="{{url('brouwerij')}}" class="button col-lg-2 hidden-sm hidden-xs Brouwerij"><span>Brouwerij </span></a>
                                 <a href="#" class="button col-lg-2 hidden-sm hidden-xs pullright GC"><span>Grand Café </span></a>
+                                <div id="popup_brouwerij" class="popup_brouwerij" style="display: none;z-index:100;">Hier treft u alle nodige informatie aan over onze brouwerij. Alle bieren zullen hier ook vermeld worden.</div>
+                                <div id="popup_gc" class="popup_gc" style="display: none;z-index:100;"><p>Hier treft u alle nodige informatie aan over onze Grand Cafe. Onze menukaart zal u hier ook kunnen bekijken. Reserveren is ook mogelijk.</p></div>
+
                             </div>
                         </div>
                     </div>
@@ -128,29 +161,60 @@
             </ul>
         </div>
     </div>
+</div>
+
+<div class="footer navbar-fixed-bottom" style="margin-right:20px;margin-left: 20px; background-color:rgba(0, 0, 0, 0.4);border-radius:4px;">
+    <div class="col-lg-4" style="">
+        <button class="news-item" onclick="OpenTest();">Nieuws Item 1</button>
+        <br>
+        <p id="test" style=";font-size:14px;color:white;">
+            Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+    </div>
+</div>
+
 
     <script src="js/jquery.min.js"></script>
     <script>
-        $(".Brouwerij").hover(function(){
 
+        function OpenTest(){
+            $('#test').slideToggle(1500);
+            if($('.blur').css('filter') == 'blur(0px)'){
+                $('.blur').css('filter','blur(3px)') ;
+                $('.blur').css('margin','-5px') ;
+                $('.blur').css('height','102%') ;
+            }else{
+                $('.blur').css('filter','blur(0px)') ;
+                $('.blur').css('margin','0px') ;
+                $('.blur').css('height','100%') ;
+            }
+        }
+
+        $(".Brouwerij").hover(function(){
             var index = $('#achtergrondb').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_brouwerij').css('display','block');
+
         },function() {
             var index = $('#achtergrond').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_brouwerij').css('display','none');
         });
 
         $(".GC").hover(function(){
             var index = $('#achtergrondgc').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_gc').css('display','block');
         },function() {
             var index = $('#achtergrond').index();   // will give you 2
             $('.flexslider').flexslider(index);   // will take you to that slide
+            $('#popup_gc').css('display','none');
         });
 
     $(window).load(function() {
         $("#achtergrondb").css('opacity' , 0);
         $("#achtergrondgc").css('opacity' , 0);
+        $('#test').slideToggle(0);
         jQuery('.flexslider').flexslider("pause");
     });
 

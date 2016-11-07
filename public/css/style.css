@@ -202,7 +202,7 @@ p {
   position: absolute;
   z-index: 3;
   width: 100%;
-  top: 50%;
+  top: 35%;
   margin-top: -212px;
   text-align: center;
 }
@@ -1547,4 +1547,9 @@ input {
   .footer-text {
     font-size:6px;
   }
+}
+
+td input {
+  width: 100%;
+  box-sizing: border-box;
 }
