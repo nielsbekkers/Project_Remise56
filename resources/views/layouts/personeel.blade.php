@@ -43,11 +43,13 @@
 
     <link rel="stylesheet" href="../css/style.css">
 
+
     @yield('extra_css')
 
 
             <!-- Modernizr JS -->
     <script src="../js/modernizr-2.6.2.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
     <script src="../js/respond.min.js"></script>
