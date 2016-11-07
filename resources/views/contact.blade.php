@@ -37,6 +37,8 @@
                             <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
                                 <textarea name="message" id="message" class="form textarea"  placeholder="Message"></textarea>
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6LeXMgsUAAAAAM1NUMfpHicEn2YxEAYvPZctozQE"></div>
+
                             <div class="relative fullwidth col-xs-12">
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button>
                             </div>
@@ -50,6 +52,8 @@
                     </div>
                 </div>
             </div>
+            <div class="g-recaptcha" data-sitekey="6LeXMgsUAAAAAM1NUMfpHicEn2YxEAYvPZctozQE"></div>
+
             <div class="col-xs-12 col-md-6">
                 </br>
                 </br>
