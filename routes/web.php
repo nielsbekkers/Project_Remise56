@@ -39,3 +39,48 @@ Route::get('rondleiding','rondleiding_Controller@home');
 
 
 Route::get('editMenu' , 'Menu_Controller@editMenu');
+
+Route::post('/createReservationClient', [
+    'uses' => 'Reservation_Controller@createReservationClient',
+    'as' => 'createReservationClient'
+]);
+
+//////////////// Admin
+
+// Dashboard SIGN IN
+Route::get('/admin', function () {
+    return view('personeel.signin');
+});
+
+// Dashboard SIGN IN form POST
+Route::post('/signin', [
+    'uses' => 'Admin_Controller@postSignIn',
+    'as' => 'signin'
+]);
+
+
+
+// Dashboard NEW USER
+Route::get('/newUser', function(){
+    return view('personeel.newuser');
+});
+
+// Dashboard NEW USER form POST
+Route::post('/newUser', [
+    'uses' => 'Admin_Controller@postNewUser',
+    'as' => 'newUser'
+]);
+
+
+
+// Dashboard NEW RESERVATION
+Route::get('/reservation', function(){
+    return view('personeel.reservation');
+});
+
+// Dashboard NEW RESERVATION  form POST
+Route::post('/createReservationAdmin', [
+    'uses' => 'Reservation_Controller@createReservationAdmin',
+    'as' => 'createReservationAdmin'
+]);
+
