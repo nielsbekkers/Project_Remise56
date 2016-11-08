@@ -31,8 +31,6 @@ Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
 Route::get('reservatie','Reservatie_Controller@home');
 
-Route::get('personeel/reservaties','Reservaties_Controller@home');
-
 Route::get('rondleiding','rondleiding_Controller@home');
 
 
@@ -45,15 +43,15 @@ Route::post('/createReservationClient', [
     'as' => 'createReservationClient'
 ]);
 
-//////////////// Admin
+//////////////// Personeel
 
 // Dashboard SIGN IN
-Route::get('/admin', function () {
+Route::get('/personeel', function () {
     return view('personeel.signin');
 });
 
 // Dashboard SIGN IN form POST
-Route::post('/signin', [
+Route::post('/personeel/signin', [
     'uses' => 'Admin_Controller@postSignIn',
     'as' => 'signin'
 ]);
@@ -61,12 +59,12 @@ Route::post('/signin', [
 
 
 // Dashboard NEW USER
-Route::get('/newUser', function(){
+Route::get('/personeel/newUser', function(){
     return view('personeel.newuser');
 });
 
 // Dashboard NEW USER form POST
-Route::post('/newUser', [
+Route::post('/personeel/newUser', [
     'uses' => 'Admin_Controller@postNewUser',
     'as' => 'newUser'
 ]);
@@ -74,12 +72,10 @@ Route::post('/newUser', [
 
 
 // Dashboard NEW RESERVATION
-Route::get('/reservation', function(){
-    return view('personeel.reservation');
-});
+Route::get('personeel/reservaties','Reservaties_Controller@home');
 
 // Dashboard NEW RESERVATION  form POST
-Route::post('/createReservationAdmin', [
+Route::post('/personeel/createReservationAdmin', [
     'uses' => 'Reservation_Controller@createReservationAdmin',
     'as' => 'createReservationAdmin'
 ]);
