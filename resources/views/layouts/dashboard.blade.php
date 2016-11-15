@@ -46,7 +46,7 @@
 
                     <li><a href="#">Personeel</a></li>
                     <li><a href="/personeel/reservaties">Reservaties</a></li>
-                    <li><a href="#">Nieuws items</a></li>
+                    <li><a href="/personeel/news">Nieuws items</a></li>
                     <li><a href="#">Menu items</a></li>
                     <li><a href="/">Inloggen</a></li>
                     <li><a href="#">Uitloggen</a></li>
@@ -67,7 +67,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 @yield('extra_scripts')
 </body>
 </html>

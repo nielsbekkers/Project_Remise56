@@ -61,7 +61,7 @@
         <div class="container-fluid">
             <div class="fh5co-menu-1">
                 <a href="{{url('personeel/reservaties')}}">Reservaties</a>
-                <a href="" >Dummy</a>
+                <a href="{{url('personeel/news')}}" >Nieuws Items</a>
             </div>
             <div class="fh5co-logo">
                 <a href="{{url('/')}}" style="background-image: url(../images/logo.gif)">Remise 56</a>
