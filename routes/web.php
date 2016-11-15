@@ -29,12 +29,9 @@ Route::get('gallery/view/{id}','Foto_Controller@viewGalleryPics');
 
 Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
-Route::get('reservatie','Reservatie_Controller@home');
+Route::get('reservatie','Reservatie_Controller@getContent');
 
 Route::get('rondleiding','rondleiding_Controller@home');
-
-
-
 
 Route::get('editMenu' , 'Menu_Controller@editMenu');
 
@@ -72,7 +69,7 @@ Route::post('/personeel/newUser', [
 
 
 // Dashboard NEW RESERVATION
-Route::get('personeel/reservaties','Reservaties_Controller@home');
+Route::get('personeel/reservation','Reservaties_Controller@home');
 
 // Dashboard NEW RESERVATION  form POST
 Route::post('/personeel/createReservationAdmin', [
@@ -80,3 +77,13 @@ Route::post('/personeel/createReservationAdmin', [
     'as' => 'createReservationAdmin'
 ]);
 
+//Dashboad NEWS ITEMS
+Route::get('/personeel/news','NewsItems_Controller@home');
+
+//Dashboard ADD NEWS ITEM
+Route::post('/personeel/news',[
+    'uses'=> 'NewsItems_Controller@createNewsItem',
+    'as' => 'createNewsitem']);
+
+//Dashboard DELETE NEWS ITEM
+Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');

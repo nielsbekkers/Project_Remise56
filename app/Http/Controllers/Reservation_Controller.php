@@ -8,9 +8,11 @@
 namespace  App\Http\Controllers;
 
 use App\User;
+use App\Reservation;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Reservation;
+
 
 class Reservation_Controller extends Controller
 {
@@ -49,6 +51,7 @@ class Reservation_Controller extends Controller
 
     public function createReservationAdmin(Request $request){
 
+
         $persons = $request["frmReservationPersons"];
         $date = $request["frmReservationDate"];
         $hour = $request["frmReservationTime"];
@@ -62,22 +65,26 @@ class Reservation_Controller extends Controller
 
 
         $reservation = new Reservation();
-        $reservation->persons = $persons;
-        $reservation->date = $date;
-        $reservation->hour =$hour;
-        $reservation->type = $type;
-        $reservation->surname = $surname;
-        $reservation->name = $name;
+        $reservation->aantal_personen = $persons;
+        $reservation->datum = $date;
+        $reservation->shift ="Lunch";
+        $reservation->soort = "Rondleiding";
+        $reservation->voornaam = $surname;
+        $reservation->achternaam = $name;
 
-        $reservation->phone = $phone;
+        $reservation->telefoon = $phone;
         $reservation->email = $email;
-        $reservation->notes = $notes;
+        $reservation->nota = $notes;
 
         $reservation->save();
 
         return redirect()->back();
 
     }
+
+
+
+
 
 
 }
