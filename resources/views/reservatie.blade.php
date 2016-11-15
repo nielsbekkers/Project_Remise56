@@ -14,8 +14,8 @@
 
             </div>
             <div class="row fh5co-heading row-padded text-center">
-                <div class="col-md-3">
-                    <p>Sluitingsperiodes 2016 <br>                                </p>
+                <div class="col-md-4">
+                    <p>Sluitingsperiodes 2016</p> <br>
 
                     <ul>
                         <li>Zondag 1 januari t/m donderdag 19 januari</li>
@@ -24,122 +24,131 @@
                     </ul>
 
                 </div>
-                <div class="col-md-6">
-                    <p>Online reserveren</p>
-                    <form>
-                        <fieldset>
-                            <legend>Deel 1</legend>
 
-                            <table style="width:500px;">
-                                <tr>
-                                    <td><label>Reserveren bij</label></td>
-                                    <td><label><strong>Remise 56</strong></label>
+                <div class="col-md-8">
+                    <p style="text-align: center">Online Reserveren</p>
 
-                                </tr>
-                                <tr>
-                                    <td><label>Aantal personen</label></td>
-                                    <td><select>
-                                            <!--<option>Kies het aantal personen</option>-->
-                                            <option>1 persoon</option>
-                                            <option>2 personen</option>
-                                            <option>3 personen</option>
-                                            <option>4 personen</option>
-                                            <option>5 personen</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Datum</label></td>
-                                    <td><input type="date"/></td>
+                    <form class="form-horizontal" action="{{route("createReservationClient")}}" method="post">
 
-                                </tr>
-                                <tr>
-                                    <td><label>Aankomstuur</label></td>
-                                    <td><select>
-                                            <option>Kies een uur</option>
-                                            <option>12.00</option>
-                                            <option>12.30</option>
-                                            <option>17.15</option>
-                                            <option>20.00</option>
-                                            <option>20.30</option>
-                                        </select></td>
+                        <div class="form-group">
+                            <label class="col-sm-4  control-label" >Reserveren bij</label>
+                            <label style="text-align: left" class="col-sm-8 control-label"><strong>Remise 56</strong></label>
 
-                                </tr>
-                                <tr>
+                        </div>
 
-                                    <td colspan="2"><button>Volgende</button></td>
 
-                                </tr>
-                            </table>
-                        </fieldset>
 
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Aantal personen</label>
+                            <div class="col-sm-8">
+                                {{--<select class="form-control" name="frmReservationPersons">
+                                    <!--<option>Kies het aantal personen</option>-->
+                                    <option>1 persoon</option>
+                                    <option>2 personen</option>
+                                    <option>3 personen</option>
+                                    <option>4 personen</option>
+                                    <option>5 personen</option>
+                                </select>--}}
+                                <input class="form-control" type="number" min="1" value="2" max="20" name="frmReservationPersons"/>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Datum</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="date" name="frmReservationDate"/>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Aankomstuur</label>
+                            <div class="col-sm-8">
+
+                                <input class="form-control" type="time" name="frmReservationTime" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Type</label>
+                            <div class="col-sm-8">
+                                <input class="radio-inline"  type="radio" name="frmReservationType" value="person" checked /> Persoonlijk<br>
+                                <input class="radio-inline" type="radio" name="frmReservationType" value="company"/> Bedrijf
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Voornaam</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" name="frmReservationSurname" placeholder="uw voornaam..." type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Familienaam</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" name="frmReservationName" placeholder="uw familienaam..." type="text"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Telefoonnummer</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" name="frmReservationPhone" placeholder="0488111111" type="tel"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Email</label>
+                            <div class="col-sm-8">
+                                <input class="form-control"  name="frmReservationEmail" placeholder="uwemail@hotmail.com" type="email"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Opmerkingen</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="frmReservationNotes" rows="2" placeholder="Speciale wensen, Allergieën, ..." cols="20"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align: center">
+
+                            <button class="btn btn-default" name="frmReservationSubmit" id="submit">Bevestigen</button>
+                        </div>
+
+                        <!-- Beveiliging als iemand uw session key heeft-->
+                        <input type="hidden" name="_token" value="{{Session::token()}}">
                     </form>
-                    <br><br><br>
-                    <form>
 
-                        <fieldset>
-                            <legend>Deel 2</legend>
-
-                            <table style="width:500px;">
-                                <tr>
-                                    <td><label>Type</label></td>
-                                    <td><input type="radio" name="type" value="Persoonlijk"> Persoonlijk<br>
-                                        <input type="radio" name="type" value="Bedrijf"> Bedrijf
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td><label>Voornaam</label></td>
-                                    <td><input type="text"/> </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Familienaam</label></td>
-                                    <td><input type="text"/></td>
-
-                                </tr>
-                                <tr>
-                                    <td><label>Telefoonnummer</label></td>
-                                    <td><input type="tel"/></td>
-
-                                </tr>
-                                <tr>
-                                    <td><label>Email</label></td>
-                                    <td><input type="email"/></td>
-
-                                </tr>
-                                <tr>
-                                    <td><label>Opmerkingen</label></td>
-                                    <td><textarea rows="2" cols="20">Speciale wensen, Allergieën, ...</textarea></td>
-
-                                </tr>
-                                <tr>
-
-                                    <td colspan="2"><button>Bevestigen</button></td>
-
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </form>
                 </div>
-                <div class="col-md-3">
+                {{--<div class="col-md-3">
                     <p>Openingsuren 2016</p>
                     <ul>
                         <li> ma, di, wo, do, vr : Vanaf 11u doorlopend open.</li>
                         <li>za, zo : Vanaf 09u doorlopend open.</li>
                     </ul>
 
-                </div>
+                </div>--}}
 
 
             </div>
-            <div class="row fh5co-heading row-padded text-center">
+            {{--<div class="row fh5co-heading row-padded text-center">
                 <div class="col-md-12">
                     <div class="fb-page" data-href="https://www.facebook.com/Remise56/?fref=ts" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Remise56/?fref=ts" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Remise56/?fref=ts">Remise 56</a></blockquote></div>
 
                 </div>
 
 
-            </div>
+            </div>--}}
         </div>
     </div>
 

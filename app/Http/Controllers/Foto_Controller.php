@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Gallery;
+
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,7 +22,20 @@ class Foto_Controller extends Controller
     }
 
 
-    public function saveGallery(Request $request){
+    public function saveGallery(Request $request)
+    {
+        // validate the request through the validation rules
+        $validator = Validator::make($request->all(),[
+            'gallery_name' => 'required|min:3',
+            'state' => 'exists:gallery,name',
+        ]);
+        //take actions when the validation has failed
+        if ($validator->fails()){
+            return redirect('foto')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         $gallery = new Gallery();
 
