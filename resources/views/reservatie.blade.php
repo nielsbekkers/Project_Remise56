@@ -1,6 +1,48 @@
 @extends('layouts.grand_cafe_layout')
 
+@section('extra_css')
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/reservatiestyle.css">
+   <script>
+        $( function() {
+            // Verbergen
+            $("#FrmReservatieGroepUur").hide();
+            $("#FrmReservatieGroepPersonen").hide();
+            $("#FrmReservatieDeel2").hide();
+
+            //var $j = jQuery.noConflict();
+            $( "#datepicker" ).datepicker({
+                monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" ],
+                dayNames: [ "Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag" ],
+                dayNamesMin: [ "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za" ],
+                firstDay: 1, // Maandag
+                onSelect: function (date) {
+                    //alert(date);
+                    // $("#FrmReservatieGroepUur").show();
+                    $("#FrmReservatieGroepUur").fadeIn(2000);
+                }
+            });
+
+
+
+            $("#FrmReservatieUur").click(function(){
+                $("#FrmReservatieGroepPersonen").fadeIn(2000);
+            })
+
+            $("#FrmReservatiePersonen").click(function(){
+                $("#FrmReservatieDeel1").fadeOut(2000);
+                $("#FrmReservatieDeel2").fadeIn(2000);
+            })
+
+        } );
+
+
+    </script>
+
+    @stop
+
 @section('content')
+
     <div style="background-color: #fafafa;">
         <div class="container" style="padding-top: 40px;">
             <div class="row fh5co-heading row-padded text-center">
@@ -25,131 +67,81 @@
 
                 </div>
 
-                <div class="col-md-8">
-                    <p style="text-align: center">Online Reserveren</p>
-
-                    <form class="form-horizontal" action="{{route("createReservationClient")}}" method="post">
-
-                        <div class="form-group">
-                            <label class="col-sm-4  control-label" >Reserveren bij</label>
-                            <label style="text-align: left" class="col-sm-8 control-label"><strong>Remise 56</strong></label>
-
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Aantal personen</label>
-                            <div class="col-sm-8">
-                                {{--<select class="form-control" name="frmReservationPersons">
-                                    <!--<option>Kies het aantal personen</option>-->
-                                    <option>1 persoon</option>
-                                    <option>2 personen</option>
-                                    <option>3 personen</option>
-                                    <option>4 personen</option>
-                                    <option>5 personen</option>
-                                </select>--}}
-                                <input class="form-control" type="number" min="1" value="2" max="20" name="frmReservationPersons"/>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Datum</label>
-                            <div class="col-sm-8">
-                                <input class="form-control" type="date" name="frmReservationDate"/>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Aankomstuur</label>
-                            <div class="col-sm-8">
-
-                                <input class="form-control" type="time" name="frmReservationTime" />
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Type</label>
-                            <div class="col-sm-8">
-                                <input class="radio-inline"  type="radio" name="frmReservationType" value="person" checked /> Persoonlijk<br>
-                                <input class="radio-inline" type="radio" name="frmReservationType" value="company"/> Bedrijf
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Voornaam</label>
-                            <div class="col-sm-8">
-                                <input class="form-control" name="frmReservationSurname" placeholder="uw voornaam..." type="text"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Familienaam</label>
-                            <div class="col-sm-8">
-                                <input class="form-control" name="frmReservationName" placeholder="uw familienaam..." type="text"/>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Telefoonnummer</label>
-                            <div class="col-sm-8">
-                                <input class="form-control" name="frmReservationPhone" placeholder="0488111111" type="tel"/>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Email</label>
-                            <div class="col-sm-8">
-                                <input class="form-control"  name="frmReservationEmail" placeholder="uwemail@hotmail.com" type="email"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Opmerkingen</label>
-                            <div class="col-sm-8">
-                                <textarea class="form-control" name="frmReservationNotes" rows="2" placeholder="Speciale wensen, Allergieën, ..." cols="20"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group" style="text-align: center">
-
-                            <button class="btn btn-default" name="frmReservationSubmit" id="submit">Bevestigen</button>
-                        </div>
-
-                        <!-- Beveiliging als iemand uw session key heeft-->
-                        <input type="hidden" name="_token" value="{{Session::token()}}">
-                    </form>
-
-                </div>
-                {{--<div class="col-md-3">
-                    <p>Openingsuren 2016</p>
-                    <ul>
-                        <li> ma, di, wo, do, vr : Vanaf 11u doorlopend open.</li>
-                        <li>za, zo : Vanaf 09u doorlopend open.</li>
-                    </ul>
-
-                </div>--}}
-
+                {!!html_entity_decode($content)!!}
 
             </div>
-            {{--<div class="row fh5co-heading row-padded text-center">
-                <div class="col-md-12">
-                    <div class="fb-page" data-href="https://www.facebook.com/Remise56/?fref=ts" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Remise56/?fref=ts" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Remise56/?fref=ts">Remise 56</a></blockquote></div>
-
-                </div>
-
-
-            </div>--}}
         </div>
     </div>
-
     @stop
+
+
+{{--<div class="col-md-8">--}}
+    {{--<p style="text-align: center">Online Reserveren</p>--}}
+
+    {{--<div class="container">--}}
+        {{--<div class="row">--}}
+
+        {{--</div>--}}
+    {{--</div>--}}
+
+    {{--<form class="form-horizontal" action="{{route("createReservationClient")}}" method="post">--}}
+        {{--<div id="FrmReservatieDeel1">--}}
+            {{--<div id="FrmReservatieGroepDatum">--}}
+                {{--<label for="sel1">Select datum (select one):</label>--}}
+                {{--<div  id="datepicker"></div>--}}
+            {{--</div>--}}
+            {{--<br>--}}
+            {{--<div id="FrmReservatieGroepUur">--}}
+                {{--<label for="sel1">Select uur (select one):</label>--}}
+                {{--<select id="FrmReservatieUur" class="form-control" id="sel1" style=" text-align-last:center;">--}}
+                    {{--<option style=" text-align-last:center;">11.00</option>--}}
+                    {{--<option>11.30</option>--}}
+                    {{--<option>12.00</option>--}}
+                    {{--<option>12.30</option>--}}
+                    {{--<option>13.00</option>--}}
+                    {{--<option>13.30</option>--}}
+
+                {{--</select>--}}
+            {{--</div>--}}
+            {{--<br>--}}
+            {{--<div id="FrmReservatieGroepPersonen">--}}
+                {{--<label  for="sel1">Select personen (select one):</label>--}}
+                {{--<select id="FrmReservatiePersonen" class="form-control" id="sel1" style=" text-align-last:center;">--}}
+                    {{--<option style=" text-align-last:center;">1</option>--}}
+                    {{--<option>2</option>--}}
+                    {{--<option>3</option>--}}
+                    {{--<option>4</option>--}}
+                {{--</select>--}}
+            {{--</div>--}}
+            {{--<br>--}}
+        {{--</div>--}}
+
+        {{--<div id="FrmReservatieDeel2">--}}
+            {{--<form class="form-inline">--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="text" name="FrmReservatieVoornaam" class="form-control" placeholder="Voornaam">--}}
+                    {{--<input type="text" name="FrmReservatieNaam" class="form-control" placeholder="Naam">--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="email" name="FrmReservatieEmail" class="form-control" placeholder="Email" >--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="text" name="FrmReservatieTel" class="form-control" placeholder="tel" >--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<textarea class="form-control" name="FrmReservatieNota" rows="2" placeholder="Speciale wensen, Allergieën, ..." cols="20"></textarea>--}}
+
+                {{--</div>--}}
+
+                {{--<button type="submit" name="FrmReservatieSubmit" class="btn btn-default">Reserveren</button>--}}
+            {{--</form>--}}
+
+        {{--</div>--}}
+
+
+        {{--<!-- Beveiliging als iemand uw session key heeft-->--}}
+        {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
+    {{--</form>--}}
+
+{{--</div>--}}
+

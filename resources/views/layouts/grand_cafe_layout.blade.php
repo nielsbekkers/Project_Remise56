@@ -42,7 +42,10 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
 
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+    {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
+    <script src="js/jquery-ui.js"></script>
     @yield('extra_css')
 
 
@@ -52,8 +55,8 @@
     <!--[if lt IE 9]>
     <script src="../js/respond.min.js"></script>
     <![endif]-->
-    <!-- Jquerry -->
-    <script src="../js/jquery.min.js"></script>
+    <!-- Jquerry-->
+    {{--<script src="../js/jquery.min.js"></script>--}}
     <script>
         $(function(){
             $('#footerClose').on('click', function(){
@@ -132,6 +135,7 @@
 </body>
 
 @yield('extra_scripts')
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
 
 
 </html>

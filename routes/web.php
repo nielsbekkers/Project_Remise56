@@ -29,7 +29,7 @@ Route::get('gallery/view/{id}','Foto_Controller@viewGalleryPics');
 
 Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
-Route::get('reservatie','Reservatie_Controller@home');
+Route::get('reservatie','Reservatie_Controller@getContent');
 
 Route::get('rondleiding','rondleiding_Controller@home');
 
@@ -72,7 +72,7 @@ Route::post('/personeel/newUser', [
 
 
 // Dashboard NEW RESERVATION
-Route::get('personeel/reservaties','Reservaties_Controller@home');
+Route::get('personeel/reservation','Reservaties_Controller@home');
 
 // Dashboard NEW RESERVATION  form POST
 Route::post('/personeel/createReservationAdmin', [
