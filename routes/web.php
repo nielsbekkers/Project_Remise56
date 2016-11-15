@@ -33,9 +33,6 @@ Route::get('reservatie','Reservatie_Controller@home');
 
 Route::get('rondleiding','rondleiding_Controller@home');
 
-
-
-
 Route::get('editMenu' , 'Menu_Controller@editMenu');
 
 Route::post('/createReservationClient', [
@@ -80,3 +77,13 @@ Route::post('/personeel/createReservationAdmin', [
     'as' => 'createReservationAdmin'
 ]);
 
+//Dashboad NEWS ITEMS
+Route::get('/personeel/news','NewsItems_Controller@home');
+
+//Dashboard ADD NEWS ITEM
+Route::post('/personeel/news',[
+    'uses'=> 'NewsItems_Controller@createNewsItem',
+    'as' => 'createNewsitem']);
+
+//Dashboard DELETE NEWS ITEM
+Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');

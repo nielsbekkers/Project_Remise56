@@ -140,7 +140,12 @@
             <div class="fh5co-text">
                 <div class="container">
                     <div class="row">
-                       <img class="to-animate" src="images/Remise56_Logo.png" alt="Logo Remise56"></img>
+                       <div class="hidden-xs hidden-sm">
+                        <img class="to-animate" src="images/Remise56_Logo.png" alt="Logo Remise56"></img>
+                       </div>
+                        <div class="hidden-md hidden-lg">
+                            <h1 style="top:40px;">Remise 56</h1>
+                        </div>
                         <hr class="hidden-sm hidden-xs">
                         <div class="container-fluid">
                             <div class="fh5co-menu-1">
@@ -154,6 +159,7 @@
                     </div>
                 </div>
             </div>
+
             <ul class="slides">
                 <li id="achtergrond" style="background-image: url(images/slide3.jpg);"></li>
                 <li id="achtergrondgc" style="background-image: url(images/slide2.jpg);"></li>
@@ -163,22 +169,47 @@
     </div>
 </div>
 
-<div class="footer navbar-fixed-bottom" style="margin-right:20px;margin-left: 20px; background-color:rgba(0, 0, 0, 0.4);border-radius:4px;">
-    <div class="col-lg-4" style="">
-        <button class="news-item" onclick="OpenTest();">Nieuws Item 1</button>
-        <br>
-        <p id="test" style=";font-size:14px;color:white;">
-            Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
+<div id="fh5co-offcanvas">
+    <ul style="list-style-type:none;">
+        <li><a href="{{url('brouwerij')}}">Brouwerij</a></li>
+        <hr style="border: 1px solid orange;opacity: 0.5;">
+        <li><a href="#">Grand Cafe</a></li>
+        <hr style="border: 1px solid orange;opacity: 0.5;">
+    </ul>
 </div>
 
-
-    <script src="js/jquery.min.js"></script>
+<div class="footer navbar-fixed-bottom" style="margin-right:20px;margin-left: 20px; background-color:rgba(0, 0, 0, 0.4);border-radius:4px;">
+@foreach($newsItems->all() as $newsItem)
+    @if($newsItem->padNaarFoto != NULL)
+        <div class="col-lg-4">
+            <button class="news-item" style="width: 100%" onclick="OpenTest();">{{$newsItem->Titel}}</button>
+            <br>
+        </div>
+        <div class="col-lg-12" id="{{$newsItem->ID}}">
+            <div class="hidden-xs col-lg-3">
+                <img src="uploads/{{$newsItem->padNaarFoto}}" alt="News item foto"/>
+            </div>
+            <div class="col-lg-9">
+                <p style=";font-size:14px;color:white;">{{$newsItem->Uitleg}}</p>
+            </div>
+        </div>
+    @else
+        <div class="col-lg-4">
+            <button class="news-item" style="width: 100%" onclick="OpenTest();">{{$newsItem->Titel}}</button>
+            <br>
+        </div>
+        <div class="col-lg-12" id="{{$newsItem->ID}}">
+            <p style=";font-size:14px;color:white;">{{$newsItem->Uitleg}}</p>
+        </div>
+    @endif
+@endforeach
+</div>
+<script src="js/jquery.min.js"></script>
+@foreach($newsItems->all() as $newsItem)
     <script>
 
         function OpenTest(){
-            $('#test').slideToggle(1500);
+            $('#{{$newsItem->ID}}').slideToggle(1500);
             if($('.blur').css('filter') == 'blur(0px)'){
                 $('.blur').css('filter','blur(3px)') ;
                 $('.blur').css('margin','-5px') ;
@@ -190,35 +221,43 @@
             }
         }
 
-        $(".Brouwerij").hover(function(){
-            var index = $('#achtergrondb').index();   // will give you 2
-            $('.flexslider').flexslider(index);   // will take you to that slide
-            $('#popup_brouwerij').css('display','block');
+    $(window).load(function() {
+        $('#{{$newsItem->ID}}').slideToggle(0);
+        $('#{{$newsItem->ID}}').css('display','none');
+    });
 
-        },function() {
-            var index = $('#achtergrond').index();   // will give you 2
-            $('.flexslider').flexslider(index);   // will take you to that slide
-            $('#popup_brouwerij').css('display','none');
-        });
+    </script>
+@endforeach
 
-        $(".GC").hover(function(){
-            var index = $('#achtergrondgc').index();   // will give you 2
-            $('.flexslider').flexslider(index);   // will take you to that slide
-            $('#popup_gc').css('display','block');
-        },function() {
-            var index = $('#achtergrond').index();   // will give you 2
-            $('.flexslider').flexslider(index);   // will take you to that slide
-            $('#popup_gc').css('display','none');
-        });
+<script>
+
+    $(".Brouwerij").hover(function(){
+        var index = $('#achtergrondb').index();   // will give you 2
+        $('.flexslider').flexslider(index);   // will take you to that slide
+        $('#popup_brouwerij').css('display','block');
+
+    },function() {
+        var index = $('#achtergrond').index();   // will give you 2
+        $('.flexslider').flexslider(index);   // will take you to that slide
+        $('#popup_brouwerij').css('display','none');
+    });
+
+    $(".GC").hover(function(){
+        var index = $('#achtergrondgc').index();   // will give you 2
+        $('.flexslider').flexslider(index);   // will take you to that slide
+        $('#popup_gc').css('display','block');
+    },function() {
+        var index = $('#achtergrond').index();   // will give you 2
+        $('.flexslider').flexslider(index);   // will take you to that slide
+        $('#popup_gc').css('display','none');
+    });
 
     $(window).load(function() {
         $("#achtergrondb").css('opacity' , 0);
         $("#achtergrondgc").css('opacity' , 0);
-        $('#test').slideToggle(0);
         jQuery('.flexslider').flexslider("pause");
     });
-
-    </script>
+</script>
 <!-- jQuery -->
 
 <!-- jQuery Easing -->
