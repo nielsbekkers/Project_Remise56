@@ -88,7 +88,7 @@
         {{--<div id="FrmReservatieDeel1">--}}
             {{--<div id="FrmReservatieGroepDatum">--}}
                 {{--<label for="sel1">Select datum (select one):</label>--}}
-                {{--<div  id="datepicker"></div>--}}
+                {{--<é--}}
             {{--</div>--}}
             {{--<br>--}}
             {{--<div id="FrmReservatieGroepUur">--}}

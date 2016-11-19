@@ -40,12 +40,22 @@ Route::post('/createReservationClient', [
     'as' => 'createReservationClient'
 ]);
 
+
+
+
 //////////////// Personeel
 
-// Dashboard SIGN IN
-Route::get('/personeel', function () {
-    return view('personeel.signin');
-});
+// DASHBOARD get pagina -> Personeel_Controller
+Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
+
+
+
+// Dashboard Nieuwe reservatie restaurant form POST
+Route::post('/personeel/nieuweReservatieRest', [
+    'uses' => 'Personeel_Controller@nieuweReservatieRest',
+    'as' => 'nieuweReservatieRest'
+]);
+
 
 // Dashboard SIGN IN form POST
 Route::post('/personeel/signin', [
@@ -56,9 +66,9 @@ Route::post('/personeel/signin', [
 
 
 // Dashboard NEW USER
-Route::get('/personeel/newUser', function(){
-    return view('personeel.newuser');
-});
+//Route::get('/personeel/nieuweGebruiker', function(){
+//    return view('personeel.newuser');
+//});
 
 // Dashboard NEW USER form POST
 Route::post('/personeel/newUser', [
@@ -69,13 +79,9 @@ Route::post('/personeel/newUser', [
 
 
 // Dashboard NEW RESERVATION
-Route::get('personeel/reservation','Reservaties_Controller@home');
+//Route::get('personeel/nieuweReservatieRest','Reservaties_Controller@home');
 
-// Dashboard NEW RESERVATION  form POST
-Route::post('/personeel/createReservationAdmin', [
-    'uses' => 'Reservation_Controller@createReservationAdmin',
-    'as' => 'createReservationAdmin'
-]);
+
 
 //Dashboad NEWS ITEMS
 Route::get('/personeel/news','NewsItems_Controller@home');

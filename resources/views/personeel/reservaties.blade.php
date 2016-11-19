@@ -18,6 +18,7 @@
                 {{$errorReport}}
             </div>
         @endif
+
         <div id="scheduler" class="dhx_cal_container">
             <div class="dhx_cal_navline">
                 <div class="dhx_cal_prev_button">&nbsp;</div>
@@ -46,17 +47,21 @@
 
         scheduler.init('scheduler', new Date(),"day");
     </script>
-    <script type="text/javascript">var events = [
+    <script type="text/javascript">
+        var events = [
+
                 @forelse($reservaties as $reservatie)
-                <?php
-                $date = new DateTime($reservatie->datum);
-                $date->add(new DateInterval('PT6H'));
-                $reservatie->eindDatum = $date->format('Y-m-d H:i:s');
-                $text = $reservatie->achternaam.' '.$reservatie->voornaam.' Aantal personen: '.$reservatie->aantal_personen;
-                ?>
-            {id:"{{$reservatie->id}}", text:"{{$text}}", start_date:"{{$reservatie->datum}}",
-                end_date:"{{$reservatie->eindDatum}}}"},
-            @empty
+                    <?php
+
+                    $date = new DateTime((string)$reservatie->datumtijd);
+                    $date->add(new DateInterval('PT1H'));
+                    $reservatie->eindDatum = $date->format('Y-m-d H:i:s');
+                    $text = $reservatie->naam.' '.$reservatie->voornaam.' | Aantal personen: '.$reservatie->aantal_personen
+                            . ' | Nota: '.$reservatie->nota .' | Soort: '.$reservatie->soort . ' | Telefoon: '.$reservatie->telefoon;
+                    ?>
+                    {id:"{{$reservatie->id}}", text:"{{$text}}", start_date:"{{(string)$reservatie->datumtijd}}",
+                        end_date:"{{$reservatie->eindDatum}}}"},
+                @empty
 
             @endforelse
 

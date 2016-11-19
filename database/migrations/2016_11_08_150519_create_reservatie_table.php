@@ -15,13 +15,13 @@ class CreateReservatieTable extends Migration
     {
         Schema::create('reservaties', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps('datum');
+            $table->dateTime('datumtijd');
             $table->string('email');
             $table->string('shift');
             $table->string('soort');
             $table->integer('aantal_personen');
             $table->string('voornaam');
-            $table->string('achternaam');
+            $table->string('naam');
             $table->string('telefoon');
             $table->string('nota');
             $table->string('bevestigd');
