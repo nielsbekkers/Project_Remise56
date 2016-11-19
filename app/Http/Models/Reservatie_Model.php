@@ -148,19 +148,14 @@ class Reservatie_Model extends Model implements  Authenticatable
         $sBevestingscode = "code";
 
         $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
-        $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // abcd
-        $sTime2 = substr($request["frmReservatieRestTijd"], 3, 2);  // abcd
+        $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
+        $sTime2 = substr($request["frmReservatieRestTijd"], 3, 2);  // neemt de  2 getallen na de  ":"
 
         $dDatetime->setTime($sTime1, $sTime2, 00);
 
-
-        //$dDatum = $request["frmReservatieRestDatum"];
         $iPersonen = $request["frmReservatieRestPersonen"];
-
-        //$sType = $request["frmReservatieRestType"];
         $sVoornaam = $request["frmReservatieRestVoornaam"];
         $sNaam = $request["frmReservatieRestNaam"];
-
         $sTelefoon = $request["frmReservatieRestTelefoon"];
         $sEmail = $request["frmReservatieRestEmail"];
         $sNota = $request["frmReservatieRestNota"];
@@ -174,6 +169,40 @@ class Reservatie_Model extends Model implements  Authenticatable
            $bResultaat = true;
         } catch (\PDOException $e) {
            $bResultaat = false;
+        }
+        return $bResultaat;
+
+    }
+
+    public function nieuwReservatieRond(Request $request){
+        $sSoort = "Rondleiding";
+        $sShift = "Lunch";
+        $sBevestigd = "ok";
+        $sBevestingscode = "code";
+
+        $dDatetime = new DateTime($request["frmReservatieRondDatum"]);
+
+        $sTime1 = substr($request["frmReservatieRondTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
+        $sTime2 = substr($request["frmReservatieRondTijd"], 3, 2);  // neemt de  2 getallen na de  ":"
+
+        $dDatetime->setTime($sTime1, $sTime2, 00);
+
+        $iPersonen = $request["frmReservatieRondPersonen"];
+        $sVoornaam = $request["frmReservatieRondVoornaam"];
+        $sNaam = $request["frmReservatieRondNaam"];
+        $sTelefoon = $request["frmReservatieRondTelefoon"];
+        $sEmail = $request["frmReservatieRondEmail"];
+        $sNota = $request["frmReservatieRondNota"];
+
+        // DB::insert('insert into reservaties (datum, tijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatum, $tTijd, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
+
+
+
+        try {
+            DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
+            $bResultaat = true;
+        } catch (\PDOException $e) {
+            $bResultaat = false;
         }
         return $bResultaat;
 

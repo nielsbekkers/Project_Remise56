@@ -9,6 +9,7 @@
 namespace  App\Http\Controllers;
 
 use App\User;
+use App\Http\Models\Personeel_Model;
 use App\Http\Models\Reservatie_Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,8 +59,16 @@ class Personeel_Controller extends Controller
                 return view('personeel.inloggen');
                 break;
 
-            case "nieuweGebruiker" :
-                return view('personeel.nieuweGebruiker');
+            case "personeel":
+                //return view('personeel.reservaties');
+                $aPersoneel = $this->getPersoneel();
+
+                return view('personeel.personeel', compact('aPersoneel'));
+
+                break;
+
+            case "nieuwPersoneelsLid" :
+                return view('personeel.nieuwPersoneelsLid');
                 break;
 
             case "nieuweReservatieRest" :
@@ -67,7 +76,7 @@ class Personeel_Controller extends Controller
                 break;
 
             case "nieuweReservatieRond" :
-                return view('personeel.nieuweReservatieRestaurant');
+                return view('personeel.nieuweReservatieRondleiding');
                 break;
 
             case "reservaties" :
@@ -91,11 +100,17 @@ class Personeel_Controller extends Controller
 
     /////////////////////////       De volgende functies worden gebruikt voor PERSONEEL mbv het Personeel_Model
     public function getPersoneel(){
-        return "hello Michel";
+        $oPersoneel = new Personeel_Model();
+        $aPersoneel = $oPersoneel->getPersoneel();
+
+        return $aPersoneel;
     }
 
-    public function nieuwPersoneel(Request $request){
+    public function nieuwPersoneelsLid(Request $request){
+        $oPersoneel = new Personeel_Model();
+        $bResult = $oPersoneel->nieuwPersoneelsLid($request);
 
+        return view('personeel.nieuwPersoneelsLid', compact('bResult'));
     }
 
 
@@ -118,8 +133,12 @@ class Personeel_Controller extends Controller
 
     }
 
-    public function nieuwReservatieRond(Request $request){
+    public function nieuweReservatieRond(Request $request){
+        $oReservatie = new Reservatie_Model();
+        $bResult = $oReservatie->nieuwReservatieRond($request);
 
+
+        return view('personeel.nieuweReservatieRondleiding', compact('bResult'));
     }
 
 

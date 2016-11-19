@@ -56,31 +56,18 @@ Route::post('/personeel/nieuweReservatieRest', [
     'as' => 'nieuweReservatieRest'
 ]);
 
-
-// Dashboard SIGN IN form POST
-Route::post('/personeel/signin', [
-    'uses' => 'Admin_Controller@postSignIn',
-    'as' => 'signin'
+// Dashboard Nieuwe rondleiding restaurant form POST
+Route::post('/personeel/nieuweReservatieRond', [
+    'uses' => 'Personeel_Controller@nieuweReservatieRond',
+    'as' => 'nieuweReservatieRond'
 ]);
 
 
-
-// Dashboard NEW USER
-//Route::get('/personeel/nieuweGebruiker', function(){
-//    return view('personeel.newuser');
-//});
-
-// Dashboard NEW USER form POST
-Route::post('/personeel/newUser', [
-    'uses' => 'Admin_Controller@postNewUser',
-    'as' => 'newUser'
+// Dashboard Nieuw personeelslid form POST
+Route::post('/personeel/nieuwPersoneelsLid', [
+    'uses' => 'Personeel_Controller@nieuwPersoneelsLid',
+    'as' => 'nieuwPersoneelsLid'
 ]);
-
-
-
-// Dashboard NEW RESERVATION
-//Route::get('personeel/nieuweReservatieRest','Reservaties_Controller@home');
-
 
 
 //Dashboad NEWS ITEMS

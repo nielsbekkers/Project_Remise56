@@ -28,7 +28,7 @@
             @if(isset($bResult) && $bResult == true)
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <strong>Succes! </strong> nieuwe reservatie toegevoegd!.
+                    <strong>OK,</strong> nieuwe reservatie toegevoegd!.
                 </div>
 
             @elseif(isset($bResult) && $bResult == false)
@@ -38,12 +38,12 @@
                 </div>
             @endif
 
-            <h2 style="text-align: center">Nieuwe reservatie (Restaurant)</h2>
-                <br><br>
+            <h2 style="text-align: center">Nieuwe reservatie (Rondleiding)</h2>
+            <br><br>
 
-            <form class="form-horizontal" action="{{route("nieuweReservatieRest")}}" method="post">
+            <form class="form-horizontal" action="{{route("nieuweReservatieRond")}}" method="post">
 
-               <div class="form-group">
+                <div class="form-group">
                     <label class="col-sm-4 control-label">Datum</label>
                     <div class="col-sm-8">
 
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <!-- Met javascript haal ik de datum uit de DataPicker en steek ik ze in de verborgen input veld-->
-                        <input type="hidden" id="datepickerhelper" name="frmReservatieRestDatum"/>
+                        <input type="hidden" id="datepickerhelper" name="frmReservatieRondDatum"/>
                     </div>
 
                 </div>
@@ -62,7 +62,7 @@
                     <label class="col-sm-4 control-label">Aantal personen</label>
                     <div class="col-sm-8">
 
-                        <input class="form-control" type="number" min="1" value="2" max="20" name="frmReservatieRestPersonen"/>
+                        <input class="form-control" type="number" min="1" value="2" max="20" name="frmReservatieRondPersonen"/>
 
                     </div>
                 </div>
@@ -74,33 +74,33 @@
                     <label class="col-sm-4 control-label">Aankomsttijd</label>
                     <div class="col-sm-8">
 
-                        <input class="form-control" type="time" name="frmReservatieRestTijd" />
+                        <input class="form-control" type="time" name="frmReservatieRondTijd" />
                     </div>
                 </div>
 
 
-               {{-- <div class="form-group">
-                    <label class="col-sm-4 control-label">Type</label>
-                    <div class="col-sm-8">
-                        <input class="radio-inline"  type="radio" name="frmReservatieRestType" value="person" checked /> Persoonlijk<br>
-                        <input class="radio-inline" type="radio" name="frmReservatieRestType" value="company"/> Bedrijf
-                    </div>
+                {{-- <div class="form-group">
+                     <label class="col-sm-4 control-label">Type</label>
+                     <div class="col-sm-8">
+                         <input class="radio-inline"  type="radio" name="frmReservatieRestType" value="person" checked /> Persoonlijk<br>
+                         <input class="radio-inline" type="radio" name="frmReservatieRestType" value="company"/> Bedrijf
+                     </div>
 
 
-                </div>--}}
+                 </div>--}}
 
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Voornaam</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRestVoornaam" placeholder="uw voornaam..." type="text"/>
+                        <input class="form-control" name="frmReservatieRondVoornaam" placeholder="uw voornaam..." type="text"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Familienaam</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRestNaam" placeholder="uw familienaam..." type="text"/>
+                        <input class="form-control" name="frmReservatieRondNaam" placeholder="uw familienaam..." type="text"/>
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Telefoonnummer</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRestTelefoon" placeholder="0488111111" type="tel"/>
+                        <input class="form-control" name="frmReservatieRondTelefoon" placeholder="0488111111" type="tel"/>
                     </div>
                 </div>
 
@@ -116,20 +116,20 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Email</label>
                     <div class="col-sm-8">
-                        <input class="form-control"  name="frmReservatieRestEmail" placeholder="uwemail@hotmail.com" type="email"/>
+                        <input class="form-control"  name="frmReservatieRondEmail" placeholder="uwemail@hotmail.com" type="email"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Opmerkingen</label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" name="frmReservatieRestNota" rows="2" cols="20">Speciale wensen, Allergieën, ...</textarea>
+                        <textarea class="form-control" name="frmReservatieRondNota" rows="2" cols="20">Speciale wensen, ...</textarea>
                     </div>
                 </div>
 
                 <div class="form-group" style="text-align: center">
 
-                    <button class="btn btn-default" name="frmReservatieRestSubmit" id="submit">Toevoegen</button>
+                    <button class="btn btn-default" name="frmReservatieRondSubmit" id="submit">Toevoegen</button>
                 </div>
 
                 <!-- Beveiliging als iemand uw session key heeft-->
