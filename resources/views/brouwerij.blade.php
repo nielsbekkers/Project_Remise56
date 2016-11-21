@@ -7,6 +7,10 @@
     </div>
 @stop
 
+
+<!-- CONTENT van brouwerij zet je hierin opgehaald uit het model -->
+
+
 @section('content')
     <div style="background-color: #fafafa;">
         <div class="container" style="padding-top: 40px;">
