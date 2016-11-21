@@ -15,7 +15,7 @@ class Navigatie_Model extends Model
                 <a href="/" style="background-image: url(images/logo.gif)">Remise 56</a>
             </div>
             <div class="fh5co-menu-1">
-                <a href="grandcafe" style="font-weight: bold;">Ga naar Grand Café</a>
+                <a href="/grandcafe" style="font-weight: bold;">Ga naar Grand Café</a>
                 <a href="/brouwerij" >Brouwerij</a>
                 <a href="/brouwerij/gallerij" >Foto´s</a>
                 <a href="/brouwerij/rondleiding" >Rondleidingen</a>
