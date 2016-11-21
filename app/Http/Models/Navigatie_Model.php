@@ -14,11 +14,11 @@ class Navigatie_Model extends Model
             <div class="fh5co-logo">
                 <a href="/" style="background-image: url(images/logo.gif)">Remise 56</a>
             </div>
-            <div class="fh5co-menu-1">
+            <div class="fh5co-menu-2" style="float: right;">
                 <a href="/grandcafe" style="font-weight: bold;">Ga naar Grand Café</a>
                 <a href="/brouwerij" >Brouwerij</a>
                 <a href="/brouwerij/gallerij" >Foto´s</a>
-                <a href="/brouwerij/rondleiding" >Rondleidingen</a>
+                 <a href="/brouwerij/rondleiding" >Rondleidingen</a>
                 <a href="/brouwerij/contact" >Contact</a>
             </div>
             '
@@ -33,7 +33,7 @@ class Navigatie_Model extends Model
             <div class="fh5co-logo">
                 <a href="{{url(\'/\')}}" style="background-image: url(images/logo.gif)">Remise 56</a>
             </div>
-            <div class="fh5co-menu-1">
+            <div class="fh5co-menu-2" style="float: right;">
                 <a href="{{url(\'brouwerij\')}}" style="font-weight: bold;">Ga naar Brouwerij</a>
                 <a href="{{url(\'grandCafe\')}}" >Grand Café</a>
                 <a href="{{url(\'menu\')}}">Menu</a>
