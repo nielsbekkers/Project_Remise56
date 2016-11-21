@@ -13,7 +13,7 @@
     <meta name="author" content="3ICT_Projects2016-2017" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="images/logo_Geen_Tekst.png" type="image/png">
+    <link rel="shortcut icon" href="{{url('images/logo_Geen_Tekst.png')}}" type="image/png">
 
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="{{url('images/favicon.ico')}}" type="image/x-icon"/>
