@@ -13,11 +13,7 @@
 
 Route::get('/', 'Home_Controller@home');
 
-Route::get('brouwerij','Brouwerij_Controller@home');
-
 Route::get('menu','Menu_Controller@home');
-
-Route::get('contact','Contact_Controller@home');
 
 Route::get('foto','Foto_Controller@home');
 
@@ -41,7 +37,10 @@ Route::post('/createReservationClient', [
 ]);
 
 
+//////// BROUWERIJ /////////
 
+Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
+Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
 
 //////////////// Personeel
 

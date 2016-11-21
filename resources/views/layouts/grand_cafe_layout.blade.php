@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Remise 56 | TEST</title>
+    <title>Remise 56 | {{$menuTop}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="brouwerij cafe restaurant koersel" />
     <meta name="keywords" content="brouwerij cafe restaurant koersel" />
@@ -16,21 +16,21 @@
     <link rel="shortcut icon" href="images/logo_Geen_Tekst.png" type="image/png">
 
     <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{{url('images/favicon.ico')}}" type="image/x-icon"/>
     <!-- Animate.css -->
-    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="{{url('css/animate.css')}}">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="{{url('css/icomoon.css')}}">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="../css/simple-line-icons.css">
+    <link rel="stylesheet" href="{{url('css/simple-line-icons.css')}}">
     <!-- Datetimepicker -->
-    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="{{url('css/bootstrap-datetimepicker.min.css')}}">
     <!-- Flexslider -->
-    <link rel="stylesheet" href="../css/flexslider.css">
+    <link rel="stylesheet" href="{{url('css/flexslider.css')}}">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
     <style>
@@ -82,10 +82,10 @@
     @yield('extra_css')
 
 <!-- Modernizr JS -->
-    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="{{url('js/modernizr-2.6.2.min.js')}}"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
-    <script src="js/respond.min.js"></script>
+    <script src="{{url('js/respond.min.js')}}"></script>
     <![endif]-->
 </head>
 <body>
@@ -97,19 +97,7 @@
         <div class="js-sticky">
             <div class="fh5co-main-nav">
                 <div class="container-fluid">
-                    <div class="fh5co-menu-1">
-                        <a href="#">Home</a>
-                        <a href="{{url('menu')}}">Menu</a>
-                        <a href="{{url('brouwerij')}}">Brouwerij</a>
-                    </div>
-                    <div class="fh5co-logo">
-                        <a href="index.html" style="background-image: url(images/logo.gif)">Remise 56</a>
-                    </div>
-                    <div class="fh5co-menu-2">
-                        <a href="#">Foto´s</a>
-                        <a href="#">Reservatie</a>
-                        <a href="#">Contact</a>
-                    </div>
+                    {!! $navigatie !!}
                 </div>
 
             </div>
@@ -153,20 +141,20 @@ z-index: 9999;">
 </body>
 
 @yield('extra_scripts')
-<script src="js/jquery.min.js"></script>
+<script src="{{url('js/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{url('js/bootstrap.min.js')}}"></script>
 <!-- Bootstrap DateTimePicker -->
-<script src="js/moment.js"></script>
-<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="{{url('js/moment.js')}}"></script>
+<script src="{{url('js/bootstrap-datetimepicker.min.js')}}"></script>
 <!-- Waypoints -->
-<script src="js/jquery.waypoints.min.js"></script>
+<script src="{{url('js/jquery.waypoints.min.js')}}"></script>
 <!-- Stellar Parallax -->
-<script src="js/jquery.stellar.min.js"></script>
+<script src="{{url('js/jquery.stellar.min.js')}}"></script>
 
 <!-- Flexslider -->
-<script src="js/jquery.flexslider-min.js"></script>
+<script src="{{url('js/jquery.flexslider-min.js')}}"></script>
 <!-- Main JS -->
-<script src="js/main.js"></script>
+<script src="{{url('js/main.js')}}"></script>
 
 </html>

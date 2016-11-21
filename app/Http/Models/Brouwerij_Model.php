@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,7 +25,7 @@ class Brouwerij_Model extends Model
                         We doopten de brouwerij “Remise 56”.
                         “Remise” is de internationaal gebruikte vakterm voor een stelplaats, 56 is ons …huisnummer.
                     </p>',
-            'BierFoto' => '<img src="images/RemiseBlond2.jpg" style="width: 400px; height: 500px" alt="RemiseBlond" class="img-circle">',
+            'BierFoto' => '<img src="'.url('/images/remiseblond2.jpg').'" style="width: 400px; height: 500px" alt="RemiseBlond" class="img-circle">',
             'BierTitel' => '<h1 class="brouwerijSubTitles">REMISE TRIPEL</h1>',
             'BierOmschrijving' => '<p class="sub-heading">Voor onze tripel gebruiken we de beste bleke mouten en bleke kandijsuikers. Hij is met zijn 8.5 % alcohol een ‘stevige blonde’.
                         <br>
