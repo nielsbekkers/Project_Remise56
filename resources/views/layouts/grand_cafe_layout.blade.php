@@ -6,22 +6,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Remise 56 | {{$menuTop}}</title>
+    <title>Remise 56 | TEST</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="brouwerij cafe restaurant koersel" />
     <meta name="keywords" content="brouwerij cafe restaurant koersel" />
     <meta name="author" content="3ICT_Projects2016-2017" />
-
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="images/logo_Geen_Tekst.png" type="image/png">
@@ -42,64 +31,40 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
 
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
-    <script src="js/jquery-ui.js"></script>
     @yield('extra_css')
 
-
-    <!-- Modernizr JS -->
-    <script src="../js/modernizr-2.6.2.min.js"></script>
+<!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
     <!--[if lt IE 9]>
-    <script src="../js/respond.min.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
-    <!-- Jquerry-->
-    {{--<script src="../js/jquery.min.js"></script>--}}
-    <script>
-        $(function(){
-            $('#footerClose').on('click', function(){
-                $('#footerClose').toggle();
-                $('#footerContent').toggle(400);
-                $('#footerOpen').toggle();
-            });
-            $('#footerOpen').on('click', function(){
-                $('#footerOpen').toggle();
-                $('#footerContent').toggle(400);
-                $('#footerClose').toggle();
-            });
-        });
-    </script>
-
 </head>
 <body>
 
-<div class="js-sticky">
-    <div class="fh5co-main-nav">
-        <div class="container-fluid">
-            <div class="fh5co-menu-1">
-                <a href="{{url('/')}}">Home</a>
-                <a href="{{url('menu')}}">Menu</a>
-                <a href="{{url('brouwerij')}}" >Brouwerij</a>
-            </div>
-            <div class="fh5co-logo">
-                <a href="{{url('/')}}" style="background-image: url(../images/logo.gif)">Remise 56</a>
-            </div>
-            <div class="fh5co-menu-2">
-                <a href="{{url('foto')}}" >Foto´s</a>
-                <a href="{{url('reservatie')}}" >Reservatie</a>
-                <a href="{{url('contact')}}" >Contact</a>
+
+<div id="fh5co-container">
+    <div id="fh5co-home">
+        <div class="fh5co-text">
+            <div class="container">
+@yield('banner')
+
+
+@yield('content')
             </div>
         </div>
-
     </div>
 </div>
 
-@yield('banner')
-
-@yield('content')
-
+<div id="fh5co-offcanvas">
+    <ul style="list-style-type:none;">
+        <li><a href="{{url('brouwerij')}}">Brouwerij</a></li>
+        <hr style="border: 1px solid orange;opacity: 0.5;">
+        <li><a href="#">Grand Cafe</a></li>
+        <hr style="border: 1px solid orange;opacity: 0.5;">
+    </ul>
+</div>
 
 <div class="navbar navbar-reversed navbar-fixed-bottom" id="footer" style="width: 100%;">
 
@@ -135,7 +100,35 @@
 </body>
 
 @yield('extra_scripts')
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Bootstrap DateTimePicker -->
+<script src="js/moment.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="js/jquery.stellar.min.js"></script>
 
+<!-- Flexslider -->
+<script src="js/jquery.flexslider-min.js"></script>
+<!-- Main JS -->
+<script src="js/main.js"></script>
+
+<script>
+    $(function(){
+        $('#footerClose').on('click', function(){
+            $('#footerClose').toggle();
+            $('#footerContent').toggle(400);
+            $('#footerOpen').toggle();
+        });
+        $('#footerOpen').on('click', function(){
+            $('#footerOpen').toggle();
+            $('#footerContent').toggle(400);
+            $('#footerClose').toggle();
+        });
+    });
+</script>
 
 </html>
