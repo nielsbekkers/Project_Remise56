@@ -29,7 +29,7 @@ Route::get('gallery/view/{id}','Foto_Controller@viewGalleryPics');
 
 Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
-Route::get('reservatie','Reservatie_Controller@home');
+Route::get('reservatie','Reservatie_Controller@getContent');
 
 Route::get('rondleiding','rondleiding_Controller@home');
 
@@ -40,42 +40,35 @@ Route::post('/createReservationClient', [
     'as' => 'createReservationClient'
 ]);
 
+
+
+
 //////////////// Personeel
 
-// Dashboard SIGN IN
-Route::get('/personeel', function () {
-    return view('personeel.signin');
-});
+// DASHBOARD get pagina -> Personeel_Controller
+Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
 
-// Dashboard SIGN IN form POST
-Route::post('/personeel/signin', [
-    'uses' => 'Admin_Controller@postSignIn',
-    'as' => 'signin'
+
+
+// Dashboard Nieuwe reservatie restaurant form POST
+Route::post('/personeel/nieuweReservatieRest', [
+    'uses' => 'Personeel_Controller@nieuweReservatieRest',
+    'as' => 'nieuweReservatieRest'
+]);
+
+// Dashboard Nieuwe rondleiding restaurant form POST
+Route::post('/personeel/nieuweReservatieRond', [
+    'uses' => 'Personeel_Controller@nieuweReservatieRond',
+    'as' => 'nieuweReservatieRond'
 ]);
 
 
-
-// Dashboard NEW USER
-Route::get('/personeel/newUser', function(){
-    return view('personeel.newuser');
-});
-
-// Dashboard NEW USER form POST
-Route::post('/personeel/newUser', [
-    'uses' => 'Admin_Controller@postNewUser',
-    'as' => 'newUser'
+// Dashboard Nieuw personeelslid form POST
+Route::post('/personeel/nieuwPersoneelsLid', [
+    'uses' => 'Personeel_Controller@nieuwPersoneelsLid',
+    'as' => 'nieuwPersoneelsLid'
 ]);
 
-
-
-// Dashboard NEW RESERVATION
-Route::get('personeel/reservaties','Reservaties_Controller@home');
-
-// Dashboard NEW RESERVATION  form POST
-Route::post('/personeel/createReservationAdmin', [
-    'uses' => 'Reservation_Controller@createReservationAdmin',
-    'as' => 'createReservationAdmin'
-]);
 
 //Dashboad NEWS ITEMS
 Route::get('/personeel/news','NewsItems_Controller@home');

@@ -1,84 +1,83 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Remise 56 | {{$menuTop}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="brouwerij cafe restaurant koersel" />
-    <meta name="keywords" content="brouwerij cafe restaurant koersel" />
-    <meta name="author" content="3ICT_Projects2016-2017" />
-
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="../images/logo_Geen_Tekst.png" type="image/png">
-
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic|Merriweather:300,400italic,300italic,400,700italic' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon"/>
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="../css/animate.css">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="../css/icomoon.css">
-    <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="../css/simple-line-icons.css">
-    <!-- Datetimepicker -->
-    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
-    <!-- Flexslider -->
-    <link rel="stylesheet" href="../css/flexslider.css">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
-
-    <link rel="stylesheet" href="../css/style.css">
-
-
+    <title>
+        @yield('title')
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     @yield('extra_css')
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-            <!-- Modernizr JS -->
-    <script src="../js/modernizr-2.6.2.min.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="../js/respond.min.js"></script>
-    <![endif]-->
+    {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
+
+    <script src="../js/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../css/reservatiestyle.css">
+    @yield('scripts')
 
 </head>
 <body>
 
-<div class="js-sticky">
-    <div class="fh5co-main-nav">
+
+<header>
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="fh5co-menu-1">
-                <a href="{{url('personeel/reservaties')}}">Reservaties</a>
-                <a href="{{url('personeel/news')}}" >Nieuws Items</a>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Remise 56 Dashboard</a>
             </div>
-            <div class="fh5co-logo">
-                <a href="{{url('/')}}" style="background-image: url(../images/logo.gif)">Remise 56</a>
-            </div>
-            <div class="fh5co-menu-2">
-                <a href="" >Dummy</a>
-                <a href="" >Dummy</a>
-                <a href="" >Afmelden</a>
-            </div>
-        </div>
 
-    </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nieuw... <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/personeel/nieuwPersoneelsLid">Nieuw personeelslid</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/personeel/nieuweReservatieRest">Nieuwe reservatie(restaurant)</a></li>
+                            <li><a href="/personeel/nieuweReservatieRond">Nieuwe reservatie(rondleiding)</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/">Nieuw menu item</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/">Nieuw nieuws item</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li><a href="/personeel/personeel">Personeel</a></li>
+                    <li><a href="/personeel/reservaties">Reservaties</a></li>
+                    <li><a href="/personeel/nieuws">Nieuws items</a></li>
+                    <li><a href="#">Menu items</a></li>
+                    <li><a href="/">Inloggen</a></li>
+                    <li><a href="#">Uitloggen</a></li>
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+
+
+
+<div class="container">
+    @yield('content')
 </div>
-@yield('content')
-</body>
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--}}
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.min.js"></script>
 @yield('extra_scripts')
+</body>
 </html>

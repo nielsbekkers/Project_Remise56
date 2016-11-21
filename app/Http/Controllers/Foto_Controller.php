@@ -56,7 +56,33 @@ class Foto_Controller extends Controller
         return view('galleryview',compact('menuTop'))->with('gallery',$gallery);
     }
 
-    public function doImageUpload(Request $request){
+    public function doImageUpload(Request $request)
+    {
+        // get file van post request
 
+        $file = $request->file('file');
+
+        // file naam
+
+        $filename = uniqid() . $file->getClientOriginalName();
+
+        // file verplaatsen naar correcte plaats
+
+        $file->move('gallery/images', $filename);
+
+        //file opslaan in database
+
+        $gallery = Gallery::find($request->input('gallery_id'));
+
+        $image = $gallery->images()->create([
+            'gallery_id' =>$request->input('gallery_id'),
+            'file_name' => $filename,
+            'file_size' =>$file->getClientSize(),
+            'file_mime' => $file->getClientMimeType(),
+            'file_path' => 'Gallery/Images/' . $filename,
+            'created_by' => 1,
+        ]);
+
+        return $image;
     }
 }

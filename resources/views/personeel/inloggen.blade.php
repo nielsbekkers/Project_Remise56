@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.personeel_layout')
 
 @section('title')
     Remise 56 Dashboard
