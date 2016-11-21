@@ -7,6 +7,8 @@
     </div>
 @stop
 
+<!-- CONTENT VAN MENU zet je hier -->
+
 @section('content')
     <div id="fh5co-menus" data-section="menu">
         <div class="container">
