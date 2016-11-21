@@ -31,6 +31,53 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <style>
+        body{background-color: #fff;}
+
+        .social-icon {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-icon li{
+            display: inline-block;
+            text-align: center;
+        }
+
+        .social-icon a {
+            display: block;
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .social-icon a {
+            background: rgba(255, 255, 255, 0.85); /* social icon background color */
+            color: #000; /* social icon color */
+        }
+
+        .social-icon a:hover {
+            background: rgba(255, 255, 255, 0.25); /* social icon hover background color */
+            color: #fff; /* social icon hover color */
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            padding-top: 5px;
+            width: 100%;
+            height: 60px;
+            background-color: #111;
+        }
+
+
+
+    </style>
 
     @yield('extra_css')
 
@@ -45,17 +92,55 @@
 
 
 <div id="fh5co-container">
+
     <div id="fh5co-home">
+        <div class="js-sticky">
+            <div class="fh5co-main-nav">
+                <div class="container-fluid">
+                    <div class="fh5co-menu-1">
+                        <a href="#">Home</a>
+                        <a href="{{url('menu')}}">Menu</a>
+                        <a href="{{url('brouwerij')}}">Brouwerij</a>
+                    </div>
+                    <div class="fh5co-logo">
+                        <a href="index.html" style="background-image: url(images/logo.gif)">Remise 56</a>
+                    </div>
+                    <div class="fh5co-menu-2">
+                        <a href="#">Foto´s</a>
+                        <a href="#">Reservatie</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <div class="fh5co-text">
-            <div class="container">
+            <div class="container" style="width: 100%;">
 @yield('banner')
 
 
 @yield('content')
             </div>
-        </div>
+            </div>
+
     </div>
 </div>
+
+<footer class="footer" style="position: relative;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+z-index: 9999;">
+    <div class="container">
+        <div style="float:left"><p style="color:#fb6e14;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;'">Remise 56</p></div>
+        <ul class="social-icon animate pull-right">
+            <li><a href="https://www.facebook.com/Remise56/?fref=ts" title="facebook" target="_blank"><i class="fa fa-facebook" style="color:#fb6e14;"></i></a></li> <!-- change the link to social page and edit title-->
+            <li><a href="mailto:info@remise56.be" title="twitter" target="_blank"><i class="fa fa-envelope" style="color:#fb6e14;"></i></a></li>
+        </ul>
+    </div>
+</footer>
 
 <div id="fh5co-offcanvas">
     <ul style="list-style-type:none;">
@@ -64,38 +149,6 @@
         <li><a href="#">Grand Cafe</a></li>
         <hr style="border: 1px solid orange;opacity: 0.5;">
     </ul>
-</div>
-
-<div class="navbar navbar-reversed navbar-fixed-bottom" id="footer" style="width: 100%;">
-
-    <button id="footerClose" type="button" class="btn btn-default pull-right"  style="margin-right:0px; margin-top:-40px;" aria-label="Center">
-        <span class="" aria-hidden="true">&#9660;</span>
-    </button>
-
-    <button id="footerOpen" type="button" class="btn btn-default pull-right pull-down"  style="margin-bottom: 0px; margin-right:0px; margin-top:auto;display: none" aria-label="Center">
-        <span class="" aria-hidden="true">&#9650;</span>
-    </button>
-
-    <div class="container text-footer" style="width: 100%;text-align: center; background: #2f4f4f;opacity:1;background-color: rgba(0,0,0,0.6);  -webkit-transition: max-height 0.5s;
-			transition: max-height 0.5s;" id="footerContent">
-
-        <div class="col-md-6">
-            <p class="navbar-text pull-left" style="color:white;">Openingsuren: maandag-vrijdag vanaf 11u doorlopend <br>
-                zaterdag-zondag vanaf 9u doorlopend, gezellig ontbijten!
-            </p>
-        </div>
-
-        <div class="col-md-3">
-            <a href="tel:011183193" class="btn" style="color:white; margin-top:10%; margin-left: auto; margin-right: auto; text-align:center;">Tel: 011/18 31 93</a>
-            </p>
-        </div>
-
-        <div class="col-md-3">
-            <a href="https://www.facebook.com/Remise56/" target="_blank" class="btn btn-social btn-facebook" style="margin-top:10%; margin-left: auto; margin-right: auto; text-align:center;">Facebook</a>
-        </div>
-
-    </div>
-
 </div>
 </body>
 
@@ -115,20 +168,5 @@
 <script src="js/jquery.flexslider-min.js"></script>
 <!-- Main JS -->
 <script src="js/main.js"></script>
-
-<script>
-    $(function(){
-        $('#footerClose').on('click', function(){
-            $('#footerClose').toggle();
-            $('#footerContent').toggle(400);
-            $('#footerOpen').toggle();
-        });
-        $('#footerOpen').on('click', function(){
-            $('#footerOpen').toggle();
-            $('#footerContent').toggle(400);
-            $('#footerClose').toggle();
-        });
-    });
-</script>
 
 </html>
