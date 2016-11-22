@@ -20,31 +20,32 @@ class GrandCafe_Controller extends Controller
     public function getPagina($paginaNaam = null) {
         $navigatieModel = new Navigatie_Model();
         $navigatie = $navigatieModel->geefNavigatieGrandCafe();
+        $navigatieResponsive= $navigatieModel->geefNavigatieGrandCafeResponsive();
         switch($paginaNaam) {
             case 'contact':
                 $menuTop = "Contact";
-                return view('contact',compact('menuTop', 'navigatie'));
+                return view('contact',compact('menuTop', 'navigatie', 'navigatieResponsive'));
                 break;
             case 'fotos':
                 $menuTop = "Foto's";
                 $galleries = Gallery::all();
-                return view('foto',compact('menuTop', 'navigatie'))->with('galleries',$galleries);
+                return view('foto',compact('menuTop', 'navigatie', 'navigatieResponsive'))->with('galleries',$galleries);
                 break;
             case 'reservatie':
                 $menuTop = 'Reservatie';
                 $reservatieModel = new Reservatie_Model();
                 $sContent = $reservatieModel->getContent();
-                return view('reservatie', compact('menuTop','sContent', 'navigatie'));
+                return view('reservatie', compact('menuTop','sContent', 'navigatie', 'navigatieResponsive'));
                 break;
             case 'menu':
                 $menuTop = 'Menu';
-                return view('menu', compact('menuTop','navigatie'));
+                return view('menu', compact('menuTop','navigatie', 'navigatieResponsive'));
                 break;
             default:
                 $menuTop = "Grand Café";
                 $grandcafeModel=new GrandCafe_Model();
                 $aContent = $grandcafeModel->geefBeginPaginaContent();
-                return view('grandcafe', compact('menuTop', 'aContent', 'navigatie'));
+                return view('grandcafe', compact('menuTop', 'aContent', 'navigatie', 'navigatieResponsive'));
                 break;
         }
     }

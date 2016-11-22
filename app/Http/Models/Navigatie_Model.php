@@ -47,4 +47,48 @@ class Navigatie_Model extends Model
     }
 
 
+
+    public function geefNavigatieBrouwerijResponsive(){
+        $navigatieItems =
+            '
+            <a href="/" style="font-weight: bold;font-size:22px;">Remise 56</a>
+            <hr style="border: 1px solid orange;opacity: 0.5;">
+            <li><a href="/grandcafe" style="font-weight: bold;">Ga naar Grand Café</a></li>
+            <hr style="border: 1px solid orange;opacity: 0.5;">
+            <li><a href="/brouwerij" >Brouwerij</a></li>
+            
+            <li><a href="/brouwerij/gallerij" >Foto´s</a></li>
+            
+            <li><a href="/brouwerij/rondleiding" >Rondleidingen</a></li>
+            
+            <li><a href="/brouwerij/contact" >Contact</a></li>
+            
+            '
+        ;
+        return $navigatieItems;
+    }
+
+    public function geefNavigatieGrandCafeResponsive(){
+        $navigatieItems =
+            '
+            <a href="/" style="font-weight: bold;font-size:22px;">Remise 56</a>
+            <hr style="border: 1px solid orange;opacity: 0.5;">
+            <li><a href="/brouwerij" style="font-weight: bold;">Ga naar Brouwerij</a></li>
+            <hr style="border: 1px solid orange;opacity: 0.5;">
+            <li><a href="/grandcafe" >Grand Café</a></li>
+            
+            <li><a href="/grandcafe/menu">Menu</a></li>
+            
+            <li><a href="/grandcafe/fotos" >Foto´s</a></li>
+            
+            <li><a href="/grandcafe/reservatie" >Reservatie</a></li>
+            
+            <li><a href="/grandcafe/contact" >Contact</a></li>
+            
+            '
+        ;
+        return $navigatieItems;
+    }
+
+
 }
