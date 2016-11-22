@@ -23,13 +23,8 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     function getContent()
     {
-        $sContentTitel = "Hello World";
-
-        //$sContent ='<h2>Reservatie</h2>';
-
-
-        $sContent = '
-        <div class="col-md-8">
+        $sContent = 'Voor reservaties telefonisch contact opnemen <br> 011/18 31 93';
+            /*<div class="col-md-8">
                     <p style="text-align: center">Online Reserveren</p>
 
                     <div class="container">
@@ -42,7 +37,11 @@ class Reservatie_Model extends Model implements  Authenticatable
                         <div id="FrmReservatieDeel1">
                             <div id="FrmReservatieGroepDatum">
                                 <label for="sel1">Kies een datum:</label>
-                                <div  id="datepicker"></div>
+                                <div id="datepicker-container">
+                                    <div id="datepicker-center">
+                                        <div id="datepicker"></div>
+                                    </div>
+                                </div>
                             </div>
                             <br>
                             <div id="FrmReservatieGroepUur">
@@ -97,7 +96,7 @@ class Reservatie_Model extends Model implements  Authenticatable
                         <input type="hidden" name="_token" value="{{Session::token()}}">
                     </form>
 
-                </div>';
+                </div>';*/
 
         return $sContent;
     }

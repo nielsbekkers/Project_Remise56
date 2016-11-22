@@ -7,11 +7,12 @@
 @section('content')
 
     <div class="row">
-
+        <h2 style="text-align: center">Inloggen</h2>
+        <br><br>
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>Inloggen</h3>
-            <form action="{{route('signin')}}" method="post">
+
+            <form action="" method="post">
                 <div class="form-group">
                     <label for="email">Uw email</label>
                     <input class="form-control" type="text" name="email" id="email">

@@ -22,7 +22,7 @@
         </div>
         </br>
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            {{--<div class="col-xs-12 col-md-6">
                 <h2><span class="glyphicon glyphicon-envelope"></span>Neem vrijblijvend contact op </h2>
                 </br>
                 </br>
@@ -53,21 +53,22 @@
                 </div>
             </div>
             <div class="g-recaptcha" data-sitekey="6LeXMgsUAAAAAM1NUMfpHicEn2YxEAYvPZctozQE"></div>
+--}}
 
-            <div class="col-xs-12 col-md-6">
-                </br>
-                </br>
-                <div class="map-responsive">
-                    <iframe
-                            width="100%"
-                            height="450"
-                            frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCZTf5JiAtJ03siabCXqna5OWQfyBagfng
-                            &q=Remise56" allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
             <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    </br>
+                    </br>
+                    <div class="map-responsive">
+                        <iframe
+                                width="100%"
+                                height="450"
+                                frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCZTf5JiAtJ03siabCXqna5OWQfyBagfng
+                            &q=Remise56" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
                 <div class="col-xs-12 col-md-6">
                     <h2><span class="glyphicon glyphicon-road"></span> geschatte reistijden: </h2>
                     <table class="table">

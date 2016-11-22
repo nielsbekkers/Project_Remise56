@@ -11,13 +11,8 @@ class Reservation extends Model implements  Authenticatable
 
     function getContent()
     {
-        $sContentTitel = "Hello World";
-
-        //$sContent ='<h2>Reservatie</h2>';
-
-
         $sContent = '
-        <div class="col-md-8">
+             <div class="col-md-8">
                     <p style="text-align: center">Online Reserveren</p>
 
                     <div class="container">

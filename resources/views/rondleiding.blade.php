@@ -17,7 +17,8 @@
         <div class="row fh5co-heading row-padded text-center">
 
             <div class="col-xs-12 col-md-6">
-                <form>
+                <p>Voor reservaties telefonisch contact opnemen <br> 011/18 31 93</p>
+                {{--<form>
                     <fieldset>
                         <legend>Reservatie:</legend>
                         <table>
@@ -78,7 +79,7 @@
                             </tr>
                         </table>
                     </fieldset>
-                </form>
+                </form>--}}
 
             </div>
 

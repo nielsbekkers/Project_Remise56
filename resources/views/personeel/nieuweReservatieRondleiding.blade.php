@@ -1,5 +1,9 @@
 @extends('layouts.personeel_layout')
 
+@section('title')
+    Remise 56 Dashboard
+@endsection
+
 @section('scripts')
 
     <script>
@@ -28,7 +32,7 @@
             @if(isset($bResult) && $bResult == true)
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <strong>OK,</strong> nieuwe reservatie toegevoegd!.
+                    <strong>Succes,</strong> nieuwe reservatie toegevoegd!
                 </div>
 
             @elseif(isset($bResult) && $bResult == false)
@@ -53,7 +57,7 @@
                             </div>
                         </div>
                         <!-- Met javascript haal ik de datum uit de DataPicker en steek ik ze in de verborgen input veld-->
-                        <input type="hidden" id="datepickerhelper" name="frmReservatieRondDatum"/>
+                        <input type="hidden" id="datepickerhelper" name="frmReservatieRondDatum" required/>
                     </div>
 
                 </div>
@@ -62,7 +66,7 @@
                     <label class="col-sm-4 control-label">Aantal personen</label>
                     <div class="col-sm-8">
 
-                        <input class="form-control" type="number" min="1" value="2" max="20" name="frmReservatieRondPersonen"/>
+                        <input class="form-control" type="number" min="1" value="2" max="20" name="frmReservatieRondPersonen" required/>
 
                     </div>
                 </div>
@@ -74,7 +78,7 @@
                     <label class="col-sm-4 control-label">Aankomsttijd</label>
                     <div class="col-sm-8">
 
-                        <input class="form-control" type="time" name="frmReservatieRondTijd" />
+                        <input class="form-control" type="time" name="frmReservatieRondTijd" required/>
                     </div>
                 </div>
 
@@ -93,14 +97,14 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Voornaam</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRondVoornaam" placeholder="uw voornaam..." type="text"/>
+                        <input class="form-control" name="frmReservatieRondVoornaam" placeholder="uw voornaam..." type="text" required/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Familienaam</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRondNaam" placeholder="uw familienaam..." type="text"/>
+                        <input class="form-control" name="frmReservatieRondNaam" placeholder="uw familienaam..." type="text" required/>
                     </div>
                 </div>
 
@@ -108,7 +112,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Telefoonnummer</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRondTelefoon" placeholder="0488111111" type="tel"/>
+                        <input class="form-control" name="frmReservatieRondTelefoon" placeholder="0488111111" type="tel" required/>
                     </div>
                 </div>
 
@@ -116,14 +120,14 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Email</label>
                     <div class="col-sm-8">
-                        <input class="form-control"  name="frmReservatieRondEmail" placeholder="uwemail@hotmail.com" type="email"/>
+                        <input class="form-control"  name="frmReservatieRondEmail" placeholder="uwemail@hotmail.com" type="email" required/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Opmerkingen</label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" name="frmReservatieRondNota" rows="2" cols="20">Speciale wensen, ...</textarea>
+                        <textarea class="form-control" name="frmReservatieRondNota" rows="2" cols="20" required>Speciale wensen, ...</textarea>
                     </div>
                 </div>
 

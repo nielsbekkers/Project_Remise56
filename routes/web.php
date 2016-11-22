@@ -53,6 +53,7 @@ Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
 
 // DASHBOARD get pagina -> Personeel_Controller
 Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
+Route::get('/personeel', 'Personeel_Controller@getHome');
 
 
 

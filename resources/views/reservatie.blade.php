@@ -16,6 +16,8 @@
                 dayNames: [ "Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag" ],
                 dayNamesMin: [ "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za" ],
                 firstDay: 1, // Maandag
+                altField: "#datepickerhelper",
+                minDate: 0,
                 onSelect: function (date) {
                     //alert(date);
                     // $("#FrmReservatieGroepUur").show();

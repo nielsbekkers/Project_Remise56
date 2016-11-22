@@ -42,24 +42,24 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nieuw... <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/personeel/nieuwPersoneelsLid">Nieuw personeelslid</a></li>
+                            {{--<li><a href="/personeel/nieuwPersoneelsLid">Nieuw personeelslid</a></li>--}}
                             <li role="separator" class="divider"></li>
                             <li><a href="/personeel/nieuweReservatieRest">Nieuwe reservatie(restaurant)</a></li>
                             <li><a href="/personeel/nieuweReservatieRond">Nieuwe reservatie(rondleiding)</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/">Nieuw menu item</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/">Nieuw nieuws item</a></li>
+                            {{--<li role="separator" class="divider"></li>--}}
+                            {{--<li><a href="#">Nieuw menu item</a></li>--}}
+                            {{--<li role="separator" class="divider"></li>--}}
+                            {{--<li><a href="#">Nieuw nieuws item</a></li>--}}
 
                         </ul>
                     </li>
 
-                    <li><a href="/personeel/personeel">Personeel</a></li>
+                    {{--<li><a href="/personeel/personeel">Personeel</a></li>--}}
                     <li><a href="/personeel/reservaties">Reservaties</a></li>
-                    <li><a href="/personeel/nieuws">Nieuws items</a></li>
-                    <li><a href="#">Menu items</a></li>
-                    <li><a href="/">Inloggen</a></li>
-                    <li><a href="#">Uitloggen</a></li>
+                    {{--<li><a href="/personeel/nieuws">Nieuws items</a></li>--}}
+                    {{--<li><a href="#">Menu items</a></li>--}}
+                    {{--<li><a href="/personeel/inloggen">Inloggen</a></li>--}}
+                    {{--<li><a href="/">Uitloggen</a></li>--}}
 
 
                 </ul>

@@ -32,10 +32,11 @@
             <table class="table table-striped custab">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID</th><!--class="text-center"-->
                     <th>Naam</th>
                     <th>Gebruikersnaam</th>
-                    <th class="text-center">Action</th>
+                    <th>Acces Level</th>
+                    <th >Action</th>
                 </tr>
                 </thead>
 
@@ -46,7 +47,8 @@
                             <td><?php echo $persoon->id ;?></td>
                             <td><?php echo $persoon->naam;?></td>
                             <td><?php echo $persoon->gebruikersnaam; ?></td>
-                            <td class="text-center"><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
+                            <td>1 (Personeelslid) </td>
+                            <td ><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
                         </tr>
 
                     @endforeach
