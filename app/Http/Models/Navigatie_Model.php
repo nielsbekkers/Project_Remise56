@@ -38,7 +38,7 @@ class Navigatie_Model extends Model
                 <a href="{{url(\'grandCafe\')}}" >Grand Café</a>
                 <a href="{{url(\'menu\')}}">Menu</a>
                 <a href="{{url(\'foto\')}}" >Foto´s</a>
-                <a href="{{url(\'rondleiding\')}}" >Rondleiding</a>
+                <a href="{{url(\'reservatie\')}}" >Reservatie</a>
                 <a href="{{url(\'contact\')}}" >Contact</a>
             </div>
             '
