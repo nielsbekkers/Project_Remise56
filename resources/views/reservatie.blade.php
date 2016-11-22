@@ -1,4 +1,4 @@
-@extends('layouts.grand_cafe_layout')
+@extends('layouts.master_layout')
 
 @section('extra_css')
     <link rel="stylesheet" href="css/jquery-ui.css">

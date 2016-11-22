@@ -333,8 +333,8 @@ p {
 }
 .fh5co-main-nav .fh5co-logo {
   text-align: center;
-  width: 19.33%;
-  font-size: 40px;
+  width: 25%;
+  font-size: 30px;
   font-family: "Playfair Display", serif;
   font-weight: 700;
   font-style: italic;
@@ -346,7 +346,7 @@ p {
 }
 .fh5co-main-nav .fh5co-menu-2 {
   text-align: left;
-  width: 40.33%;
+  /*width: 40.33%;*/
 }
 
 .fh5co-heading .heading {

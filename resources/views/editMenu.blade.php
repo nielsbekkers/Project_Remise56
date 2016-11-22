@@ -1,4 +1,4 @@
-@extends('layouts.grand_cafe_layout')
+@extends('layouts.master_layout')
 
 @section('banner')
     <div class="row">
