@@ -136,7 +136,7 @@ z-index: 9999;">
         {{--<hr style="border: 1px solid orange;opacity: 0.5;">--}}
         {{--<li><a href="#">Grand Cafe</a></li>--}}
         {{--<hr style="border: 1px solid orange;opacity: 0.5;">--}}
-        {!! $navigatie !!}
+        {!! $navigatieResponsive !!}
 
     </ul>
 </div>
