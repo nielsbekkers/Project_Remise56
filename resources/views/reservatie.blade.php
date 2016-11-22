@@ -67,7 +67,7 @@
 
                 </div>
 
-                {!!html_entity_decode($content)!!}
+                {!!html_entity_decode($sContent)!!}
 
             </div>
         </div>

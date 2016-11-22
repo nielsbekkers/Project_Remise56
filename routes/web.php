@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'Home_Controller@home');
 
 Route::get('menu','Menu_Controller@home');
@@ -35,6 +36,12 @@ Route::post('/createReservationClient', [
     'uses' => 'Reservation_Controller@createReservationClient',
     'as' => 'createReservationClient'
 ]);
+
+//////GrandCafe//////
+Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
+Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
+
+
 
 
 //////// BROUWERIJ /////////

@@ -31,15 +31,15 @@ class Navigatie_Model extends Model
         $navigatieItems =
             '
             <div class="fh5co-logo">
-                <a href="{{url(\'/\')}}" style="background-image: url(images/logo.gif)">Remise 56</a>
+                <a href="/" style="background-image: url(images/logo.gif)">Remise 56</a>
             </div>
             <div class="fh5co-menu-2" style="float: right;">
-                <a href="{{url(\'brouwerij\')}}" style="font-weight: bold;">Ga naar Brouwerij</a>
-                <a href="{{url(\'grandCafe\')}}" >Grand Café</a>
-                <a href="{{url(\'menu\')}}">Menu</a>
-                <a href="{{url(\'foto\')}}" >Foto´s</a>
-                <a href="{{url(\'reservatie\')}}" >Reservatie</a>
-                <a href="{{url(\'contact\')}}" >Contact</a>
+                <a href="/brouwerij" style="font-weight: bold;">Ga naar Brouwerij</a>
+                <a href="/grandcafe" >Grand Café</a>
+                <a href="/grandcafe/menu">Menu</a>
+                <a href="/grandcafe/fotos" >Foto´s</a>
+                <a href="/grandcafe/reservatie" >Reservatie</a>
+                <a href="/grandcafe/contact" >Contact</a>
             </div>
             '
         ;

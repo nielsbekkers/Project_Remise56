@@ -132,10 +132,12 @@ z-index: 9999;">
 
 <div id="fh5co-offcanvas">
     <ul style="list-style-type:none;">
-        <li><a href="{{url('brouwerij')}}">Brouwerij</a></li>
-        <hr style="border: 1px solid orange;opacity: 0.5;">
-        <li><a href="#">Grand Cafe</a></li>
-        <hr style="border: 1px solid orange;opacity: 0.5;">
+        {{--<li><a href="{{url('brouwerij')}}">Brouwerij</a></li>--}}
+        {{--<hr style="border: 1px solid orange;opacity: 0.5;">--}}
+        {{--<li><a href="#">Grand Cafe</a></li>--}}
+        {{--<hr style="border: 1px solid orange;opacity: 0.5;">--}}
+        {!! $navigatie !!}
+
     </ul>
 </div>
 </body>
