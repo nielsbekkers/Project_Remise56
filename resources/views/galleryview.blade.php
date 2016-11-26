@@ -13,8 +13,9 @@
     #gallery-images img {
         width: 240px;
         height: 160px;
-        border: 2px solid black;
+        /*border: 2px solid black;*/
         margin-bottom: 10px;
+        box-shadow: 0px 0px 5px 1px #161718;
 
     }
     #gallery-images ul {
@@ -31,11 +32,43 @@
         padding-right: 10px;
 
     }
+    #gallery-images{
+        padding-left: 17px;
+
+    }
+    #dropzone{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    #addImages:hover{
+        -webkit-transition:0.5s ease;
+        -moz-transition:0.5s ease;
+        -o-transition:0.5s ease;
+        -ms-transition:0.5s ease;
+        transition:0.5s ease;
+        box-shadow: 0px 0px 5px 1px #161718;
+    }
+    #backButton{
+        padding-left: 30px;
+        padding-top: 20px;
+    }
+    #backButtonHover:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    #galleryTitle h1{
+        font-family: Chalkboard;
+        margin-left: 17px;
+    }
+    #dropzoneTitle{
+        font-family: Chalkboard;
+        margin-left: 17px;
+    }
+
 </style>
 
 <div class="row">
-    <div class="col-md-12">
-        <h1>{{$gallery->name}}</h1>
+    <div class="col-md-12" id="galleryTitle">
+        <h1>Gallery: {{$gallery->name}}</h1>
     </div>
 </div>
 
@@ -54,9 +87,10 @@
         </div>
     </div>
 </div>
-
+<hr/>
+<h1 id="dropzoneTitle">Bestanden toevoegen</h1>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" id="dropzone">
         <form action="{{url('image/do-upload')}}"
         class="dropzone" id="addImages"
         >
@@ -67,8 +101,8 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <a href="{{url('brouwerij/gallerij')}}" class="btn btn-primary">Terug</a>
+    <div class="col-md-12" id="backButton">
+        <a href="{{url('brouwerij/gallerij')}}" class="btn btn-primary" id="backButtonHover">Terug</a>
     </div>
 </div>
 
