@@ -31,7 +31,7 @@ class Foto_Controller extends Controller
         ]);
         //take actions when the validation has failed
         if ($validator->fails()){
-            return redirect('foto')
+            return redirect('brouwerij/gallerij')
                 ->withErrors($validator)
                 ->withInput();
         }

@@ -68,7 +68,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <a href="{{url('foto')}}" class="btn btn-primary">Terug</a>
+        <a href="{{url('brouwerij/gallerij')}}" class="btn btn-primary">Terug</a>
     </div>
 </div>
 

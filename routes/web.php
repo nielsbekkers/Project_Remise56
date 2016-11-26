@@ -12,6 +12,7 @@
 */
 
 
+
 Route::get('/', 'Home_Controller@home');
 
 Route::get('menu','Menu_Controller@home');
@@ -22,7 +23,7 @@ Route::get('gallery/list','Foto_Controller@viewGalleryList');
 
 Route::post('gallery/save','Foto_Controller@saveGallery');
 
-Route::get('gallery/view/{id}','Foto_Controller@viewGalleryPics');
+Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
 
 Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
