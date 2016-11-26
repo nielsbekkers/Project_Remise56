@@ -2,15 +2,14 @@
 
 @section('extra_css')
     <link href="css/lightbox.min.css" rel="stylesheet">
-
+    <link href="css/gallery.css" rel="stylesheet">
 @stop
 
 @section('content')
-
-    <h1> Media </h1>
+    <br/>
     <div class="row">
 
-        <div class="col-md-8">
+        <!--<div class="col-md-8">
             @if ($galleries->count() > 0)
                 <table class="table table-bordered table-responsive">
                     <thead>
@@ -32,7 +31,36 @@
                     </tbody>
                 </table>
                 @endif
-        </div>
+        </div>-->
+
+
+                <div class="row col-md-6 col-md-offset-1 custyle">
+                    <table class="table table-striped custab">
+                        <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Aantal</th>
+                            <th class="text-center">Actie</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($galleries as $gallery)
+                            <tr>
+                                <td>
+                                    {{$gallery->name}}
+                                </td>
+                                <td>
+                                    {{ $gallery->images()->count() }}
+                                </td>
+                                </td>
+                                <!--<td><a href="{{'gallery/view/'. $gallery->id}}">view</a></td>-->
+                                <td class="text-center"><a href="{{'gallery/view/'. $gallery->id}}"><span class="glyphicon glyphicon-edit"></span> Wijzigen</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
 
         <div class="col-md-4">
             @if(count($errors) > 0)
@@ -46,22 +74,23 @@
                 </ul>
             </div>
             @endif
-            <form class="form" method="post" action="{{url('gallery/save')}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="row col-md-6 col-md-offset-1 custyle">
+            <hr/>
+            <h3>&nbsp;&nbsp;Toevoegen Gallerij</h3>
+            <form id="toevoegenGallery" method="post" action="{{url('gallery/save')}}">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
-
-                <div class="form-group">
-                    <input type="text" name="gallery_name"
-                           id="gallery_name" placeholder="Name of the gallery"
-                           class="form-control"
+                <input type="text" name="gallery_name"
+                           id="gallery_name" placeholder="Naam"
+                           class="inputGalleryName"
                            value="{{old('gallery_name')}}"
-                    />
-                </div>
-                <button class="btn btn-primary">Save</button>
+                />
+                <button class="arrowButton"><i class="fa fa-arrow-right"></i></button>
             </form>
         </div>
     </div>
-
-
 
 @stop
 
