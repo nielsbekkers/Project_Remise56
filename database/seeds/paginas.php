@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class paginas extends Seeder
+class paginas extends DatabaseSeeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +14,13 @@ class paginas extends Seeder
         DB::table('paginas')->insert([
             'id' => 5,
             'paginaNaam' => 'brouwerij',
-            'templates' => '',
+            'templates' => 'hoofdBlok;bierTemplate,Geschiedenis',
             'master' => 'brouwerij'
         ]);
         DB::table('paginas')->insert([
             'id' => 6,
             'paginaNaam' => 'grandcafe',
-            'templates' => '',
+            'templates' => 'hoofdBlok;grandCafeInfo;Geschiedenis',
             'master' => 'grandcafe'
         ]);
         DB::table('paginas')->insert([
@@ -38,13 +38,13 @@ class paginas extends Seeder
         DB::table('paginas')->insert([
             'id' => 11,
             'paginaNaam' => 'rondleiding',
-            'templates' => 'hoofdBlok;Geschiedenis',
+            'templates' => 'hoofdBlok;contactGegevens',
             'master' => 'brouwerij'
         ]);
         DB::table('paginas')->insert([
             'id' => 15,
             'paginaNaam' => 'reservatie',
-            'templates' => '',
+            'templates' => 'hoofdBlok;contactGegevens',
             'master' => 'grandcafe'
         ]);
         DB::table('paginas')->insert([
