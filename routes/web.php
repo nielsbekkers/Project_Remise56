@@ -46,9 +46,9 @@ Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
 
 
 //////// BROUWERIJ /////////
-
-Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
 Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
+Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
+
 
 //////////////// Personeel
 
