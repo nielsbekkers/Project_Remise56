@@ -16,7 +16,7 @@ class TemplatesInhoud extends Migration
         Schema::create('templates_inhoud', function (Blueprint $table) {
             $table->increments('id');
             $table->string('templateNaam');
-            $table->string('templateInhoud');
+            $table->text('templateInhoud');
         });
     }
 

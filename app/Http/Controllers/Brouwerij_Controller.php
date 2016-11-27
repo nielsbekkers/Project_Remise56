@@ -26,7 +26,7 @@ class Brouwerij_Controller extends Controller
         $aTemp = explode(";",$templates);
         $aTemplates = [];
         foreach($aTemp as $item) {
-            $aGegevens = $contentModel->getContentFor($item);
+            $aGegevens = $contentModel->getContentFor($item,$paginaNaam);
             $aTemplates[$item] = $aGegevens;
         }
         return view('master_view', compact('menuTop','navigatie','navigatieResponsive','aTemplates'));

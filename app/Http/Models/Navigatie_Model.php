@@ -23,7 +23,7 @@ class Navigatie_Model extends Model
                 <a href="/" style="background-image: url(images/logo.gif)">Remise 56</a>
             </div>
             <div class="fh5co-menu-2" style="float: right;">
-            <a href="/'.$temp2.'" style="font-weight: bold;">Ga naar '.$temp.'</a>';
+            <a href="/'.$temp2.'/'.$temp2.'" style="font-weight: bold;">Ga naar '.$temp.'</a>';
         foreach ($navigatieItems as $item) {
             $sHtml .= '<a href="/'.$paginaNaam.'/'.$item->paginaNaam.'">'.ucfirst($item->paginaNaam).'</a>';
         }
@@ -42,7 +42,7 @@ class Navigatie_Model extends Model
         }
         $sHtml = '<a href="/" style="font-weight: bold;font-size:22px;">Remise 56</a>
             <hr style="border: 1px solid orange;opacity: 0.5;">
-            <li><a href="/'.$temp2.'" style="font-weight: bold;">Ga naar '.$temp.'</a></li>
+            <li><a href="/'.$temp2.'/'.$temp2.'" style="font-weight: bold;">Ga naar '.$temp.'</a></li>
             <hr style="border: 1px solid orange;opacity: 0.5;">';
         foreach ($navigatieItems as $item) {
             $sHtml .= '<li><a href="/'.$paginaNaam.'/'.$item->paginaNaam.'" >'.ucfirst($item->paginaNaam).'</a></li>';

@@ -149,8 +149,8 @@
                         <hr class="hidden-sm hidden-xs">
                         <div class="container-fluid">
                             <div class="fh5co-menu-1">
-                                <a href="{{url('brouwerij')}}" class="button col-sm-2 hidden-xs Brouwerij"><span>Brouwerij </span></a>
-                                <a href="{{url('grandcafe')}}" class="button col-sm-2  hidden-xs pullright GC"><span>Grand Café </span></a>
+                                <a href="{{url('brouwerij/brouwerij')}}" class="button col-sm-2 hidden-xs Brouwerij"><span>Brouwerij </span></a>
+                                <a href="{{url('grandcafe/grandcafe')}}" class="button col-sm-2  hidden-xs pullright GC"><span>Grand Café </span></a>
                                 <div id="popup_brouwerij" class="popup_brouwerij" style="display: none;z-index:100;">Hier treft u alle nodige informatie aan over onze brouwerij. Alle bieren zullen hier ook vermeld worden.</div>
                                 <div id="popup_gc" class="popup_gc" style="display: none;z-index:100;"><p>Hier treft u alle nodige informatie aan over onze Grand Cafe. Onze menukaart zal u hier ook kunnen bekijken. Reserveren is ook mogelijk.</p></div>
 

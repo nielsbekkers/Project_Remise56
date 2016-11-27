@@ -59,7 +59,7 @@ return [
             'database' => 'remise56',
             'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

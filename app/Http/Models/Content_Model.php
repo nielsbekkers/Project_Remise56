@@ -12,12 +12,20 @@ class Content_Model extends Model
         $pagina = DB::select('SELECT * FROM paginas WHERE paginaNaam=?',[$paginaNaam]);
         return $pagina == null ? false : $pagina[0]->templates;
     }
-    public function getContentFor($template) {
-        $aGeg = DB::select('SELECT * FROM templates_inhoud WHERE templateNaam=?',[$template]);
+
+    public function getContentFor($template,$pagina) {
+        $aGegevens = '';
+        $aGeg = DB::select('SELECT * FROM templates_inhoud WHERE templateNaam=? AND paginaNaam=?',[$template,$pagina]);
         if($aGeg != null) {
-            foreach (explode(';', $aGeg[0]->templateInhoud) as $aItems) {
-                $a = explode(':', $aItems);
-                $aGegevens[$a[0]] = $a[1];
+            foreach (explode('-', $aGeg[0]->templateKey) as $aItems) {
+                $aInhoud = DB::select("SELECT inhoud FROM template_key_inhoud WHERE templateKey = ? AND pagina=?",[$aItems,$pagina]);
+                if($aInhoud != null){
+                    $test = explode('@', $aInhoud[0]->inhoud);
+                    foreach ( $test as $Inhoud){
+                        $a = explode('§', $Inhoud);
+                        $aGegevens[$a[0]] = $a[1];
+                    }
+                }
             }
         } else {
             return false;

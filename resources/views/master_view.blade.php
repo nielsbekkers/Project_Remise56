@@ -1,8 +1,10 @@
 @extends('layouts.master_layout')
     @section('banner')
         @if(isset($sBanner))
-            @include($sBanner)
+            @include($sBanner,['sBanner'])
+            @endsection
         @endif
+
 
 
     @section('content')
