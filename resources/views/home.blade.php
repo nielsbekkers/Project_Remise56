@@ -182,24 +182,26 @@
 @foreach($newsItems->all() as $newsItem)
     @if($newsItem->padNaarFoto != NULL)
         <div class="col-lg-4">
-            <button class="news-item" style="width: 100%" onclick="OpenTest();">{{$newsItem->Titel}}</button>
+            <button class="news-item" style="width: 100%" onclick="OpenTest{{$newsItem->id}}();">{{$newsItem->titel}}</button>
             <br>
         </div>
-        <div class="col-lg-12" id="{{$newsItem->ID}}">
+        <div class="col-lg-12" id="{{$newsItem->id}}">
+            <div class="row">
             <div class="hidden-xs col-lg-3">
-                <img src="uploads/{{$newsItem->padNaarFoto}}" alt="News item foto"/>
+                <img src="uploads/{{$newsItem->padNaarFoto}}" height="400px" width="400px" style="float: left;" alt="News item foto"/>
             </div>
             <div class="col-lg-9">
-                <p style=";font-size:14px;color:white;">{{$newsItem->Uitleg}}</p>
+                <p style=";font-size:14px;color:white;float: right;">{{$newsItem->uitleg}}</p>
+            </div>
             </div>
         </div>
     @else
         <div class="col-lg-4">
-            <button class="news-item" style="width: 100%" onclick="OpenTest();">{{$newsItem->Titel}}</button>
+            <button class="news-item" style="width: 100%" onclick="OpenTest{{$newsItem->id}}();">{{$newsItem->titel}}</button>
             <br>
         </div>
-        <div class="col-lg-12" id="{{$newsItem->ID}}">
-            <p style=";font-size:14px;color:white;">{{$newsItem->Uitleg}}</p>
+        <div class="col-lg-12" id="{{$newsItem->id}}">
+            <p style=";font-size:14px;color:white;">{{$newsItem->uitleg}}</p>
         </div>
     @endif
 @endforeach
@@ -208,8 +210,8 @@
 @foreach($newsItems->all() as $newsItem)
     <script>
 
-        function OpenTest(){
-            $('#{{$newsItem->ID}}').slideToggle(1500);
+        function OpenTest{{$newsItem->id}}(){
+            $('#{{$newsItem->id}}').slideToggle(1500);
             if($('.blur').css('filter') == 'blur(0px)'){
                 $('.blur').css('filter','blur(3px)') ;
                 $('.blur').css('margin','-5px') ;
@@ -222,8 +224,8 @@
         }
 
     $(window).load(function() {
-        $('#{{$newsItem->ID}}').slideToggle(0);
-        $('#{{$newsItem->ID}}').css('display','none');
+        $('#{{$newsItem->id}}').slideToggle(0);
+        $('#{{$newsItem->id}}').css('display','none');
     });
 
     </script>
