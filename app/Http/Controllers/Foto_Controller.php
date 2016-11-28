@@ -85,26 +85,4 @@ class Foto_Controller extends Controller
 
         return $image;
     }
-
-     public function deleteGallery($id)
-     {
-         //laden van gallerij
-         $currentGallery = Gallery::findOrFail($id);
-
-         //haal alle images op
-         $images = $currentGallery->images();
-
-         ///delete images
-         foreach ($currentGallery->images as $image){
-             unlink(public_path($image->file_path));
-         }
-
-         //delete database records
-         $currentGallery->images()->delete();
-
-         $currentGallery->delete();
-
-         return redirect()->back();
-
-     }
 }

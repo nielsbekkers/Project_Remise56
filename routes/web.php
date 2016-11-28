@@ -17,7 +17,15 @@ Route::get('/', 'Home_Controller@home');
 
 Route::get('menu','Menu_Controller@home');
 
+Route::get('foto','Foto_Controller@home');
 
+Route::get('gallery/list','Foto_Controller@viewGalleryList');
+
+Route::post('gallery/save','Foto_Controller@saveGallery');
+
+Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
+
+Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
 Route::get('reservatie','Reservatie_Controller@getContent');
 
@@ -38,23 +46,9 @@ Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
 
 
 //////// BROUWERIJ /////////
-Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
+
 Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
-
-////////Gallerij////////
-
-Route::get('foto','Foto_Controller@home');
-
-Route::get('gallery/list','Foto_Controller@viewGalleryList');
-
-Route::post('gallery/save','Foto_Controller@saveGallery');
-
-Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
-
-Route::post('image/do-upload','Foto_Controller@doImageUpload');
-
-Route::get('gallery/delete/{id}', 'Foto_Controller@deleteGallery');
-
+Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
 
 //////////////// Personeel
 
@@ -76,11 +70,6 @@ Route::post('/personeel/nieuweReservatieRond', [
     'as' => 'nieuweReservatieRond'
 ]);
 
-// Dashboard Verwijderen reservatie POST
-Route::get('/personeel/verwijderReservatie/{reservatieId}', [
-    'uses' => 'Personeel_Controller@verwijderReservatie',
-    'as' => 'verwijderReservatie'
-]);
 
 // Dashboard Nieuw personeelslid form POST
 Route::post('/personeel/nieuwPersoneelsLid', [
@@ -89,14 +78,13 @@ Route::post('/personeel/nieuwPersoneelsLid', [
 ]);
 
 
-////Dashboad NEWS ITEMS
-//Route::get('/personeel/news','NewsItems_Controller@home');
+//Dashboad NEWS ITEMS
+Route::get('/personeel/news','NewsItems_Controller@home');
 
 //Dashboard ADD NEWS ITEM
-Route::post('/personeel/nieuweNieuwsItem', [
-    'uses' => 'Personeel_Controller@nieuweNieuwsItem',
-    'as' => 'nieuweNieuwsItem'
-]);
+Route::post('/personeel/news',[
+    'uses'=> 'NewsItems_Controller@createNewsItem',
+    'as' => 'createNewsitem']);
 
 //Dashboard DELETE NEWS ITEM
 Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');

@@ -54,8 +54,7 @@
                                 </td>
                                 </td>
                                 <!--<td><a href="{{'gallery/view/'. $gallery->id}}">view</a></td>-->
-                                <td class="text-center"><a href="{{'gallery/view/'. $gallery->id}}"><span class="glyphicon glyphicon-edit"></span> Wijzigen</a> / <a href="{{'gallery/delete/'. $gallery->id}}"><span class="glyphicon glyphicon-edit"></span> Verwijderen</a></td>
-
+                                <td class="text-center"><a href="{{'gallery/view/'. $gallery->id}}"><span class="glyphicon glyphicon-edit"></span> Wijzigen</a></td>
                             </tr>
                         @endforeach
                         </tbody>
