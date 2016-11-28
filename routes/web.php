@@ -88,9 +88,10 @@ Route::post('/personeel/nieuwPersoneelsLid', [
 Route::get('/personeel/news','NewsItems_Controller@home');
 
 //Dashboard ADD NEWS ITEM
-Route::post('/personeel/news',[
-    'uses'=> 'NewsItems_Controller@createNewsItem',
-    'as' => 'createNewsitem']);
+Route::post('/personeel/nieuweNieuwsItem', [
+    'uses' => 'Personeel_Controller@nieuweNieuwsItem',
+    'as' => 'nieuweNieuwsItem'
+]);
 
 //Dashboard DELETE NEWS ITEM
 Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');
