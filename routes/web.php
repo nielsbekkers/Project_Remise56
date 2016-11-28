@@ -17,15 +17,7 @@ Route::get('/', 'Home_Controller@home');
 
 Route::get('menu','Menu_Controller@home');
 
-Route::get('foto','Foto_Controller@home');
 
-Route::get('gallery/list','Foto_Controller@viewGalleryList');
-
-Route::post('gallery/save','Foto_Controller@saveGallery');
-
-Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
-
-Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
 Route::get('reservatie','Reservatie_Controller@getContent');
 
@@ -46,9 +38,23 @@ Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
 
 
 //////// BROUWERIJ /////////
-
-Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
 Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
+Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
+
+////////Gallerij////////
+
+Route::get('foto','Foto_Controller@home');
+
+Route::get('gallery/list','Foto_Controller@viewGalleryList');
+
+Route::post('gallery/save','Foto_Controller@saveGallery');
+
+Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
+
+Route::post('image/do-upload','Foto_Controller@doImageUpload');
+
+Route::get('brouwerij/gallery/delete/{id}', 'Foto_Controller@deleteGallery');
+
 
 //////////////// Personeel
 
