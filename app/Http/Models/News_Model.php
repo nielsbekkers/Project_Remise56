@@ -1,11 +1,10 @@
 <?php
 
-namespace App;
-
+namespace App\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class News extends Model
+class News_Model extends Model
 {
     protected $table = 'news';
 
@@ -25,5 +24,9 @@ class News extends Model
 
     public function getPathOfNewsItemPicture($id){
         return DB::table('news')->get(['padNaarFoto'])->where('ID','=',$id);
+    }
+
+    public function getCountOfNewsItems(){
+        return DB::table('news')->count();
     }
 }

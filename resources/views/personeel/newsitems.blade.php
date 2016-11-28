@@ -6,6 +6,24 @@
 
 @section('content')
 
+    @if(isset($countError))
+        <div id="errorReport" class="alert alert-danger">
+            <ax class="close" data-dismiss="alert" aria-label="close">&times;</ax>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{$countError}}
+        </div>
+    @endif
+
+    @if(isset($gelukt))
+        <div id="errorReport" class="alert alert-success">
+            <ax class="close" data-dismiss="alert" aria-label="close">&times;</ax>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Succes:</span>
+            {{$gelukt}}
+        </div>
+    @endif
+
 <div class="panel panel-default panel-table">
     <div class="panel-heading">
         <div class="row">
@@ -19,7 +37,7 @@
     </div>
     <div class="panel-body">
         <div class="center-block">
-        <form method="post" id="popup-form" class="center" style="display:none;padding-bottom: 20px;" enctype="multipart/form-data">
+        <form method="post" id="popup-form" class="center" action="{{route("nieuweNieuwsItem")}}" style="display:none;padding-bottom: 20px;" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label>Titel</label><br/>
             <input type="text" name="titel" class="span3" required/><br/>
@@ -39,13 +57,14 @@
             </tr>
             </thead>
 @foreach($newsItems->all() as $newsItem)
+
     <tbody>
     <tr>
         <td align="center">
-            <a class="btn btn-danger" href="{{url('/personeel/news/deleteNewsItem/'.$newsItem->ID)}}"><em class="fa fa-trash"></em></a>
+            <a class="btn btn-danger" href="{{url('/personeel/news/deleteNewsItem/'.$newsItem->id)}}"><em class="fa fa-trash"></em></a>
         </td>
-        <td>{{$newsItem->Titel}}</td>
-        <td>{{$newsItem->Uitleg}}</td>
+        <td>{{$newsItem->titel}}</td>
+        <td>{{$newsItem->uitleg}}</td>
         @if($newsItem->padNaarFoto != null)
             <td>{{$newsItem->padNaarFoto}}</td>
         @else
