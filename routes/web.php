@@ -94,7 +94,7 @@ Route::get('/personeel/verwijderReservatie/{reservatieId}', [
         ]);
 
 //Dashboad NEWS ITEMS
-Route::get('/personeel/news','NewsItems_Controller@home');
+//Route::get('/personeel/news','NewsItems_Controller@home');
 
 //Dashboard ADD NEWS ITEM
 Route::post('/personeel/nieuweNieuwsItem', [
@@ -103,4 +103,4 @@ Route::post('/personeel/nieuweNieuwsItem', [
 ]);
 
 //Dashboard DELETE NEWS ITEM
-Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');
+//Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');
