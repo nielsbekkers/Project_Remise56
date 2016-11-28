@@ -76,6 +76,11 @@ Route::post('/personeel/nieuweReservatieRond', [
     'as' => 'nieuweReservatieRond'
 ]);
 
+// Dashboard Verwijderen reservatie POST
+Route::get('/personeel/verwijderReservatie/{reservatieId}', [
+    'uses' => 'Personeel_Controller@verwijderReservatie',
+    'as' => 'verwijderReservatie'
+]);
 
 // Dashboard Nieuw personeelslid form POST
 Route::post('/personeel/nieuwPersoneelsLid', [

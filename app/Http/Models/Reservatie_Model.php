@@ -239,4 +239,8 @@ class Reservatie_Model extends Model implements  Authenticatable
         return $content;
     }
 
+    public function verwijderReservatie($reservatieId) {
+        return DB::table('reservaties')->where('id', '=', $reservatieId)->delete();
+    }
+
 }
