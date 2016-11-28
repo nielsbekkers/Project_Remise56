@@ -31,4 +31,15 @@ class GrandCafe_Controller extends Controller
         return view('master_view', compact('menuTop','navigatie','navigatieResponsive','aTemplates'));
     }
 
+    public function nieuweReservatie(Request $request){
+        echo "inde functie";
+        echo $request["frmReservatieRestTijd"];
+        $oReservatie = new Reservatie_Model();
+       $result = $oReservatie->nieuwReservatieRestKlant($request);
+
+        var_dump($result);
+
+
+    }
+
 }

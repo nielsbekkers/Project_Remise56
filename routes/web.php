@@ -33,6 +33,10 @@ Route::post('/createReservationClient', [
 //////GrandCafe//////
 Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
 Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
+Route::post('/grandcafe/nieuweReservatieRestKlant', [
+    'uses' => 'GrandCafe_Controller@nieuweReservatie',
+    'as' => 'nieuweReservatieRestKlant'
+]);
 
 
 

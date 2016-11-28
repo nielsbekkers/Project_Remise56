@@ -14,9 +14,9 @@
         <div class="container">
             <div class="row text-center fh5co-heading row-padded">
                 <div class="col-md-8 col-md-offset-2">
-                    <form action="{{ action('Menu_Controller@editMenu') }}" method="get">
+                   {{-- <form action="{{ action('Menu_Controller@editMenu') }}" method="get">
                         <div align="right"><input type="submit" name="EditMenuButton" value="Wijzig Menu"/></div>
-                    </form>
+                    </form>--}}
                     <h2 class="heading to-animate">Menukaart</h2>
 
                     <h2 class="to-animate">DRANKEN</h2>

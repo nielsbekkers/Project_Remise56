@@ -24,89 +24,8 @@ class Reservatie_Model extends Model implements  Authenticatable
     function getContent()
     {
         $sContent = 'Voor reservaties telefonisch contact opnemen <br> 011/18 31 93';
-            /*<div class="col-md-8">
-                    <p style="text-align: center">Online Reserveren</p>
-
-                    <div class="container">
-                        <div class="row">
-
-                        </div>
-                    </div>
-
-                    <form class="form-horizontal" action="{{route("createReservationClient")}}" method="post">
-                        <div id="FrmReservatieDeel1">
-                            <div id="FrmReservatieGroepDatum">
-                                <label for="sel1">Kies een datum:</label>
-                                <div id="datepicker-container">
-                                    <div id="datepicker-center">
-                                        <div id="datepicker"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div id="FrmReservatieGroepUur">
-                                <label for="sel1">Kies een uur:</label>
-                                <select id="FrmReservatieUur" class="form-control" id="sel1" style=" text-align-last:center;">
-                                    <option style=" text-align-last:center;">11.00</option>
-                                    <option>11.30</option>
-                                    <option>12.00</option>
-                                    <option>12.30</option>
-                                    <option>13.00</option>
-                                    <option>13.30</option>
-
-                                </select>
-                            </div>
-                            <br>
-                            <div id="FrmReservatieGroepPersonen">
-                                <label  for="sel1">Het aantal personen:</label>
-                                <select id="FrmReservatiePersonen" class="form-control" id="sel1" style=" text-align-last:center;">
-                                    <option style=" text-align-last:center;">1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
-                            </div>
-                            <br>
-                        </div>
-
-                        <div id="FrmReservatieDeel2">
-                            
-                                <div class="form-group">
-                                    <input type="text" name="FrmReservatieVoornaam" class="form-control" placeholder="Voornaam">
-                                    <input type="text" name="FrmReservatieNaam" class="form-control" placeholder="Naam">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="FrmReservatieEmail" class="form-control" placeholder="Email" >
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="FrmReservatieTel" class="form-control" placeholder="tel" >
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="FrmReservatieNota" rows="2" placeholder="Speciale wensen, Allergieën, ..." cols="20"></textarea>
-
-                                </div>
-
-                                <button type="submit" name="FrmReservatieSubmit" class="btn btn-default">Reserveren</button>
-                            
-
-                        </div>
-
-
-                        <!-- Beveiliging als iemand uw session key heeft-->
-                        <input type="hidden" name="_token" value="{{Session::token()}}">
-                    </form>
-
-                </div>';*/
 
         return $sContent;
-    }
-
-    public function getReservationForm()
-    {
-
-        return 'test';
-
-
     }
 
     function getOpeningsUren()
@@ -141,35 +60,95 @@ class Reservatie_Model extends Model implements  Authenticatable
     }
 
     public function nieuwReservatieRest(Request $request){
-        $sSoort = "Restaurant";
-        $sShift = "Lunch";
-        $sBevestigd = "ok";
-        $sBevestingscode = "code";
 
-        $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
-        $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
-        $sTime2 = substr($request["frmReservatieRestTijd"], 3, 2);  // neemt de  2 getallen na de  ":"
+    $sSoort = "Restaurant";
+    $sShift = "Lunch";
+    $sBevestigd = "ok";
+    $sBevestingscode = "code";
 
-        $dDatetime->setTime($sTime1, $sTime2, 00);
+    $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
+    $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
+    $sTime2 = substr($request["frmReservatieRestTijd"], 3, 2);  // neemt de  2 getallen na de  ":"
 
-        $iPersonen = $request["frmReservatieRestPersonen"];
-        $sVoornaam = $request["frmReservatieRestVoornaam"];
-        $sNaam = $request["frmReservatieRestNaam"];
-        $sTelefoon = $request["frmReservatieRestTelefoon"];
-        $sEmail = $request["frmReservatieRestEmail"];
-        $sNota = $request["frmReservatieRestNota"];
+    $dDatetime->setTime($sTime1, $sTime2, 00);
 
-       // DB::insert('insert into reservaties (datum, tijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatum, $tTijd, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
+    $iPersonen = $request["frmReservatieRestPersonen"];
+    $sVoornaam = $request["frmReservatieRestVoornaam"];
+    $sNaam = $request["frmReservatieRestAchternaam"];
+    $sTelefoon = $request["frmReservatieRestTel"];
+    $sEmail = $request["frmReservatieRestEmail"];
+    $sNota = $request["frmReservatieRestNota"];
+
+    $bResultaat ="";
+    try {
+        DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
+        $bResultaat = true;
+    } catch (\PDOException $e) {
+        $bResultaat = false;
+    }
+
+
+    return $bResultaat;
+
+
+}
+
+    public function nieuwReservatieRestKlant(Request $request){
+
+        /*$url = 'https://www.google.com/recaptcha/api/siteverify';
+        $data = array('secret ' => '6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g', 'response ' => $request["g-recaptcha-response"]);
+
+            // use key 'http' even if you send the request to https://...
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        return $result;*/
+
+        $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g&response=".$request["g-recaptcha-response"]);
+        $responseKeys = json_decode($response,true);
+        if(intval($responseKeys["success"]) !== 1) {
+            $bResultaat =  '<h2>You are spammer ! Get the @$%K out</h2>';
+        } else {
+            echo '<h2>Thanks for posting comment.</h2>';
 
 
 
-       try {
-           DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
-           $bResultaat = true;
-        } catch (\PDOException $e) {
-           $bResultaat = false;
+
+            $sSoort = "Restaurant";
+            $sShift = "Lunch";
+            $sBevestigd = "ok";
+            $sBevestingscode = "code";
+
+            $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
+            $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
+            $sTime2 = substr($request["frmReservatieRestTijd"], 3, 2);  // neemt de  2 getallen na de  ":"
+
+            $dDatetime->setTime($sTime1, $sTime2, 00);
+
+            $iPersonen = $request["frmReservatieRestPersonen"];
+            $sVoornaam = $request["frmReservatieRestVoornaam"];
+            $sNaam = $request["frmReservatieRestAchternaam"];
+            $sTelefoon = $request["frmReservatieRestTel"];
+            $sEmail = $request["frmReservatieRestEmail"];
+            $sNota = $request["frmReservatieRestNota"];
+
+            $bResultaat ="";
+            try {
+                DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
+                $bResultaat = true;
+            } catch (\PDOException $e) {
+                $bResultaat = false;
+            }
         }
+
         return $bResultaat;
+
 
     }
 
@@ -188,14 +167,10 @@ class Reservatie_Model extends Model implements  Authenticatable
 
         $iPersonen = $request["frmReservatieRondPersonen"];
         $sVoornaam = $request["frmReservatieRondVoornaam"];
-        $sNaam = $request["frmReservatieRondNaam"];
-        $sTelefoon = $request["frmReservatieRondTelefoon"];
+        $sNaam = $request["frmReservatieRondAchternaam"];
+        $sTelefoon = $request["frmReservatieRondTel"];
         $sEmail = $request["frmReservatieRondEmail"];
         $sNota = $request["frmReservatieRondNota"];
-
-        // DB::insert('insert into reservaties (datum, tijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatum, $tTijd, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
-
-
 
         try {
             DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
