@@ -257,7 +257,7 @@ class Personeel_Controller extends Controller
         ]);
         //take actions when the validation has failed
         if ($validator->fails()){
-            return redirect('brouwerij/gallerij')
+            return redirect('/personeel/foto')
                 ->withErrors($validator)
                 ->withInput();
         }
