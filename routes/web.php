@@ -94,4 +94,12 @@ Route::post('/personeel/nieuweNieuwsItem', [
 ]);
 
 //Dashboard DELETE NEWS ITEM
-Route::get('/personeel/news/deleteNewsItem/{id}', 'NewsItems_Controller@deleteNewsItem');
+Route::get('/personeel/news/deleteNewsItem/{id}', 'Personeel_Controller@verwijderNieuwsItem');
+
+
+Route::get('/personeel/news', 'Personeel_Controller@nieuwsItems');
+
+Route::post('/personeel/news/updateNewsItem', [
+    'uses'=>'Personeel_Controller@aanpassenNieuwsItem',
+    'as'=>'aanpassenNieuwsItem'
+]);

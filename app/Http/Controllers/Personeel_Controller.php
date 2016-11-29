@@ -144,6 +144,14 @@ class Personeel_Controller extends Controller
         return $news->getAllNewsItems();
     }
 
+    public function nieuwsItems(){
+        $menuTop = "Nieuws Items";
+        $newsItems = $this->getAllNews();
+
+
+        return view('personeel.newsitems',compact('newsItems','menuTop'));
+    }
+
     public function nieuweNieuwsItem(Request $request){
         $news = new News_Model;
         $countOfNewsitems = $news->getCountOfNewsItems();
@@ -164,7 +172,51 @@ class Personeel_Controller extends Controller
                 $news->insertNewsItem(Input::get('titel'), Input::get('uitleg'), null);
                 $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit zonder een foto";
             }
-            return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
+            //return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
+            return redirect()->action('Personeel_Controller@nieuwsItems');
         }
+
+
     }
+
+    public function verwijderNieuwsItem($id){
+        $news = new News_Model;
+        $news->deleteNewsItem($id);
+        $menuTop = "Nieuws Items";
+        $newsItems = $this->getAllNews();
+        $gelukt = "Het nieuws item is succesvol verwijdert";
+        //File::delete($news->getPathOfNewsItemPicture($id));
+        //return redirect()->action('Personeel_Controller@nieuweNieuwsItem');
+        //return view('personeel.newsitems',compact('newsItems','menuTop', 'gelukt'));
+        return redirect()->action('Personeel_Controller@nieuwsItems');
+    }
+
+
+    public function aanpassenNieuwsItem(Request $request){
+        $news = new News_Model;
+
+        $id = $request['itemId'];
+        echo $id;
+
+        echo $request['uitlegAanpassing'];
+        if ($request['fotoAanpassing'] != null) {
+            if (Input::file('fotoAanpassing')->isValid()) {
+                $filename = Input::file('fotoAanpassing')->getClientOriginalName();
+                Input::file('fotoAanpassing')->move('uploads', $filename);
+                $news->updateNewsItem($id, Input::get('titelAanpassing'), Input::get('uitlegAanpassing'), $filename);
+                $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit met een foto";
+            }
+        } else {
+            $news->updateNewsItem($id, Input::get('titelAanpassing'), Input::get('uitlegAanpassing'), null);
+            $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit zonder een foto";
+        }
+        $newsItems = $this->getAllNews();
+        $menuTop = "Nieuws Items";
+        $gelukt = "Het nieuws item is succesvol aangepast";
+        //return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
+        return redirect()->action('Personeel_Controller@nieuwsItems');
+
+    }
+
+
 }
