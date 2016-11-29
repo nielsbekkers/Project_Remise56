@@ -5,6 +5,7 @@
 @endsection
 
 @section('extra_css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="../scheduler/dhtmlxscheduler.css" type="text/css">
     <style>
         #scheduler {
@@ -55,8 +56,19 @@
         <script type="text/javascript">
             scheduler.config.dblclick_create = false;
             scheduler.config.xml_date = "%Y-%m-%d %H:%i";
-            scheduler.config.readonly = true;
+            scheduler.config.readonly = false;
+            scheduler.attachEvent("onConfirmedBeforeEventDelete", function(id,e){
+                $.get( "verwijderReservatie/"+id, function( data ) {
+                    if(data == "11") {
+                        alert("De reservatie is verwijderd.");
+                        location.reload();
+                    } else {
+                        alert("Er ging iets mis bij het verwijderen van de reservatie.");
+                    }
+                    $( ".result" ).html( data );
 
+                });
+            });
             scheduler.init('scheduler', new Date(),"day");
         </script>
         <script type="text/javascript">
@@ -64,7 +76,6 @@
 
                     @forelse($reservaties as $reservatie)
                         <?php
-
                         $date = new DateTime((string)$reservatie->datumtijd);
                         $date->add(new DateInterval('PT2H'));
                         $reservatie->eindDatum = $date->format('Y-m-d H:i:s');

@@ -8,6 +8,7 @@
 
 namespace  App\Http\Controllers;
 
+use Mail;
 use App\User;
 use App\Http\Models\Personeel_Model;
 use App\Http\Models\Reservatie_Model;
@@ -59,6 +60,10 @@ class Personeel_Controller extends Controller
                 return view('personeel.reservaties', compact('menuTop', 'reservaties','errorReport'));
 
                 break;
+            case "verwijderReservatie" :
+                return 'nothing';
+                break;
+
             case "news":
                 $menuTop = "Nieuws Items";
                 $newsItems = $this->getAllNews();
@@ -105,6 +110,18 @@ class Personeel_Controller extends Controller
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->nieuwReservatieRest($request);
 
+        if ($bResult){
+            $data = array(
+                "bevestigingsLink" => "http://www.google.be/",
+                "volledigeNaam" => $request["frmReservatieRestVoornaam"] + $request["frmReservatieRestAchternaam"] ,
+                "aantalPersonen" => $request["FrmReservatiePersonen"],
+                "tijdstip" =>$request["FrmReservatieUur"]
+            );
+            Mail::send('mail.bevestiging', $data, function($message) {
+                $message->to('bielenalexander@gmail.com', 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
+            });
+        }
+
 
         return view('personeel.nieuweReservatieRestaurant', compact('bResult'));
 
@@ -118,6 +135,12 @@ class Personeel_Controller extends Controller
         return view('personeel.nieuweReservatieRondleiding', compact('bResult'));
     }
 
+    public function verwijderReservatie($reservatieId) {
+        $oReservatie = new Reservatie_Model();
+        $bResult = $oReservatie->verwijderReservatie($reservatieId);
+        echo $bResult;
+        return $bResult;
+    }
 
     /////////////////////////       De volgende functies worden gebruikt voor MENU ITEMS mbv het MenuItem_Model
     public function getMenuItems(){

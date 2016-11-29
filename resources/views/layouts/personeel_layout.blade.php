@@ -47,7 +47,7 @@
                             <li><a href="/personeel/nieuweReservatieRest">Nieuwe reservatie(restaurant)</a></li>
                             <li><a href="/personeel/nieuweReservatieRond">Nieuwe reservatie(rondleiding)</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/personeel/news">Nieuw nieuws item</a></li>
+                            <li><a href="/personeel/news">Nieuw menu item</a></li>
                             {{--<li role="separator" class="divider"></li>--}}
                             {{--<li><a href="#">Nieuw nieuws item</a></li>--}}
 
@@ -56,8 +56,8 @@
 
                     {{--<li><a href="/personeel/personeel">Personeel</a></li>--}}
                     <li><a href="/personeel/reservaties">Reservaties</a></li>
-                    <li><a href="/personeel/news">Nieuws items</a></li>
-                    {{--<li><a href="#">Menu items</a></li>--}}
+                    {{--<li><a href="/personeel/nieuws">Nieuws items</a></li>--}}
+                    <li><a href="/personeel/news">Menu items</a></li>
                     {{--<li><a href="/personeel/inloggen">Inloggen</a></li>--}}
                     {{--<li><a href="/">Uitloggen</a></li>--}}
 

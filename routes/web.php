@@ -33,6 +33,10 @@ Route::post('/createReservationClient', [
 //////GrandCafe//////
 Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
 Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
+Route::post('/grandcafe/nieuweReservatieRestKlant', [
+    'uses' => 'GrandCafe_Controller@nieuweReservatie',
+    'as' => 'nieuweReservatieRestKlant'
+]);
 
 
 
@@ -53,7 +57,7 @@ Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
 
 Route::post('image/do-upload','Foto_Controller@doImageUpload');
 
-Route::get('gallery/delete/{id}', 'Foto_Controller@deleteGallery');
+Route::get('brouwerij/gallery/delete/{id}', 'Foto_Controller@deleteGallery');
 
 
 //////////////// Personeel
@@ -83,9 +87,14 @@ Route::post('/personeel/nieuwPersoneelsLid', [
     'as' => 'nieuwPersoneelsLid'
 ]);
 
+// Dashboard Verwijderen reservatie POST
+Route::get('/personeel/verwijderReservatie/{reservatieId}', [
+        'uses' => 'Personeel_Controller@verwijderReservatie',
+        'as' => 'verwijderReservatie'
+        ]);
 
-////Dashboad NEWS ITEMS
-//Route::get('/personeel/news','NewsItems_Controller@home');
+//Dashboad NEWS ITEMS
+Route::get('/personeel/news','NewsItems_Controller@home');
 
 //Dashboard ADD NEWS ITEM
 Route::post('/personeel/nieuweNieuwsItem', [

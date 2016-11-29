@@ -33,6 +33,13 @@
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="../js/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../css/reservatiestyle.css">
+    <script src="../js/reservatie.js" ></script>
+
     <style>
         body{background-color: #fff;}
 
@@ -87,6 +94,8 @@
     <!--[if lt IE 9]>
     <script src="{{url('js/respond.min.js')}}"></script>
     <![endif]-->
+    <!--GOOGLE CAPTCHA-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 
@@ -143,7 +152,7 @@ z-index: 9999;">
 </body>
 
 @yield('extra_scripts')
-<script src="{{url('js/jquery.min.js')}}"></script>
+{{--<script src="{{url('js/jquery.min.js')}}"></script>--}}
 <!-- Bootstrap -->
 <script src="{{url('js/bootstrap.min.js')}}"></script>
 <!-- Bootstrap DateTimePicker -->

@@ -5,22 +5,8 @@
 @endsection
 
 @section('scripts')
+    <script src="../js/reservatie.js"></script>
 
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker({
-                inline: true,
-                dateFormat: 'yy-mm-dd',
-                monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" ],
-                dayNames: [ "Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag" ],
-                dayNamesMin: [ "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za" ],
-                firstDay: 1, //maandag
-                altField: "#datepickerhelper",
-                minDate: 0
-            });
-
-        } );
-    </script>
 @endsection
 
 @section('content')
@@ -78,7 +64,30 @@
                     <label class="col-sm-4 control-label">Aankomsttijd</label>
                     <div class="col-sm-8">
 
-                        <input class="form-control" type="time" name="frmReservatieRondTijd" required/>
+                        <select  class="form-control" style=" text-align-last:center;" name="frmReservatieRondTijd" required>
+                            <option style=" text-align-last:center;">11.00</option>
+                            <option>11.30</option>
+                            <option>12.00</option>
+                            <option>12.30</option>
+                            <option>13.00</option>
+                            <option>13.30</option>
+                            <option>14.00</option>
+                            <option>14.30</option>
+                            <option>15.00</option>
+                            <option>15.30</option>
+                            <option>16.00</option>
+                            <option>16.30</option>
+                            <option>17.00</option>
+                            <option>17.30</option>
+                            <option>18.00</option>
+                            <option>18.30</option>
+                            <option>19.00</option>
+                            <option>19.30</option>
+                            <option>20.00</option>
+                            <option>20.30</option>
+                            <option>21.00</option>
+
+                        </select>
                     </div>
                 </div>
 
@@ -104,7 +113,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Familienaam</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRondNaam" placeholder="uw familienaam..." type="text" required/>
+                        <input class="form-control" name="frmReservatieRondAchternaam" placeholder="uw familienaam..." type="text" required/>
                     </div>
                 </div>
 
@@ -112,7 +121,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Telefoonnummer</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRondTelefoon" placeholder="0488111111" type="tel" required/>
+                        <input class="form-control" name="frmReservatieRondTel" placeholder="0488111111" type="tel" required/>
                     </div>
                 </div>
 
