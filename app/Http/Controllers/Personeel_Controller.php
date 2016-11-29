@@ -109,15 +109,19 @@ class Personeel_Controller extends Controller
     public function nieuweReservatieRest(Request $request){
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->nieuwReservatieRest($request);
-        $data = array(
-            "bevestigingsLink" => "http://www.google.be/",
-            "volledigeNaam" => "Achternaam Voornaam",
-            "aantalPersonen" => "14",
-            "tijdstip" => "15:00"
-        );
-        Mail::send('mail.bevestiging', $data, function($message) {
-            $message->to('bielenalexander@gmail.com', 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
-        });
+
+        if ($bResult){
+            $data = array(
+                "bevestigingsLink" => "http://www.google.be/",
+                "volledigeNaam" => $request["frmReservatieRestVoornaam"] + $request["frmReservatieRestAchternaam"] ,
+                "aantalPersonen" => $request["FrmReservatiePersonen"],
+                "tijdstip" =>$request["FrmReservatieUur"]
+            );
+            Mail::send('mail.bevestiging', $data, function($message) {
+                $message->to('bielenalexander@gmail.com', 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
+            });
+        }
+
 
         return view('personeel.nieuweReservatieRestaurant', compact('bResult'));
 

@@ -95,21 +95,6 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     public function nieuwReservatieRestKlant(Request $request){
 
-        /*$url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = array('secret ' => '6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g', 'response ' => $request["g-recaptcha-response"]);
-
-            // use key 'http' even if you send the request to https://...
-        $options = array(
-            'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data)
-            )
-        );
-        $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        return $result;*/
-
         $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g&response=".$request["g-recaptcha-response"]);
         $responseKeys = json_decode($response,true);
         if(intval($responseKeys["success"]) !== 1) {

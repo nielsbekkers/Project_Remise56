@@ -12,6 +12,7 @@ $( function() {
     $("#FrmReservatieGroepPersonen").hide();
     $("#FrmReservatie2").hide();
     $("#FrmReservatieVolgende").hide();
+    $('#FrmReservatieSubmit').hide();
 
 
 
@@ -58,4 +59,9 @@ $( function() {
     })
 
 } );
+
+function doSomething() {
+    $('#FrmReservatieSubmit').show();
+
+}
 

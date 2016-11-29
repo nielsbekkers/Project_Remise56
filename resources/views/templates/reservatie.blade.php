@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" name="frmReservatieRestTel" id="email" class="form-control input-sm" placeholder="Telefoonnummer" required>
+                                <input type="text" name="frmReservatieRestTel" id="email" class="form-control input-sm" placeholder="Telefoonnummer" required pattern="[0-9]{10}">
                             </div>
 
                             <div class="form-group">
@@ -113,15 +113,15 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="6LcCPw0UAAAAAHQfMdBYAB8soWxYUGS2sQ6sPTgV"></div>
+                                <div class="g-recaptcha" data-callback='doSomething' data-sitekey="6LcCPw0UAAAAAHQfMdBYAB8soWxYUGS2sQ6sPTgV" ></div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <input type="button" value="Vorige" class="btn btn-info btn-block" id="FrmReservatieVorige" name="frmReservatieRestVoornaam">
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <input type="submit" value="Reserveren" class="btn btn-info btn-block" name="frmReservatieRestSubmit">
+                                    <input type="submit" value="Reserveren" class="btn btn-info btn-block" name="frmReservatieRestSubmit" id="FrmReservatieSubmit"  />
                                 </div>
                             </div>
 
