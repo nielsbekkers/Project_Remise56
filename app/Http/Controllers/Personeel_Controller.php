@@ -110,19 +110,6 @@ class Personeel_Controller extends Controller
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->nieuwReservatieRest($request);
 
-        if ($bResult){
-            $data = array(
-                "bevestigingsLink" => "http://www.google.be/",
-                "volledigeNaam" => $request["frmReservatieRestVoornaam"] + $request["frmReservatieRestAchternaam"] ,
-                "aantalPersonen" => $request["FrmReservatiePersonen"],
-                "tijdstip" =>$request["FrmReservatieUur"]
-            );
-            Mail::send('mail.bevestiging', $data, function($message) {
-                $message->to('bielenalexander@gmail.com', 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
-            });
-        }
-
-
         return view('personeel.nieuweReservatieRestaurant', compact('bResult'));
 
     }
@@ -238,7 +225,6 @@ class Personeel_Controller extends Controller
         $gelukt = "Het nieuws item is succesvol aangepast";
         //return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
         return redirect()->action('Personeel_Controller@nieuwsItems');
-
     }
 
 
