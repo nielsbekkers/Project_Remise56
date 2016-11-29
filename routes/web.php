@@ -112,3 +112,7 @@ Route::post('/personeel/news/updateNewsItem', [
     'uses'=>'Personeel_Controller@aanpassenNieuwsItem',
     'as'=>'aanpassenNieuwsItem'
 ]);
+
+// Bevestigen van een reservatie
+
+Route::get('/bevestig/reservatie/{bevestigingsCode}', 'Bevestigings_Controller@bevestig');

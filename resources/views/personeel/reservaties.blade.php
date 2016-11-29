@@ -70,6 +70,9 @@
                 });
             });
             scheduler.init('scheduler', new Date(),"day");
+            setTimeout(function() {
+               location.reload();
+            },300000);
         </script>
         <script type="text/javascript">
             var events = [

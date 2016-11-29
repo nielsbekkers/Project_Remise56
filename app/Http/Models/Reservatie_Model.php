@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Mail;
 
 /////////////////////////       Dit Model bevat alle methodes voor het aanmaken, opvragen van RESERVATIES en om de Content voor de pagina's op te halen.
 class Reservatie_Model extends Model implements  Authenticatable
@@ -45,7 +46,7 @@ class Reservatie_Model extends Model implements  Authenticatable
         $errorReport = "";
         $reservaties = [];
         try {
-            $reservaties = DB::select('select * from reservaties', [1]);
+            $reservaties = DB::select('select * from reservaties WHERE bevestigd = "1"', [1]);
         } catch (\PDOException $e) {
             $reservaties = [];
             $errorReport = "Kan geen verbinding maken met de database";
@@ -63,8 +64,8 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     $sSoort = "Restaurant";
     $sShift = "Lunch";
-    $sBevestigd = "ok";
-    $sBevestingscode = "code";
+    $sBevestigd = "1";
+    $sBevestingscode = "handmatig";
 
     $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
     $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
@@ -107,8 +108,8 @@ class Reservatie_Model extends Model implements  Authenticatable
 
             $sSoort = "Restaurant";
             $sShift = "Lunch";
-            $sBevestigd = "ok";
-            $sBevestingscode = "code";
+            $sBevestigd = isset($request['bevestigingsCode']) ? "0" : "0";
+            $sBevestingscode = isset($request['bevestigingsCode']) ? $request['bevestigingsCode'] : "error";
 
             $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
             $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
@@ -201,6 +202,26 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     public function verwijderReservatie($reservatieId) {
         return DB::table('reservaties')->where('id', '=', $reservatieId)->delete();
+    }
+
+    public function stuurBevestigingsmail($mailto, $data) {
+        $bevestigingsCode = md5(rand());
+        while(($bResult = $this->controleerBevestigingsCode($bevestigingsCode) == false)) {
+            $bevestigingsCode = md5(rand());
+        }
+        $data["bevestigingsLink"] = url('/bevestig/reservatie/'.$bevestigingsCode);
+        Mail::send('mail.bevestiging', $data, function($message) use ($mailto) {
+            $message->to($mailto, 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
+        });
+        return $bevestigingsCode;
+    }
+    private function controleerBevestigingsCode($code) {
+        $result = DB::select('SELECT * FROM reservaties WHERE bevestigingscode=?', [$code]);
+        if(empty($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
