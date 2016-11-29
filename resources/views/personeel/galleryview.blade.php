@@ -79,7 +79,7 @@
                 @foreach($gallery->images as $image)
                     <li>
                         <a href="{{ url($image->file_path) }}" data-lightbox="roadtrip">
-                            <img src="{{ url($image->file_path) }} >
+                            <img src="{{ url($image->file_path) }}"/>
                         </a>
                     </li>
                 @endforeach
@@ -102,7 +102,7 @@
 
 <div class="row">
     <div class="col-md-12" id="backButton">
-        <a href="{{url('brouwerij/gallerij')}}" class="btn btn-primary" id="backButtonHover">Terug</a>
+        <a href="{{'/personeel/foto'}}" class="btn btn-primary" id="backButtonHover">Terug</a>
     </div>
 </div>
 

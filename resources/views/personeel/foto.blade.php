@@ -1,40 +1,15 @@
-@extends('layouts.master_layout')
+@extends('layouts.personeel_layout')
 
 @section('extra_css')
     <link href="css/lightbox.min.css" rel="stylesheet">
     <link href="css/gallery.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 @stop
 
 @section('content')
     <br/>
     <div class="row">
-
-        <!--<div class="col-md-8">
-            @if ($galleries->count() > 0)
-                <table class="table table-bordered table-responsive">
-                    <thead>
-                    <tr class="alert-info">
-                        <th>Name of the Gallery</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($galleries as $gallery)
-                        <tr>
-                            <td>{{$gallery->name}}
-                                <span class="pull-right">
-                                    {{ $gallery->images()->count() }}
-                                </span>
-                            </td>
-                            <td><a href="{{'gallery/view/'. $gallery->id}}">view</a></td>
-                    @endforeach
-                    </tbody>
-                </table>
-                @endif
-        </div>-->
-
-
-                <div class="row col-md-6 col-md-offset-1 custyle">
+            <div class="row col-md-6 col-md-offset-1 custyle">
                     <table class="table table-striped custab">
                         <thead>
                         <tr>

@@ -49,15 +49,15 @@ Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
 
 Route::get('foto','Foto_Controller@home');
 
-Route::get('gallery/list','Foto_Controller@viewGalleryList');
+Route::get('gallery/list','Personeel_Controller@viewGalleryList');
 
-Route::post('gallery/save','Foto_Controller@saveGallery');
+Route::post('gallery/save','Personeel_Controller@saveGallery');
 
-Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
+Route::get('personeel/gallery/view/{id}','Personeel_Controller@viewGalleryPics');
 
-Route::post('image/do-upload','Foto_Controller@doImageUpload');
+Route::post('image/do-upload','Personeel_Controller@doImageUpload');
 
-Route::get('brouwerij/gallery/delete/{id}', 'Foto_Controller@deleteGallery');
+Route::get('personeel/gallery/delete/{id}', 'Personeel_Controller@deleteGallery');
 
 
 //////////////// Personeel

@@ -10,12 +10,19 @@ namespace  App\Http\Controllers;
 
 use Mail;
 use App\User;
+use App\Http\Requests;
 use App\Http\Models\Personeel_Model;
 use App\Http\Models\Reservatie_Model;
+use App\Http\Models\Image;
+use App\Http\Models\Gallery;
 use App\Http\Models\News_Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Validator;
+
+
 
 /////////////////////////       Deze controller bevat alle methodes voor het Remise 56 DASHBOARD
 class Personeel_Controller extends Controller
@@ -68,6 +75,14 @@ class Personeel_Controller extends Controller
                 $menuTop = "Nieuws Items";
                 $newsItems = $this->getAllNews();
                 return view('personeel.newsitems',compact('menuTop','newsItems'));
+                break;
+
+            case "foto":
+                $menuTop = "foto";
+                $galleries = Gallery::all();
+                return view('personeel.foto',compact('menuTop'))->with('galleries',$galleries);
+                break;
+
             default :
                 return view('personeel.reservaties');
 //                return view('personeel.inloggen');
@@ -241,5 +256,96 @@ class Personeel_Controller extends Controller
 
     }
 
+    //gallerij//
+    public function viewGalleryList($id){
+
+    }
+
+
+    public function saveGallery(Request $request)
+    {
+        // validate the request through the validation rules
+        $validator = Validator::make($request->all(),[
+            'gallery_name' => 'required|min:3',
+            'state' => 'exists:gallery,name',
+        ]);
+        //take actions when the validation has failed
+        if ($validator->fails()){
+            return redirect('brouwerij/gallerij')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+        $gallery = new Gallery();
+
+        $gallery->name = $request->input('gallery_name');
+        $gallery->created_by = 1;
+        $gallery->published = 1;
+        $gallery->save();
+
+        return redirect()->back();
+
+
+    }
+
+    public function viewGalleryPics($id)
+    {
+        $gallery = Gallery::findorfail($id);
+
+        return view('personeel.galleryview',compact('menuTop'))->with('gallery',$gallery);
+    }
+
+    public function doImageUpload(Request $request)
+    {
+        // get file van post request
+
+        $file = $request->file('file');
+
+        // file naam
+
+        $filename = uniqid() . $file->getClientOriginalName();
+
+        // file verplaatsen naar correcte plaats
+
+        $file->move('gallery/images', $filename);
+
+        //file opslaan in database
+
+        $gallery = Gallery::find($request->input('gallery_id'));
+
+        $image = $gallery->images()->create([
+            'gallery_id' =>$request->input('gallery_id'),
+            'file_name' => $filename,
+            'file_size' =>$file->getClientSize(),
+            'file_mime' => $file->getClientMimeType(),
+            'file_path' => 'Gallery/Images/' . $filename,
+            'created_by' => 1,
+        ]);
+
+        return $image;
+    }
+
+    public function deleteGallery($id)
+    {
+        //laden van gallerij
+        $currentGallery = Gallery::findOrFail($id);
+
+        //haal alle images op
+        $images = $currentGallery->images();
+
+        ///delete images
+        foreach ($currentGallery->images as $image){
+            unlink(public_path($image->file_path));
+        }
+
+        //delete database records
+        $currentGallery->images()->delete();
+
+        $currentGallery->delete();
+
+        return redirect()->back();
+
+    }
 
 }
