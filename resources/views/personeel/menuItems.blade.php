@@ -100,8 +100,8 @@
             <table class="table table-striped custab">
                 <thead>
                 <tr>
-                    <th>Categorie</th><!--class="text-center"-->
-                    <th>Sub-Categorie</th>
+                    {{--<th>Categorie</th><!--class="text-center"-->--}}
+                    <th>Sub-Categorie ID</th>
                     <th>Titel</th>
                     <th>Beschrijving</th>
                     <th>Prijs</th>
@@ -111,14 +111,14 @@
 
                 </tr>
                 </thead>
-
                 @if(!empty($aMenuItems))
+
                     @foreach($aMenuItems as $MenuItem)
-                        <?php //var_dump($persoon);?>
+
                         <tr>
 
-                            <td><?php echo $MenuItem->categorie;?></td>
-                            <td><?php echo $MenuItem->subcategorie; ?></td>
+
+                            <td><?php echo $MenuItem->subcategorie_id; ?></td>
                             <td><?php echo $MenuItem->titel ;?></td>
                             <td><?php echo $MenuItem->beschrijving ;?></td>
                             <td><?php echo $MenuItem->prijs ;?></td>

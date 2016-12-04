@@ -68,40 +68,32 @@
                             <label for="frmNieuwMenuItemCat">Kies een categorie:</label>
                             <select class="form-control" id="frmNieuwMenuItemCat" name="frmNieuwMenuItemCat">
                                 <option value="kies">Kies een categorie</option>
-                                <option value="DRANKEN">DRANKEN</option>
-                                <option value="GERECHTEN">GERECHTEN</option>
+                                @foreach($categorien as $categorie)
+                                    <option value="{{$categorie->categorie}}">{{$categorie->categorie}}</option>
+                                @endforeach
                             </select>
                         </div>
+
 
                         <div class="form-group" style="padding: 10px;" id="frmGroepSubCatDranken">
                             <label for="frmNieuwMenuItemSubCatDranken">Kies een subcategorie:</label>
                             <select class="form-control" id="frmNieuwMenuItemSubCatDranken" >
-                                <option value="BIEREN">BIEREN</option>
-                                <option value="BUBBELS">BUBBELS</option>
-                                <option value="(HUIS)WIJNEN">(HUIS)WIJNEN</option>
-                                <option value="STERKE DRANKEN">STERKE DRANKEN</option>
-                                <option value="WARME DRANKEN">WARME DRANKEN</option>
-                                <option value="APERITIEVEN">APERITIEVEN</option>
-                                <option value="FRISDRANKEN">FRISDRANKEN</option>
-                                <option value="DIGESTIEVEN">DIGESTIEVEN</option>
-                                <option value="GIN TONIC">GIN TONIC</option>
-                                <option value="COCKTAILS">COCKTAILS</option>
-
+                                @foreach($subcategorien as $subcategorie)
+                                    @if($subcategorie->categorie_id == 1)
+                                    <option value="{{$subcategorie->subcategorie}}">{{$subcategorie->subcategorie}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group" style="padding: 10px;" id="frmGroepSubCatGerechten">
                             <label for="frmNieuwMenuItemSubCatGerechten">Kies een subcategorie:</label>
                             <select class="form-control" id="frmNieuwMenuItemSubCatGerechten">
-                                <option value="BORRELHAPJES">BORRELHAPJES</option>
-                                <option value="SOEPEN">SOEPEN</option>
-                                <option value="TOASTS">TOASTS</option>
-                                <option value="SALADES">SALADES</option>
-                                <option value="VLEESGERECHTEN">VLEESGERECHTEN</option>
-                                <option value="VISGERECHTEN/ZEEVRUCHTEN">VISGERECHTEN & ZEEVRUCHTEN</option>
-                                <option value="KINDERGERECHTEN">KINDERGERECHTEN</option>
-                                <option value="ZOETIGHEDEN">ZOETIGHEDEN</option>
-                                <option value="ONTBIJT">ONTBIJT</option>
+                                @foreach($subcategorien as $subcategorie)
+                                    @if($subcategorie->categorie_id == 2)
+                                        <option value="{{$subcategorie->subcategorie}}">{{$subcategorie->subcategorie}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
 

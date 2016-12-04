@@ -22,8 +22,7 @@ class MenuItem_Model extends Model implements  Authenticatable
 
     public function nieuwMenuItem(Request $request){
 
-        $sCategorie = $request["frmNieuwMenuItemCat"];
-        $sSubCategorie = $request["frmNieuwMenuItemSubCat"];
+        $sSubCategorie = $this->geefSubcategorieID($request["frmNieuwMenuItemSubCat"]);
         $sTitel = $request["frmNieuwMenuItemTitel"];
         $sPrijs = $request["frmNieuwMenuItemPrijs"];
         $bZichtbaarheid = $request["frmNieuwMenuItemZichtbaar"];
@@ -40,7 +39,7 @@ class MenuItem_Model extends Model implements  Authenticatable
 
         $bResultaat ="";
         try {
-            DB::insert('insert into menuitem (categorie, subcategorie, titel, beschrijving, zichtbaar, prijs ) values (?, ?, ?, ?, ?,?)', array($sCategorie, $sSubCategorie, $sTitel, $sBeschrijving, $bZichtbaarheid, $sPrijs));
+            DB::insert('insert into menuitem (subcategorie_id, titel, beschrijving, zichtbaar, prijs ) values ( ?, ?, ?, ?,?)', array( $sSubCategorie, $sTitel, $sBeschrijving, $bZichtbaarheid, $sPrijs));
             $bResultaat = true;
         } catch (\PDOException $e) {
             echo $e;
@@ -55,7 +54,7 @@ class MenuItem_Model extends Model implements  Authenticatable
         $errorReport = "";
         $aMenuItems = [];
         try {
-        $aMenuItems = DB::select('select * from menuitem ORDER BY categorie ASC, subcategorie ASC, titel ASC;', [1]);
+        $aMenuItems = DB::select('select * from menuitem ORDER BY subcategorie_id , titel ASC;', [1]);
         } catch (\PDOException $e) {
             $aMenuItems = [];
             $errorReport = "Kan geen verbinding maken met de database";
@@ -68,6 +67,14 @@ class MenuItem_Model extends Model implements  Authenticatable
                     return $errorReport;
                 }
         }
+
+    public function getAllCategories(){
+        return DB::select('select * from menuItem_categorie ');
+    }
+
+    public function getAllSubCategories(){
+        return DB::select('select * from menuItem_subcategorie ');
+    }
 
     public function deleteMenuItem($id){
         DB::table('menuitem')->where('id','=',$id)->delete();
@@ -107,6 +114,11 @@ class MenuItem_Model extends Model implements  Authenticatable
 
         return $bResultaat;
 
+    }
+
+    private function geefSubcategorieID($naamVanSubcategorie){
+        $id=  DB::select('SELECT id FROM menuItem_subcategorie WHERE subcategorie = ?',array($naamVanSubcategorie));
+        return $id[0]->id;
     }
 
 }

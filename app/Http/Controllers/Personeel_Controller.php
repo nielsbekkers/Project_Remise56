@@ -63,7 +63,9 @@ class Personeel_Controller extends Controller
                 break;
 
             case "nieuwMenuItem" :
-                return view('personeel.nieuwMenuItem');
+                $categorien = $this->getAllCategories();
+                $subcategorien = $this->getAllSubCategories();
+                return view('personeel.nieuwMenuItem',compact('categorien','subcategorien'));
                 break;
 
             case "menuItems" :
@@ -164,16 +166,28 @@ class Personeel_Controller extends Controller
     /////////////////////////       De volgende functies worden gebruikt voor MENU ITEMS mbv het MenuItem_Model
     public function getMenuItems(){
         $oMenuItem = new MenuItem_Model();
-        return $oMenuItem->getMenuItems();
 
+        return $oMenuItem->getMenuItems();
     }
 
+    public function getAllCategories(){
+        $oMenuItem = new MenuItem_Model();
+         return $oMenuItem->getAllCategories();
+    }
+
+    public function getAllSubCategories()
+    {
+        $oMenuItem = new MenuItem_Model();
+        return $oMenuItem->getAllSubCategories();
+    }
     public function nieuwMenuItem(Request $request){
         $oMenuItem = new MenuItem_Model();
         $bResult = $oMenuItem->nieuwMenuItem($request);
+        $categorien = $oMenuItem->getAllCategories();
+        $subcategorien = $oMenuItem->getAllSubCategories();
+        var_dump($categorien);
 
-
-       return view('personeel.nieuwMenuItem', compact('bResult'));
+       return view('personeel.nieuwMenuItem', compact('bResult','categorien','subcategorien'));
     }
 
     public function wijzigMenuItem(Request $request){
@@ -380,29 +394,4 @@ class Personeel_Controller extends Controller
 
     }
 
-}
-
-    public function nieuweNieuwsItem(Request $request){
-        $news = new News_Model;
-        $countOfNewsitems = $news->getCountOfNewsItems();
-        $menuTop = "Nieuws Items";
-        $newsItems = $this->getAllNews();
-        if($countOfNewsitems == 3) {
-            $countError = "Er zijn al 3 nieuws items aangemaakt dit is het maximum";
-           return view('personeel.newsitems',compact('newsItems','countError','menuTop'));
-        }else{
-            if ($request['foto'] != null) {
-                if (Input::file('foto')->isValid()) {
-                    $filename = Input::file('foto')->getClientOriginalName();
-                    Input::file('foto')->move('uploads', $filename);
-                    $news->insertNewsItem(Input::get('titel'), Input::get('uitleg'), $filename);
-                    $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit met een foto";
-                }
-            } else {
-                $news->insertNewsItem(Input::get('titel'), Input::get('uitleg'), null);
-                $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit zonder een foto";
-            }
-            return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
-        }
-    }
 }
