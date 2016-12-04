@@ -119,3 +119,14 @@ Route::get('/personeel/deleteMenuItem/{id}', 'Personeel_Controller@verwijderMenu
 // Bevestigen van een reservatie
 
 Route::get('/bevestig/reservatie/{bevestigingsCode}', 'Bevestigings_Controller@bevestig');
+
+// Dashboard Nieuwe menu item form POST
+Route::post('/personeel/nieuwMenuItem', [
+    'uses' => 'Personeel_Controller@nieuwMenuItem',
+    'as' => 'nieuwMenuItem'
+]);
+// Dashboard Wijzig menu item form POST
+Route::post('/personeel/wijzigMenuItem', [
+    'uses' => 'Personeel_Controller@wijzigMenuItem',
+    'as' => 'wijzigMenuItem'
+]);
