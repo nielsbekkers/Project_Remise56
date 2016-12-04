@@ -8,6 +8,7 @@
 
 namespace  App\Http\Controllers;
 
+use App\Http\Models\MenuItem_Model;
 use Mail;
 use App\User;
 use App\Http\Requests;
@@ -59,6 +60,15 @@ class Personeel_Controller extends Controller
 
             case "nieuweReservatieRond" :
                 return view('personeel.nieuweReservatieRondleiding');
+                break;
+
+            case "nieuwMenuItem" :
+                return view('personeel.nieuwMenuItem');
+                break;
+
+            case "menuItems" :
+                $aMenuItems = $this->getMenuItems();
+                return view('personeel.menuItems', compact('aMenuItems'));
                 break;
 
             case "reservaties" :
@@ -146,12 +156,28 @@ class Personeel_Controller extends Controller
 
     /////////////////////////       De volgende functies worden gebruikt voor MENU ITEMS mbv het MenuItem_Model
     public function getMenuItems(){
+        $oMenuItem = new MenuItem_Model();
+        return $oMenuItem->getMenuItems();
 
     }
 
-    public function nieuwMenuItems(){
+    public function nieuwMenuItem(Request $request){
+        $oMenuItem = new MenuItem_Model();
+        $bResult = $oMenuItem->nieuwMenuItem($request);
 
+
+       return view('personeel.nieuwMenuItem', compact('bResult'));
     }
+
+    public function wijzigMenuItem(Request $request){
+        $oMenuItem = new MenuItem_Model();
+        $bResult = $oMenuItem->wijzigMenuItem($request);
+
+        $aMenuItems = $this->getMenuItems();
+
+        return view('personeel.menuItems', compact('bResult', 'aMenuItems'));
+    }
+
 
 
     /////////////////////////       De volgende functies worden gebruikt voor GALLERIJ mbv het Galerij_Model

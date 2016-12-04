@@ -60,11 +60,27 @@ Route::post('image/do-upload','Personeel_Controller@doImageUpload');
 Route::get('personeel/gallery/delete/{id}', 'Personeel_Controller@deleteGallery');
 
 
+
+
 //////////////// Personeel
 
 // DASHBOARD get pagina -> Personeel_Controller
 Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
 Route::get('/personeel', 'Personeel_Controller@getHome');
+
+
+
+// Dashboard Nieuwe menu item form POST
+Route::post('/personeel/nieuwMenuItem', [
+    'uses' => 'Personeel_Controller@nieuwMenuItem',
+    'as' => 'nieuwMenuItem'
+]);
+
+// Dashboard Wijzig menu item form POST
+Route::post('/personeel/wijzigMenuItem', [
+    'uses' => 'Personeel_Controller@wijzigMenuItem',
+    'as' => 'wijzigMenuItem'
+]);
 
 
 

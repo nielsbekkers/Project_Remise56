@@ -21,27 +21,6 @@ class Reservatie_Model extends Model implements  Authenticatable
 
 
 
-
-    function getContent()
-    {
-        $sContent = 'Voor reservaties telefonisch contact opnemen <br> 011/18 31 93';
-
-        return $sContent;
-    }
-
-    function getOpeningsUren()
-    {
-        return '<div class="col-md-3">
-                        <p>Openingsuren 2016</p>
-                        <ul>
-                            <li> ma, di, wo, do, vr : Vanaf 11u doorlopend open.</li>
-                            <li>za, zo : Vanaf 09u doorlopend open.</li>
-                        </ul>
-    
-                    </div>';
-    }
-
-
     public function getReservaties(){
         $errorReport = "";
         $reservaties = [];
@@ -215,6 +194,7 @@ class Reservatie_Model extends Model implements  Authenticatable
         });
         return $bevestigingsCode;
     }
+
     private function controleerBevestigingsCode($code) {
         $result = DB::select('SELECT * FROM reservaties WHERE bevestigingscode=?', [$code]);
         if(empty($result)) {
