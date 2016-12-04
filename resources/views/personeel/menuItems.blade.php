@@ -130,7 +130,7 @@
                                 };?></td>
 
                             <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig('{{$MenuItem->id}}', '{{$MenuItem->titel}}','{{$MenuItem->beschrijving}}', '{{$MenuItem->prijs}}', '{{$MenuItem->zichtbaar}}')"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
-                            <td> <a href="{{url('/personeel/menuItem/deleteMenuItem/'.$MenuItem->id)}}" onclick="alert('Bent u zeker dat u dit wilt verijwderen?')"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
+                            <td> <a href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
                         </tr>
 
                     @endforeach

@@ -185,7 +185,7 @@ class Personeel_Controller extends Controller
 
          $menuItem->deleteMenuItem($id);
 
-         return redirect()->action('Personeel_Controller@nieuwsItems');
+         return redirect()->back();
      }
 
 
