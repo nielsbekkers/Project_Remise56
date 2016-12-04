@@ -78,6 +78,7 @@
                         <div class="form-group" style="padding: 10px;" id="frmGroepSubCatDranken">
                             <label for="frmNieuwMenuItemSubCatDranken">Kies een subcategorie:</label>
                             <select class="form-control" id="frmNieuwMenuItemSubCatDranken" >
+                                <option value="kies">Kies een subcategorie</option>
                                 @foreach($subcategorien as $subcategorie)
                                     @if($subcategorie->categorie_id == 1)
                                     <option value="{{$subcategorie->subcategorie}}">{{$subcategorie->subcategorie}}</option>
