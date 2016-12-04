@@ -130,22 +130,22 @@
                                 };?></td>
 
                             <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig('{{$MenuItem->id}}', '{{$MenuItem->titel}}','{{$MenuItem->beschrijving}}', '{{$MenuItem->prijs}}', '{{$MenuItem->zichtbaar}}')"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
-                            <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal">Delete</button> </td>
+                            <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$MenuItem->id}}">Delete</button> </td>
                         </tr>
 
                         <!--Modal -->
-                        <div id="deleteModal" class="modal fade" role="dialog">
+                        <div id="deleteModal{{$MenuItem->id}}" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content -->
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4>menuItem <?php echo $MenuItem->id ;?></h4>
+                                        <h4>menuItem <?php echo $MenuItem->titel ;?></h4>
                                     </div>
                                     <div class="modal-body">
                                         <p>Bent u echt zeker dat u dit item wilt verwijderen?</p>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <a href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}">Verwijderen</a>
+                                        <a class="btn btn-default" href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}">Verwijderen</a>
                                     </div>
                                 </div>
                             </div>
