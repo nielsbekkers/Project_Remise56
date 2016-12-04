@@ -14,7 +14,7 @@
     <div class="row">
 
 
-        <div class="col-md-12" style="text-align: center">
+        <div class="col-md-12" >
             @if(isset($bResult) && $bResult == true)
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -28,9 +28,11 @@
                 </div>
             @endif
 
-            <h2 style="text-align: center">Nieuwe reservatie (Rondleiding)</h2>
-            <br><br>
-
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nieuwe reservatie (Rondleiding)</h3>
+                    </div>
+                    <div class="panel-body">
             <form class="form-horizontal" action="{{route("nieuweReservatieRond")}}" method="post">
 
                 <div class="form-group">
@@ -148,7 +150,8 @@
                 <!-- Beveiliging als iemand uw session key heeft-->
                 <input type="hidden" name="_token" value="{{Session::token()}}">
             </form>
-
+                    </div>
+                </div>
         </div>
 
 

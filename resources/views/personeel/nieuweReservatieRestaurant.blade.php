@@ -14,7 +14,7 @@
     <div class="row">
 
 
-        <div class="col-md-12" style="text-align: center">
+        <div class="col-md-12" >
             @if(isset($bResult) && $bResult == true)
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -28,9 +28,11 @@
                 </div>
             @endif
 
-            <h2 style="text-align: center">Nieuwe reservatie (Restaurant)</h2>
-                <br><br>
-
+            <div class="panel panel-default">
+                 <div class="panel-heading">
+                        <h3 class="panel-title">Nieuwe reservatie (Restaurant)</h3>
+                    </div>
+                    <div class="panel-body">
             <form class="form-horizontal" action="{{route("nieuweReservatieRest")}}" method="post">
 
                <div class="form-group">
@@ -110,7 +112,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Telefoonnummer</label>
                     <div class="col-sm-8">
-                        <input class="form-control" name="frmReservatieRestTel" placeholder="0488111111" type="text" required pattern="[0-9]{10}"/>
+                        <input class="form-control" name="frmReservatieRestTel" placeholder="0481234567" type="text" required pattern="[0-9]{10}"/>
                     </div>
                 </div>
 
@@ -131,13 +133,14 @@
 
                 <div class="form-group" style="text-align: center">
 
-                    <button class="btn btn-default" name="frmReservatieRestSubmit" id="submit">Toevoegen</button>
+                    <button class="btn btn-primary"  name="frmReservatieRestSubmit" id="submit">Toevoegen</button>
                 </div>
 
                 <!-- Beveiliging als iemand uw session key heeft-->
                 <input type="hidden" name="_token" value="{{Session::token()}}">
             </form>
-
+                </div>
+                </div>
         </div>
 
 

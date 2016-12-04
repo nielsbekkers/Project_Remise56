@@ -29,4 +29,10 @@ class News_Model extends Model
     public function getCountOfNewsItems(){
         return DB::table('news')->count();
     }
+
+    public function updateNewsItem($id, $title, $comment, $filename){
+        DB::table('news')->where('ID','=',$id)->update(
+        ['titel'=> $title,'uitleg' => $comment,'padNaarFoto' => $filename]
+        );
+    }
 }

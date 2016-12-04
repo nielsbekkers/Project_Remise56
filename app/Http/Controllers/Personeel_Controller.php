@@ -8,14 +8,22 @@
 
 namespace  App\Http\Controllers;
 
+use App\Http\Models\MenuItem_Model;
 use Mail;
 use App\User;
+use App\Http\Requests;
 use App\Http\Models\Personeel_Model;
 use App\Http\Models\Reservatie_Model;
+use App\Http\Models\Image;
+use App\Http\Models\Gallery;
 use App\Http\Models\News_Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Validator;
+
+
 
 /////////////////////////       Deze controller bevat alle methodes voor het Remise 56 DASHBOARD
 class Personeel_Controller extends Controller
@@ -54,11 +62,35 @@ class Personeel_Controller extends Controller
                 return view('personeel.nieuweReservatieRondleiding');
                 break;
 
+            case "nieuwMenuItem" :
+                return view('personeel.nieuwMenuItem');
+                break;
+
+            case "menuItems" :
+                $aMenuItems = $this->getMenuItems();
+                return view('personeel.menuItems', compact('aMenuItems'));
+                break;
+
             case "reservaties" :
                 $reservaties = $this->getReservaties();
                 $menuTop = "sReservaties";
                 return view('personeel.reservaties', compact('menuTop', 'reservaties','errorReport'));
 
+                break;
+            case "verwijderReservatie" :
+                return 'nothing';
+                break;
+
+            case "news":
+                $menuTop = "Nieuws Items";
+                $newsItems = $this->getAllNews();
+                return view('personeel.newsitems',compact('menuTop','newsItems'));
+                break;
+
+            case "foto":
+                $menuTop = "foto";
+                $galleries = Gallery::all();
+                return view('personeel.foto',compact('menuTop'))->with('galleries',$galleries);
                 break;
             case "verwijderReservatie" :
                 return 'nothing';
@@ -109,15 +141,6 @@ class Personeel_Controller extends Controller
     public function nieuweReservatieRest(Request $request){
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->nieuwReservatieRest($request);
-        $data = array(
-            "bevestigingsLink" => "http://www.google.be/",
-            "volledigeNaam" => "Achternaam Voornaam",
-            "aantalPersonen" => "14",
-            "tijdstip" => "15:00"
-        );
-        Mail::send('mail.bevestiging', $data, function($message) {
-            $message->to('bielenalexander@gmail.com', 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
-        });
 
         return view('personeel.nieuweReservatieRestaurant', compact('bResult'));
 
@@ -140,12 +163,28 @@ class Personeel_Controller extends Controller
 
     /////////////////////////       De volgende functies worden gebruikt voor MENU ITEMS mbv het MenuItem_Model
     public function getMenuItems(){
+        $oMenuItem = new MenuItem_Model();
+        return $oMenuItem->getMenuItems();
 
     }
 
-    public function nieuwMenuItems(){
+    public function nieuwMenuItem(Request $request){
+        $oMenuItem = new MenuItem_Model();
+        $bResult = $oMenuItem->nieuwMenuItem($request);
 
+
+       return view('personeel.nieuwMenuItem', compact('bResult'));
     }
+
+    public function wijzigMenuItem(Request $request){
+        $oMenuItem = new MenuItem_Model();
+        $bResult = $oMenuItem->wijzigMenuItem($request);
+
+        $aMenuItems = $this->getMenuItems();
+
+        return view('personeel.menuItems', compact('bResult', 'aMenuItems'));
+    }
+
 
 
     /////////////////////////       De volgende functies worden gebruikt voor GALLERIJ mbv het Galerij_Model
@@ -162,6 +201,173 @@ class Personeel_Controller extends Controller
         $news= new News_Model;
         return $news->getAllNewsItems();
     }
+
+    public function nieuwsItems(){
+        $menuTop = "Nieuws Items";
+        $newsItems = $this->getAllNews();
+
+
+        return view('personeel.newsitems',compact('newsItems','menuTop'));
+    }
+
+    public function nieuweNieuwsItem(Request $request){
+        $news = new News_Model;
+        $countOfNewsitems = $news->getCountOfNewsItems();
+        $menuTop = "Nieuws Items";
+        $newsItems = $this->getAllNews();
+        if($countOfNewsitems == 3) {
+            $countError = "Er zijn al 3 nieuws items aangemaakt dit is het maximum";
+           return view('personeel.newsitems',compact('newsItems','countError','menuTop'));
+        }else{
+            if ($request['foto'] != null) {
+                if (Input::file('foto')->isValid()) {
+                    $filename = Input::file('foto')->getClientOriginalName();
+                    Input::file('foto')->move('uploads', $filename);
+                    $news->insertNewsItem(Input::get('titel'), Input::get('uitleg'), $filename);
+                    $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit met een foto";
+                }
+            } else {
+                $news->insertNewsItem(Input::get('titel'), Input::get('uitleg'), null);
+                $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit zonder een foto";
+            }
+            //return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
+            return redirect()->action('Personeel_Controller@nieuwsItems');
+        }
+
+
+    }
+
+    public function verwijderNieuwsItem($id){
+        $news = new News_Model;
+        $news->deleteNewsItem($id);
+        $menuTop = "Nieuws Items";
+        $newsItems = $this->getAllNews();
+        $gelukt = "Het nieuws item is succesvol verwijdert";
+        //File::delete($news->getPathOfNewsItemPicture($id));
+        //return redirect()->action('Personeel_Controller@nieuweNieuwsItem');
+        //return view('personeel.newsitems',compact('newsItems','menuTop', 'gelukt'));
+        return redirect()->action('Personeel_Controller@nieuwsItems');
+    }
+
+
+    public function aanpassenNieuwsItem(Request $request){
+        $news = new News_Model;
+
+        $id = $request['itemId'];
+        echo $id;
+
+        echo $request['uitlegAanpassing'];
+        if ($request['fotoAanpassing'] != null) {
+            if (Input::file('fotoAanpassing')->isValid()) {
+                $filename = Input::file('fotoAanpassing')->getClientOriginalName();
+                Input::file('fotoAanpassing')->move('uploads', $filename);
+                $news->updateNewsItem($id, Input::get('titelAanpassing'), Input::get('uitlegAanpassing'), $filename);
+                $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit met een foto";
+            }
+        } else {
+            $news->updateNewsItem($id, Input::get('titelAanpassing'), Input::get('uitlegAanpassing'), null);
+            $gelukt = "Het nieuws item is succesvol toegevoegd aan de homepagine, dit zonder een foto";
+        }
+        $newsItems = $this->getAllNews();
+        $menuTop = "Nieuws Items";
+        $gelukt = "Het nieuws item is succesvol aangepast";
+        //return view('personeel.newsitems',compact('newsItems','menuTop','gelukt'));
+        return redirect()->action('Personeel_Controller@nieuwsItems');
+    }
+
+    //gallerij//
+    public function viewGalleryList($id){
+
+    }
+
+
+    public function saveGallery(Request $request)
+    {
+        // validate the request through the validation rules
+        $validator = Validator::make($request->all(),[
+            'gallery_name' => 'required|min:3',
+            'state' => 'exists:gallery,name',
+        ]);
+        //take actions when the validation has failed
+        if ($validator->fails()){
+            return redirect('/personeel/foto')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+        $gallery = new Gallery();
+
+        $gallery->name = $request->input('gallery_name');
+        $gallery->created_by = 1;
+        $gallery->published = 1;
+        $gallery->save();
+
+        return redirect()->back();
+
+
+    }
+
+    public function viewGalleryPics($id)
+    {
+        $gallery = Gallery::findorfail($id);
+
+        return view('personeel.galleryview',compact('menuTop'))->with('gallery',$gallery);
+    }
+
+    public function doImageUpload(Request $request)
+    {
+        // get file van post request
+
+        $file = $request->file('file');
+
+        // file naam
+
+        $filename = uniqid() . $file->getClientOriginalName();
+
+        // file verplaatsen naar correcte plaats
+
+        $file->move('gallery/images', $filename);
+
+        //file opslaan in database
+
+        $gallery = Gallery::find($request->input('gallery_id'));
+
+        $image = $gallery->images()->create([
+            'gallery_id' =>$request->input('gallery_id'),
+            'file_name' => $filename,
+            'file_size' =>$file->getClientSize(),
+            'file_mime' => $file->getClientMimeType(),
+            'file_path' => 'Gallery/Images/' . $filename,
+            'created_by' => 1,
+        ]);
+
+        return $image;
+    }
+
+    public function deleteGallery($id)
+    {
+        //laden van gallerij
+        $currentGallery = Gallery::findOrFail($id);
+
+        //haal alle images op
+        $images = $currentGallery->images();
+
+        ///delete images
+        foreach ($currentGallery->images as $image){
+            unlink(public_path($image->file_path));
+        }
+
+        //delete database records
+        $currentGallery->images()->delete();
+
+        $currentGallery->delete();
+
+        return redirect()->back();
+
+    }
+
+}
 
     public function nieuweNieuwsItem(Request $request){
         $news = new News_Model;

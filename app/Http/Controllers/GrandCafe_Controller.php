@@ -8,6 +8,7 @@ use App\Http\Models\Brouwerij_Model;
 use App\Http\Models\Reservatie_Model;
 use App\Http\Models\Navigatie_Model;
 use App\Gallery;
+use Mail;
 
 class GrandCafe_Controller extends Controller
 {
@@ -32,14 +33,23 @@ class GrandCafe_Controller extends Controller
     }
 
     public function nieuweReservatie(Request $request){
-        echo "inde functie";
-        echo $request["frmReservatieRestTijd"];
         $oReservatie = new Reservatie_Model();
-       $result = $oReservatie->nieuwReservatieRestKlant($request);
+        $data = array(
+            "bevestigingsLink" => "http://www.google.be/",
+            "volledigeNaam" => $request["frmReservatieRestVoornaam"] . " " . $request["frmReservatieRestAchternaam"] ,
+            "aantalPersonen" => $request["frmReservatieRestPersonen"],
+            "tijdstip" =>$request["frmReservatieRestTijd"]
+        );
+        $mailto = $request['frmReservatieRestEmail'];
 
-        var_dump($result);
+        $mailresult = $oReservatie->stuurBevestigingsmail($mailto, $data);
 
+        if($mailresult == false) {
 
+        } else {
+            $request['bevestigingsCode'] = $mailresult;
+            $oReservatie->nieuwReservatieRestKlant($request);
+        }
     }
 
 }

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Mail;
 
 /////////////////////////       Dit Model bevat alle methodes voor het aanmaken, opvragen van RESERVATIES en om de Content voor de pagina's op te halen.
 class Reservatie_Model extends Model implements  Authenticatable
@@ -20,32 +21,11 @@ class Reservatie_Model extends Model implements  Authenticatable
 
 
 
-
-    function getContent()
-    {
-        $sContent = 'Voor reservaties telefonisch contact opnemen <br> 011/18 31 93';
-
-        return $sContent;
-    }
-
-    function getOpeningsUren()
-    {
-        return '<div class="col-md-3">
-                        <p>Openingsuren 2016</p>
-                        <ul>
-                            <li> ma, di, wo, do, vr : Vanaf 11u doorlopend open.</li>
-                            <li>za, zo : Vanaf 09u doorlopend open.</li>
-                        </ul>
-    
-                    </div>';
-    }
-
-
     public function getReservaties(){
         $errorReport = "";
         $reservaties = [];
         try {
-            $reservaties = DB::select('select * from reservaties', [1]);
+            $reservaties = DB::select('select * from reservaties WHERE bevestigd = "1"', [1]);
         } catch (\PDOException $e) {
             $reservaties = [];
             $errorReport = "Kan geen verbinding maken met de database";
@@ -63,8 +43,8 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     $sSoort = "Restaurant";
     $sShift = "Lunch";
-    $sBevestigd = "ok";
-    $sBevestingscode = "code";
+    $sBevestigd = "1";
+    $sBevestingscode = "handmatig";
 
     $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
     $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
@@ -95,21 +75,6 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     public function nieuwReservatieRestKlant(Request $request){
 
-        /*$url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = array('secret ' => '6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g', 'response ' => $request["g-recaptcha-response"]);
-
-            // use key 'http' even if you send the request to https://...
-        $options = array(
-            'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data)
-            )
-        );
-        $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        return $result;*/
-
         $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g&response=".$request["g-recaptcha-response"]);
         $responseKeys = json_decode($response,true);
         if(intval($responseKeys["success"]) !== 1) {
@@ -122,8 +87,8 @@ class Reservatie_Model extends Model implements  Authenticatable
 
             $sSoort = "Restaurant";
             $sShift = "Lunch";
-            $sBevestigd = "ok";
-            $sBevestingscode = "code";
+            $sBevestigd = isset($request['bevestigingsCode']) ? "0" : "0";
+            $sBevestingscode = isset($request['bevestigingsCode']) ? $request['bevestigingsCode'] : "error";
 
             $dDatetime = new DateTime($request["frmReservatieRestDatum"]);
             $sTime1 = substr($request["frmReservatieRestTijd"], 0, 2);  // neemt de eerste 2 getallen voor de  ":"
@@ -216,6 +181,27 @@ class Reservatie_Model extends Model implements  Authenticatable
 
     public function verwijderReservatie($reservatieId) {
         return DB::table('reservaties')->where('id', '=', $reservatieId)->delete();
+    }
+
+    public function stuurBevestigingsmail($mailto, $data) {
+        $bevestigingsCode = md5(rand());
+        while(($bResult = $this->controleerBevestigingsCode($bevestigingsCode) == false)) {
+            $bevestigingsCode = md5(rand());
+        }
+        $data["bevestigingsLink"] = url('/bevestig/reservatie/'.$bevestigingsCode);
+        Mail::send('mail.bevestiging', $data, function($message) use ($mailto) {
+            $message->to($mailto, 'Reservatie Bevestiging')->subject('Reservatie bij Remise 56 te Koersel');
+        });
+        return $bevestigingsCode;
+    }
+
+    private function controleerBevestigingsCode($code) {
+        $result = DB::select('SELECT * FROM reservaties WHERE bevestigingscode=?', [$code]);
+        if(empty($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

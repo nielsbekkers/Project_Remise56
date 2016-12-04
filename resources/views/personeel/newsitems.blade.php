@@ -32,6 +32,7 @@
             </div>
             <div class="col col-xs-6 text-right">
                 <button type="button" class="btn btn-sm btn-primary btn-create btn-showform" onclick="toggleView()">Maak een nieuws item aan</button>
+                <button type="button"  style="display:none;" class="btn btn-sm btn-primary btn-create btn-showformAanpassen" onclick="toggleViewUpdate()">Pas een nieuws item aan</button>
             </div>
         </div>
     </div>
@@ -42,15 +43,30 @@
             <label>Titel</label><br/>
             <input type="text" name="titel" class="span3" required/><br/>
             <label>Uitleg</label><br/>
-            ​<textarea id="uitleg" name="uitleg" form="popup-form" rows="4" cols="40" required></textarea><br/>
+            ​<textarea id="uitleg" name="uitleg" form="popup-form" rows="4" cols="40" ></textarea><br/>
             <label>Afbeelding voor bij de uitleg</label><br/>
             <input type="file" name="foto" accept="image/*"><br/>
             <input type="submit" value="Maak aan" class="btn btn-primary"/>
         </form></div>
+
+        <div class="center-block">
+            <form method="post" id="popup-form-update" class="center" action="{{route("aanpassenNieuwsItem")}}" style="display:none;padding-bottom: 20px;" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <label>Titel</label><br/>
+                <input type="text" id="titelAanpassing" name="titelAanpassing" class="span3" required/><br/>
+                <label>Uitleg</label><br/>
+                ​<textarea id="uitlegAanpassing" name="uitlegAanpassing" form="popup-form-update" rows="4" cols="40" required></textarea><br/>
+                <!--<input type="text" id="uitlegAanpassing" name="uitlegAanpassing" class="span3" required/><br/>-->
+                <label>Afbeelding voor bij de uitleg</label><br/>
+                <input type="file" id="fotoAanpassing" name="fotoAanpassing" accept="image/*"><br/>
+                <input type="submit" value="Pas aan" class="btn btn-primary"/>
+                <input type="hidden" name="itemId" id="itemId" />
+            </form></div>
         <table class="table table-striped table-bordered table-list">
             <thead>
             <tr>
                 <th>Verwijderen</th>
+                <th>Aanpassen</th>
                 <th>Titel</th>
                 <th>Uitleg</th>
                 <th>Foto naam</th>
@@ -58,10 +74,15 @@
             </thead>
 @foreach($newsItems->all() as $newsItem)
 
+
+
     <tbody>
     <tr>
         <td align="center">
             <a class="btn btn-danger" href="{{url('/personeel/news/deleteNewsItem/'.$newsItem->id)}}"><em class="fa fa-trash"></em></a>
+        </td>
+        <td>
+            <a class="btn btn-warning" onclick="toggleViewUpdate('{{$newsItem->id}}', '{{$newsItem->titel}}', '{{$newsItem->uitleg}}', '{{$newsItem->padNaarFoto}}')"><em class="fa fa-pencil"></em></a>
         </td>
         <td>{{$newsItem->titel}}</td>
         <td>{{$newsItem->uitleg}}</td>
@@ -90,6 +111,27 @@
             $(".btn-showform").html('Sluit het formulier');
             $(".btn-showform").css('background-color','red');
             $(".btn-showform").css('border','1px solid red');
+        }
+
+    }
+    function toggleViewUpdate(id, titel, uitleg, padNaarFoto){
+        if ($('#popup-form-update').css('display') == 'block'){
+            $(".btn-showform").hide();
+            $(".btn-showformAanpassen").show();
+            $('#popup-form-update').css('display','none');
+
+        }else{
+            $(".btn-showform").hide();
+            $(".btn-showformAanpassen").show();
+            $("#itemId").val(id);
+
+            document.getElementById("titelAanpassing").value = titel;
+            document.getElementById("uitlegAanpassing").value = uitleg;
+            document.getElementById("fotoAanpassing").title = '';
+            $('#popup-form-update').css('display','block');
+            $(".btn-showformAanpassen").html('Sluit het formulier');
+            $(".btn-showformAanpassen").css('background-color','red');
+            $(".btn-showformAanpassen").css('border','1px solid red');
         }
 
     }
