@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="fh5co-text">
-            <div class="container" style="width: 100%;">
+            <div class="container" style="width: 95%;">
 @yield('banner')
 
 

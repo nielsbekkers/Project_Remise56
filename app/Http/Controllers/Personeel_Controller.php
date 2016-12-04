@@ -187,6 +187,19 @@ class Personeel_Controller extends Controller
 
 
 
+     public function verwijderMenuItem($id){
+         $menuItem = new MenuItem_Model();
+
+         $menuItem->deleteMenuItem($id);
+
+         return redirect()->action('Personeel_Controller@nieuwsItems');
+     }
+
+
+
+
+
+
     /////////////////////////       De volgende functies worden gebruikt voor GALLERIJ mbv het Galerij_Model
     public function getGallerij(){
 

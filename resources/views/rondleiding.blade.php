@@ -6,11 +6,13 @@
         <div class="row fh5co-heading row-padded text-center">
             <div class="col-md-12">
                 <h2 class="heading">Reserveer uw rondleiding.</h2>
-                <p>Bij ons kan u elke zaterdag, zondag en feestdag terecht voor een rondleiding in onze brouwerij en dit telkens om 15 uur. </br>
+                <!--<p>Bij ons kan u elke zaterdag, zondag en feestdag terecht voor een rondleiding in onze brouwerij en dit telkens om 15 uur. </br>
                     Een leuk uitstapje met historische uitleg en 2 consumpties inbegrepen. Het tarief bedraagd €8 per persoon. </br>
                     Iedereen welkom, grotere groepen (25+ personen) kunnen telefonisch reserveren met een telefoontje naar
                     <a href="tel:011183193">011/18 31 93</a>
-                </p>
+                </p>-->
+                <p>Om uw rondleiding te reserveren dient u telefonisch contact met ons op te nemen. Dit kan via onderstaand
+                telefoonnummer.</p>
             </div>
         </div>
 

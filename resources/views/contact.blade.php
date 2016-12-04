@@ -1,7 +1,7 @@
 @extends('layouts.master_layout')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="width: 80%;">
         <div class="row">
             <div class="col-xs-12 col-md-6"><h2><span class="glyphicon glyphicon-time"></span>Openingsuren</h2>
                 </br>
