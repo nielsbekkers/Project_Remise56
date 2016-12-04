@@ -18,6 +18,8 @@ class MenuItem_Model extends Model implements  Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
 
+    protected $table = 'menuitem';
+
     public function nieuwMenuItem(Request $request){
 
         $sCategorie = $request["frmNieuwMenuItemCat"];
@@ -67,6 +69,9 @@ class MenuItem_Model extends Model implements  Authenticatable
                 }
         }
 
+    public function deleteMenuItem($id){
+        DB::table('menuitem')->where('id','=',$id)->delete();
+    }
 
     public function wijzigMenuItem(Request $request){
 
