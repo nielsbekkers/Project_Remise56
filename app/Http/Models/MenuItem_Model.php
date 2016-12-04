@@ -77,7 +77,7 @@ class MenuItem_Model extends Model implements  Authenticatable
     }
 
     public function deleteMenuItem($id){
-        DB::table('menuitem')->where('id','=',$id)->delete();
+        DB::table('menuitem')->where('ID','=',$id)->delete();
     }
 
     public function wijzigMenuItem(Request $request){

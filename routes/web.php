@@ -114,7 +114,7 @@ Route::post('/personeel/news/updateNewsItem', [
 ]);
 
 //Verwijderen van een menuItem
-Route::get('personeel/MenuItem/deleteMenuItem/{id}', 'Personeel_Controller@verwijderMenuItem');
+Route::get('/personeel/deleteMenuItem/{id}', 'Personeel_Controller@verwijderMenuItem');
 
 // Bevestigen van een reservatie
 
