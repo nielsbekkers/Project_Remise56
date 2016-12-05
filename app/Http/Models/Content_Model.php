@@ -23,6 +23,14 @@ class Content_Model extends Model
             }
             return $aGegevens;
         }
+        if($pagina == 'media'){
+            $aGegevens['gallerijen'] = DB::select('SELECT * FROM gallery ');
+            $aGegevens['images'] = DB::select('SELECT * FROM images ');
+            foreach ($aGegevens['gallerijen'] as $aGallerijen) {
+                $aGegevens[$aGallerijen->id] = DB::select('SELECT * FROM images WHERE gallery_id=? ',[$aGallerijen->id]);
+            }
+            return $aGegevens;
+        }
         $aGeg = DB::select('SELECT * FROM templates_inhoud WHERE templateNaam=? AND paginaNaam=?',[$template,$pagina]);
         if($aGeg != null) {
             foreach (explode('-', $aGeg[0]->templateKey) as $aItems) {

@@ -1,8 +1,6 @@
 @extends('layouts.personeel_layout')
 
 @section('extra_css')
-    <link href="css/lightbox.min.css" rel="stylesheet">
-    <link href="css/gallery.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 @stop
 
@@ -63,7 +61,7 @@
                            class="inputGalleryName"
                            value="{{old('gallery_name')}}"
                 />
-                <button class="arrowButton"><i class="fa fa-arrow-right"></i></button>
+                <button class="btn btn-primary"><i class="glyphicon glyphicon-arrow-right">Voeg Gallerij toe</i></button>
             </form>
         </div>
     </div>
@@ -71,5 +69,5 @@
 @stop
 
 @section('extra_scripts')
-    <script src="js/lightbox-plus-jquery.js"></script>
+    <script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
 @stop

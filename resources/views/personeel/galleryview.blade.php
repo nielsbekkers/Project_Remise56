@@ -137,5 +137,6 @@
         console.log('Document is ready');
     });
 </script>
+<script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
 </body>
 </html>

@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{{url('css/bootstrap.css')}}">
 
     <link rel="stylesheet" href="{{url('css/style.css')}}">
+
+    <link rel="stylesheet" href="{{url('css/lightbox.min.css')}}">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -167,5 +170,9 @@ z-index: 9999;">
 <script src="{{url('js/jquery.flexslider-min.js')}}"></script>
 <!-- Main JS -->
 <script src="{{url('js/main.js')}}"></script>
+
+<script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
+
+
 
 </html>
