@@ -15,6 +15,14 @@ class Content_Model extends Model
 
     public function getContentFor($template,$pagina) {
         $aGegevens = '';
+        if($pagina == 'menu'){
+            $aGegevens['categorien'] = DB::select('SELECT * FROM menuItem_categorie ');
+            $aGegevens['subcategorien'] = DB::select('SELECT * FROM menuItem_subcategorie ');
+            foreach ($aGegevens['subcategorien'] as $aSubcategorieItem) {
+                $aGegevens[$aSubcategorieItem->id] = DB::select('SELECT * FROM menuitem WHERE subcategorie_id=? ',[$aSubcategorieItem->id]);
+            }
+            return $aGegevens;
+        }
         $aGeg = DB::select('SELECT * FROM templates_inhoud WHERE templateNaam=? AND paginaNaam=?',[$template,$pagina]);
         if($aGeg != null) {
             foreach (explode('-', $aGeg[0]->templateKey) as $aItems) {
