@@ -13,7 +13,12 @@ class Home_Controller extends Controller
     public function home(){
         $news = new News_Model;
         $menuTop = "Home";
+        $aIds = array();
         $newsItems = $news->getAllNewsItems();
-        return view('home',compact('menuTop','newsItems'));
+        foreach ($newsItems as $newsItem){
+            array_push($aIds,$newsItem->id);
+        }
+
+        return view('home',compact('menuTop','newsItems','aIds'));
     }
 }

@@ -181,7 +181,7 @@
 <div class="footer navbar-fixed-bottom" style="margin-right:20px;margin-left: 20px; background-color:rgba(0, 0, 0, 0.4);border-radius:4px;">
 @foreach($newsItems->all() as $newsItem)
     @if($newsItem->padNaarFoto != NULL)
-        <div class="col-lg-4">
+        <div class="col-lg-4" id="{{$newsItem->id}}btn">
             <button class="news-item" style="width: 100%" onclick="OpenTest{{$newsItem->id}}();">{{$newsItem->titel}}</button>
             <br>
         </div>
@@ -196,7 +196,7 @@
             </div>
         </div>
     @else
-        <div class="col-lg-4">
+        <div class="col-lg-4" id="{{$newsItem->id}}btn">
             <button class="news-item" style="width: 100%" onclick="OpenTest{{$newsItem->id}}();">{{$newsItem->titel}}</button>
             <br>
         </div>
@@ -206,6 +206,7 @@
     @endif
 @endforeach
 </div>
+
 <script src="js/jquery.min.js"></script>
 @foreach($newsItems->all() as $newsItem)
     <script>
@@ -216,10 +217,29 @@
                 $('.blur').css('filter','blur(3px)') ;
                 $('.blur').css('margin','-5px') ;
                 $('.blur').css('height','102%') ;
+                @foreach($aIds as $a)
+                    @if($newsItem->id == $a)
+                    @else
+                        {{--$('#{{$a}}btn').css('display','none').delay(800);--}}
+                    setTimeout(function() {
+                    $("#{{$a}}btn").css('display','none').delay(0);
+                }, 0);
+                    @endif
+                @endforeach
+
             }else{
                 $('.blur').css('filter','blur(0px)') ;
                 $('.blur').css('margin','0px') ;
                 $('.blur').css('height','100%') ;
+                @foreach($aIds as $a)
+                    @if($newsItem->id == $a)
+                    @else
+                        {{--$('#{{$a}}btn').css('display','block').delay(800);--}}
+                    setTimeout(function() {
+                    $("#{{$a}}btn").css('display','block').delay(1500);
+                }, 1500);
+                @endif
+                @endforeach
             }
         }
 

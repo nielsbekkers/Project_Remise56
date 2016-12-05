@@ -62,7 +62,7 @@
                     <li><a href="/personeel/reservaties">Reservaties</a></li>
                     <li><a href="/personeel/news">Nieuws items</a></li>
                     <li><a href="/personeel/menuItems">Menu items</a></li>
-
+                    <li><a href="/personeel/foto">Media</a> </li>
                     {{--<li><a href="/personeel/inloggen">Inloggen</a></li>--}}
                     {{--<li><a href="/">Uitloggen</a></li>--}}
 

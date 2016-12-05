@@ -48,16 +48,11 @@ Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
 ////////Gallerij////////
 
 Route::get('foto','Foto_Controller@home');
-
-Route::get('gallery/list','Foto_Controller@viewGalleryList');
-
-Route::post('gallery/save','Foto_Controller@saveGallery');
-
-Route::get('brouwerij/gallery/view/{id}','Foto_Controller@viewGalleryPics');
-
-Route::post('image/do-upload','Foto_Controller@doImageUpload');
-
-Route::get('brouwerij/gallery/delete/{id}', 'Foto_Controller@deleteGallery');
+Route::get('gallery/list','Personeel_Controller@viewGalleryList');
+Route::post('gallery/save','Personeel_Controller@saveGallery');
+Route::get('personeel/gallery/view/{id}','Personeel_Controller@viewGalleryPics');
+Route::post('image/do-upload','Personeel_Controller@doImageUpload');
+Route::get('personeel/gallery/delete/{id}', 'Personeel_Controller@deleteGallery');
 
 
 //////////////// Personeel
@@ -111,6 +106,17 @@ Route::get('/personeel/news', 'Personeel_Controller@nieuwsItems');
 Route::post('/personeel/news/updateNewsItem', [
     'uses'=>'Personeel_Controller@aanpassenNieuwsItem',
     'as'=>'aanpassenNieuwsItem'
+]);
+
+// Dashboard Nieuwe menu item form POST
+Route::post('/personeel/nieuwMenuItem', [
+    'uses' => 'Personeel_Controller@nieuwMenuItem',
+    'as' => 'nieuwMenuItem'
+]);
+// Dashboard Wijzig menu item form POST
+Route::post('/personeel/wijzigMenuItem', [
+    'uses' => 'Personeel_Controller@wijzigMenuItem',
+    'as' => 'wijzigMenuItem'
 ]);
 
 //Verwijderen van een menuItem
