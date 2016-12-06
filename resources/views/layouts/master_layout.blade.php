@@ -170,9 +170,4 @@ z-index: 9999;">
 <script src="{{url('js/jquery.flexslider-min.js')}}"></script>
 <!-- Main JS -->
 <script src="{{url('js/main.js')}}"></script>
-
-<script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
-
-
-
 </html>

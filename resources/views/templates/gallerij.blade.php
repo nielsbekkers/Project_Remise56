@@ -13,3 +13,5 @@
     @endforeach
 </div>
 @endForeach
+
+<script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
