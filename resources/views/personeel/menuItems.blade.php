@@ -144,6 +144,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Bent u echt zeker dat u dit item wilt verwijderen?</p>
+                                        <p>Deze actie kan niet ongedaan worden</p>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <a class="btn btn-default" href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}">Verwijderen</a>
                                     </div>
