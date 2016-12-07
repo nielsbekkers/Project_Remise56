@@ -42,13 +42,13 @@ class Personeel_Controller extends Controller
                 return view('personeel.inloggen');
                 break;
 
-/*            case "personeel":
+            case "personeel":
                 //return view('personeel.reservaties');
                 $aPersoneel = $this->getPersoneel();
 
                 return view('personeel.personeel', compact('aPersoneel'));
 
-                break;*/
+                break;
 
 /*            case "nieuwPersoneelsLid" :
                 return view('personeel.nieuwPersoneelsLid');

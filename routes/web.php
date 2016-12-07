@@ -136,3 +136,6 @@ Route::post('/personeel/wijzigMenuItem', [
     'uses' => 'Personeel_Controller@wijzigMenuItem',
     'as' => 'wijzigMenuItem'
 ]);
+
+//Dashboard voor personeelsleden
+Route::get('/personeel/personeel', 'Personeel_Controller@getPersoneel');

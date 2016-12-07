@@ -24,11 +24,14 @@
 
     <div class="row">
 
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
 
-        <div class="col-md-6">
-            <h2 style="text-align: center">Personeelsleden</h2>
-            <br><br>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personeelsleden</h3>
+                </div>
+            <div class="panel-body">
             <table class="table table-striped custab">
                 <thead>
                 <tr>
@@ -36,7 +39,8 @@
                     <th>Naam</th>
                     <th>Gebruikersnaam</th>
                     <th>Acces Level</th>
-                    <th >Action</th>
+                    <th>Wijzigen</th>
+                    <th>Verwijderen</th>
                 </tr>
                 </thead>
 
@@ -48,6 +52,7 @@
                             <td><?php echo $persoon->naam;?></td>
                             <td><?php echo $persoon->gebruikersnaam; ?></td>
                             <td>1 (Personeelslid) </td>
+                            <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig()"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
                             <td ><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
                         </tr>
 
@@ -63,10 +68,12 @@
 
 
             </table>
+            </div>
 
 
         </div>
         <div class="col-md-3"></div>
+        </div>
 
     </div>
 @endsection
