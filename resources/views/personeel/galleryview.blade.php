@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/lightbox.min.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
-        <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
-    </head>
-<body>
+@extends('layouts.personeel_layout')
+
+@section('extra_css')
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/lightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+@stop
+
+@section('content')
+
 <style type="text/css">
     #gallery-images img {
         width: 240px;
@@ -77,11 +78,17 @@
         <div id="gallery-images">
             <ul>
                 @foreach($gallery->images as $image)
-                    <li>
+                <li>
+                    @if($image->file_mime != 'video/mp4')
                         <a href="{{ url($image->file_path) }}" data-lightbox="roadtrip">
                             <img src="{{ url($image->file_path) }}"/>
                         </a>
-                    </li>
+                    @elseif($image->file_mime == 'video/mp4')
+                        <video width="200" height="250" controls>
+                            <source src="{{url($image->file_path)}}" type="video/mp4">
+                        </video>
+                        @endif
+                </li>
                 @endforeach
             </ul>
         </div>
@@ -107,36 +114,41 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
-<script type="text/javascript">
-    dropzone.options.addImages = {
-        maxFileSize: 2,
-        acceptedFiles: 'image/*',
-        success: function(file, response){
-            if (file.status == 'success'){
-                handleDropzoneFileUpload.handleSucces(response);
+
+
+@stop
+
+@section('extra_scripts')
+    <script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
+    <script type="text/javascript">
+        dropzone.options.addImages = {
+            maxFileSize: 2,
+            acceptedFiles: 'image/*',
+            success: function(file, response){
+                if (file.status == 'success'){
+                    handleDropzoneFileUpload.handleSucces(response);
+                }
+                else{
+                    handleDropzoneFileUpload.handleError(response);
+                }
             }
-            else{
-                handleDropzoneFileUpload.handleError(response);
-            }
-        }
-    };
+        };
 
-    var handleDropzoneFileUpload = {
-        handleError: function(response){
-            console.log(response);
-        },
+        var handleDropzoneFileUpload = {
+            handleError: function(response){
+                console.log(response);
+            },
 
-        handleSuccess: function(response){
-            var imageList = $('#gallery-images ul');
-            var imageSrc = baseUrl + '/' + response.file_path;
-            $(imageList).append('<li><a href="'+ imageSrc + '"><img src="' + imageSrc + '"></a></li>')
-        },
-    };
+            handleSuccess: function(response){
+                var imageList = $('#gallery-images ul');
+                var imageSrc = baseUrl + '/' + response.file_path;
+                $(imageList).append('<li><a href="'+ imageSrc + '"><img src="' + imageSrc + '"></a></li>')
+            },
+        };
 
-    $(document).ready(function(){
-        console.log('Document is ready');
-    });
-</script>
-<script src="{{url('js/lightbox-plus-jquery.js')}}"></script>
-</body>
-</html>
+        $(document).ready(function(){
+            console.log('Document is ready');
+        });
+    </script>
+    <script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
+@stop
