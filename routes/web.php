@@ -139,3 +139,5 @@ Route::post('/personeel/wijzigMenuItem', [
 
 //Dashboard voor personeelsleden
 Route::get('/personeel/personeel', 'Personeel_Controller@getPersoneel');
+
+Route::get('/personeel/verwijderPersoneelsLid/{id}', 'Personeel_Controller@verwijderPersoneelsLid');

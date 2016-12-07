@@ -52,4 +52,8 @@ class Personeel_Model extends Model implements  Authenticatable
 
     }
 
+   /* public function verwijderPersoneel($id){
+        DB::table('personeel')->where('ID','=',$id)->delete();
+    }*/
+
 }

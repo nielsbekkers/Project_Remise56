@@ -129,6 +129,13 @@ class Personeel_Controller extends Controller
         return view('personeel.nieuwPersoneelsLid', compact('bResult'));
     }
 
+    public function verwijderPersoneelsLid($id){
+        $personeelsLid = new Personeel_Model();
+        $personeelsLid->verwijderPersoneel($id);
+
+        return redirect()->back();
+    }
+
 
     /////////////////////////       De volgende functies worden gebruikt voor RESERVATIES mbv het Reservatie_Model
     public function getReservaties(){

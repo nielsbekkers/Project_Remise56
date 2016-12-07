@@ -53,8 +53,27 @@
                             <td><?php echo $persoon->gebruikersnaam; ?></td>
                             <td>1 (Personeelslid) </td>
                             <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig()"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
-                            <td ><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
+                            <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$persoon->id}}"><span class="glyphicon glyphicon-remove"></span> Verwijderen</button></td>
                         </tr>
+
+                            <!--Modal -->
+                            <div id="deleteModal{{$persoon->id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4>Personeelslid: <?php echo $persoon->naam ;?></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Bent u echt zeker dat u deze werknemer wilt verwijderen?</p>
+                                            <p>Deze actie kan niet ongedaan worden!</p>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <a class="btn btn-default" href="{{url('/personeel/verwijderPersoneelsLid/'.$persoon->id)}}">Verwijderen</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                     @endforeach
                 @else
