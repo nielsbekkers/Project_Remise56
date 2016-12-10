@@ -1,11 +1,12 @@
 @extends('layouts.personeel_layout')
 
 @section('extra_css')
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+    <!--<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/lightbox.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+    <!--<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 @stop
 
 @section('content')
@@ -37,10 +38,6 @@
         padding-left: 17px;
 
     }
-    #dropzone{
-        padding-left: 30px;
-        padding-right: 30px;
-    }
     #addImages:hover{
         -webkit-transition:0.5s ease;
         -moz-transition:0.5s ease;
@@ -50,7 +47,7 @@
         box-shadow: 0px 0px 5px 1px #161718;
     }
     #backButton{
-        padding-left: 30px;
+        padding-left: 15px;
         padding-top: 20px;
     }
     #backButtonHover:hover{
@@ -67,14 +64,19 @@
 
 </style>
 
-<div class="row">
-    <div class="col-md-12" id="galleryTitle">
-        <h1>Gallery: {{$gallery->name}}</h1>
-    </div>
-</div>
+
 
 <div class="row">
     <div class="col-md-12">
+
+
+        <div class="panel panel-default panel-table">
+            <div class="panel-heading">
+                <h3 class="panel-title">Gallery: {{$gallery->name}}</h3>
+            </div>
+            <div class="panel-body">
+
+
         <div id="gallery-images">
             <ul>
                 @foreach($gallery->images as $image)
@@ -93,11 +95,21 @@
             </ul>
         </div>
     </div>
+            </div>
+        </div>
 </div>
-<hr/>
-<h1 id="dropzoneTitle">Bestanden toevoegen</h1>
+
 <div class="row">
-    <div class="col-md-12" id="dropzone">
+    <div class="col-md-12">
+
+
+        <div class="panel panel-default panel-table">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bestanden toevoegen</h3>
+            </div>
+            <div class="panel-body">
+
+
         <form action="{{url('image/do-upload')}}"
         class="dropzone" id="addImages"
         >
@@ -105,11 +117,13 @@
             <input type="hidden"  name="gallery_id" value="{{$gallery->id}}">
         </form>
     </div>
+            </div>
+        </div>
 </div>
 
 <div class="row">
     <div class="col-md-12" id="backButton">
-        <a href="{{'/personeel/foto'}}" class="btn btn-primary" id="backButtonHover">Terug</a>
+        <a href="{{'/personeel/foto'}}" class="btn btn-primary" id="backButtonHover"><i class="glyphicon glyphicon-arrow-left"> Vorige</i></a>
     </div>
 </div>
 

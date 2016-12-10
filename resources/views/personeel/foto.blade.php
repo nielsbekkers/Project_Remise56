@@ -1,14 +1,27 @@
 @extends('layouts.personeel_layout')
 
 @section('extra_css')
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+    <!--<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <style>
+
+    </style>
 @stop
 
 @section('content')
     <br/>
     <div class="row">
-            <div class="row col-md-6 col-md-offset-1 custyle">
-                    <table class="table table-striped custab">
+            <div class="row col-md-8">
+
+
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gallerij</h3>
+                    </div>
+                    <div class="panel-body">
+
+
+                    <table class="table table-striped table-bordered table-list">
                         <thead>
                         <tr>
                             <th>Naam</th>
@@ -28,9 +41,8 @@
                                 </td>
                                 </td>
                                 <!--<td><a href="{{'gallery/view/'. $gallery->id}}">view</a></td>-->
-                                <td class="text-center"><a type="button" class="btn btn-warning btn-xs" href="{{'gallery/view/'. $gallery->id}}"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
-                                <td class="text-center"><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$gallery->id}}"><span class="glyphicon glyphicon-remove"></span> Verwijderen</button></td>
-
+                                <td class="text-center"><a class="btn btn-warning btn-xs" href="{{'gallery/view/'. $gallery->id}}"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
+                                <td class="text-center"><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$gallery->id}}"><span class="glyphicon glyphicon-remove"></span> Verwijderen</button></td>
                             </tr>
 
                             <!--Modal -->
@@ -56,6 +68,8 @@
                         @endforeach
                         </tbody>
                     </table>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -74,9 +88,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="row col-md-6 col-md-offset-1 custyle">
-            <hr/>
-            <h3>&nbsp;&nbsp;Toevoegen Gallerij</h3>
+        <div class="row col-md-8">
+
+            <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Toevoegen Gallerij</h3>
+                </div>
+                <div class="panel-body">
+
             <form id="toevoegenGallery" method="post" action="{{url('gallery/save')}}">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="text" name="gallery_name"
@@ -84,9 +103,11 @@
                            class="inputGalleryName"
                            value="{{old('gallery_name')}}"
                 />
-                <button class="btn btn-primary"><i class="glyphicon glyphicon-arrow-right">Voeg Gallerij toe</i></button>
+                &nbsp;<button class="btn btn-primary"><i class="glyphicon glyphicon-arrow-right">&nbsp;Voeg Gallerij toe</i></button>
             </form>
         </div>
+                </div>
+            </div>
     </div>
 
 @stop
