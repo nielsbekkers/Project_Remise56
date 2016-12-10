@@ -52,8 +52,32 @@ class Personeel_Model extends Model implements  Authenticatable
 
     }
 
-   /* public function verwijderPersoneel($id){
-        DB::table('personeel')->where('ID','=',$id)->delete();
-    }*/
+    public function verwijderPersoneelsLid($id){
+        DB::table('personeel')->where('id','=',$id)->delete();
+    }
 
+    public function wijzigPersoneelsLid(Request $request,$id){
+        $sNaam = $request["frmNieuwPersoneelNaam"];
+        $sGebruikersnaam = $request["frmNieuwPersoneelGebruikersnaam"];
+        $sWachtwoord = bcrypt($request["frmNieuwPersoneelWachtwoord"]);
+
+        try {
+            DB::table('personeel')->where('id','=',$id)->update(
+                ['naam'=> $sNaam,'gebruikersnaam' => $sGebruikersnaam,'wachtwoord' => $sWachtwoord]
+            );
+            $bResultaat = true;
+        } catch (\PDOException $e) {
+            $bResultaat = false;
+        }
+        return $bResultaat;
+    }
+
+    public function geefPersoneelLid($id){
+        try {
+            $personeelLid = DB::table('personeel')->select()->where('id','=',$id)->get();
+            return $personeelLid;
+        } catch (\PDOException $e) {
+            $bResultaat = false;
+        }
+    }
 }
