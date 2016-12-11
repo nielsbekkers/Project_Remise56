@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Remise 56 | 404</title>
+    <title>Remise 56 | Gelukt</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -41,6 +41,7 @@
 <div class="container">
     <div class="content">
         <div class="title">Gelukt! Je reservatie is bevestigd</div>
+        <div class="content"><a href="{{ url('/')}}">Ga naar home</a></div>
     </div>
 </div>
 </body>

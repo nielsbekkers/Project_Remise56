@@ -48,7 +48,9 @@ class GrandCafe_Controller extends Controller
 
         } else {
             $request['bevestigingsCode'] = $mailresult;
-            $oReservatie->nieuwReservatieRestKlant($request);
+            if($oReservatie->nieuwReservatieRestKlant($request)) {
+                return view('statisch.checkMail');
+            }
         }
     }
 

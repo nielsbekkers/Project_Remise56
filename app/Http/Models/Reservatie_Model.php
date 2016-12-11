@@ -74,16 +74,13 @@ class Reservatie_Model extends Model implements  Authenticatable
 }
 
     public function nieuwReservatieRestKlant(Request $request){
-
+        $bResultaat = false;
         $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcCPw0UAAAAAFBq9bWm6yOvosDSoiwGYfUgUl-g&response=".$request["g-recaptcha-response"]);
         $responseKeys = json_decode($response,true);
         if(intval($responseKeys["success"]) !== 1) {
-            $bResultaat =  '<h2>You are spammer ! Get the @$%K out</h2>';
+            $bResultaat =  false;
         } else {
-            echo '<h2>Thanks for posting comment.</h2>';
-
-
-
+            $bResultaat = true;
 
             $sSoort = "Restaurant";
             $sShift = "Lunch";
@@ -103,7 +100,6 @@ class Reservatie_Model extends Model implements  Authenticatable
             $sEmail = $request["frmReservatieRestEmail"];
             $sNota = $request["frmReservatieRestNota"];
 
-            $bResultaat ="";
             try {
                 DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
                 $bResultaat = true;
