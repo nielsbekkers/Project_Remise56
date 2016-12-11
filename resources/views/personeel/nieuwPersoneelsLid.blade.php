@@ -27,35 +27,7 @@
 
             <form class="form-horizontal"  action="{{route('nieuwPersoneelsLid')}}" method="post">
 
-                <div class="form-group">
-                    <label for="naam" >Naam</label>
-                    <input class="form-control" type="text" name="frmNieuwPersoneelNaam" id="naam" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="gebruikersnaam" >Gebruikersnaam</label>
-                    <input class="form-control" type="text" name="frmNieuwPersoneelGebruikersnaam" id="gebruikersnaam" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="Level" >Acces level</label>
-                    <select class="form-control" name="frmNieuwPersoneelAccesLevel" id="Level" required>
-                        <option value="1">1 (Personeelslid)</option>
-                        <option value="2">2 (Admin)</option>
-
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="wachtwoord" >Wachtwoord</label>
-                    <input class="form-control" type="password" name="frmNieuwPersoneelWachtwoord" id="wachtwoord" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="Hwachtwoord" >Herhaal wachtwoord</label>
-                    <input class="form-control" type="password" name="frmNieuwPersoneelHerhaalWachtwoord" id="Hwachtwoord" required>
-                </div>
-
+                c
                 <button type="submit" name="frmNieuwPersoneelSubmit" class="btn btn-primary">Registreren</button>
 
                 <!-- Beveiliging als iemand uw session key heeft-->

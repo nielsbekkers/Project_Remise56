@@ -25,25 +25,22 @@ Route::get('rondleiding','rondleiding_Controller@home');
 
 Route::get('editMenu' , 'Menu_Controller@editMenu');
 
-Route::post('/createReservationClient', [
-    'uses' => 'Reservation_Controller@createReservationClient',
-    'as' => 'createReservationClient'
-]);
 
 //////GrandCafe//////
-Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
 Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
+Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
+
 Route::post('/grandcafe/nieuweReservatieRestKlant', [
     'uses' => 'GrandCafe_Controller@nieuweReservatie',
     'as' => 'nieuweReservatieRestKlant'
 ]);
 
 
-
-
-//////// BROUWERIJ /////////
+/////// BROUWERIJ /////////
 Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
 Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
+
+
 
 ////////Gallerij////////
 
@@ -55,11 +52,36 @@ Route::post('image/do-upload','Personeel_Controller@doImageUpload');
 Route::get('personeel/gallery/delete/{id}', 'Personeel_Controller@deleteGallery');
 
 
-//////////////// Personeel
+/////// DASHBOARD (Personeel_Controller)/////////
 
-// DASHBOARD get pagina -> Personeel_Controller
-Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
 Route::get('/personeel', 'Personeel_Controller@getHome');
+Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
+
+
+
+// Dashboard Instellingen nieuwe sluitingsdag form POST
+Route::post('/personeel/nieuweSluitingsdag', [
+    'uses' => 'Personeel_Controller@nieuweSluitingsdag',
+    'as' => 'nieuweSluitingsdag'
+]);
+
+// Dashboard Instellingen verwijder sluitingsdag form POST
+Route::post('/personeel/deleteSluitingsdag', [
+    'uses' => 'Personeel_Controller@deleteSluitingsdag',
+    'as' => 'deleteSluitingsdag'
+]);
+
+// Dashboard Instellingen toevoegen categorie form POST
+Route::post('/personeel/nieuweCategorie', [
+    'uses' => 'Personeel_Controller@nieuweCategorie',
+    'as' => 'nieuweCategorie'
+]);
+
+// Dashboard Instellingen verwijder categorie form POST
+Route::post('/personeel/deleteCategorie', [
+    'uses' => 'Personeel_Controller@deleteCategorie',
+    'as' => 'deleteCategorie'
+]);
 
 
 
@@ -86,7 +108,7 @@ Route::post('/personeel/nieuwPersoneelsLid', [
 Route::get('/personeel/verwijderReservatie/{reservatieId}', [
         'uses' => 'Personeel_Controller@verwijderReservatie',
         'as' => 'verwijderReservatie'
-        ]);
+]);
 
 //Dashboad NEWS ITEMS
 Route::get('/personeel/news','NewsItems_Controller@home');

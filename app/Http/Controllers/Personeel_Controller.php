@@ -8,6 +8,7 @@
 
 namespace  App\Http\Controllers;
 
+use App\Http\Models\Instellingen_Model;
 use App\Http\Models\MenuItem_Model;
 use Mail;
 use App\User;
@@ -98,6 +99,15 @@ class Personeel_Controller extends Controller
                 return 'nothing';
                 break;
 
+
+            case "instellingen":
+                $aDagen = $this->getSluitingsDagen();
+                $aCategorieen = $this->getAllCategories();
+                $aSubCategorieen = $this->getAllSubCategories();
+                return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen' ));
+
+                break;
+
             case "news":
                 $menuTop = "Nieuws Items";
                 $newsItems = $this->getAllNews();
@@ -108,9 +118,61 @@ class Personeel_Controller extends Controller
 
                 break;
 
-
         }
 
+    }
+
+
+    /////////////////////////       De volgende functies worden gebruikt voor de Instellingen mbv het Instellingen_Model
+    public function nieuweSluitingsdag(Request $request){
+        $oInstellingen = new Instellingen_Model();
+        $bnieuweSluitingsdag = $oInstellingen->nieuweSluitingsdag($request);
+
+        $aDagen = $this->getSluitingsDagen();
+        $aCategorieen = $this->getAllCategories();
+        $aSubCategorieen = $this->getAllSubCategories();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweSluitingsdag'));
+
+    }
+    public function getSluitingsDagen(){
+        $oInstellingen = new Instellingen_Model();
+        $aDagen = $oInstellingen->getAlleSluitingsdagen();
+
+        return $aDagen;
+    }
+
+    public function deleteSluitingsdag(Request $request){
+        $oInstellingen = new Instellingen_Model();
+        $bdeleteSluitingsdag = $oInstellingen->deleteSluitingsdag($request);
+
+        $aDagen = $this->getSluitingsDagen();
+        $aCategorieen = $this->getAllCategories();
+        $aSubCategorieen = $this->getAllSubCategories();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteSluitingsdag'));
+    }
+
+
+
+    public function nieuweCategorie(Request $request){
+        $oInstellingen = new Instellingen_Model();
+        $bnieuweCategorie = $oInstellingen->nieuweCategorie($request);
+
+        $aDagen = $this->getSluitingsDagen();
+        $aCategorieen = $this->getAllCategories();
+        $aSubCategorieen = $this->getAllSubCategories();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweCategorie'));
+    }
+
+
+    public function deleteCategorie(Request $request){
+        $oInstellingen = new Instellingen_Model();
+        $bdeleteCategorie= $oInstellingen->deleteCategorie($request);
+
+
+        $aDagen = $this->getSluitingsDagen();
+        $aCategorieen = $this->getAllCategories();
+        $aSubCategorieen = $this->getAllSubCategories();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteCategorie'));
     }
 
 
@@ -143,30 +205,23 @@ class Personeel_Controller extends Controller
         $oReservatie = new Reservatie_Model();
         $Reservaties = $oReservatie->getReservaties();
         return $Reservaties;
-
-
     }
 
     public function nieuweReservatieRest(Request $request){
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->nieuwReservatieRest($request);
-
         return view('personeel.nieuweReservatieRestaurant', compact('bResult'));
-
     }
 
     public function nieuweReservatieRond(Request $request){
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->nieuwReservatieRond($request);
-
-
         return view('personeel.nieuweReservatieRondleiding', compact('bResult'));
     }
 
     public function verwijderReservatie($reservatieId) {
         $oReservatie = new Reservatie_Model();
         $bResult = $oReservatie->verwijderReservatie($reservatieId);
-        echo $bResult;
         return $bResult;
     }
 
@@ -179,13 +234,13 @@ class Personeel_Controller extends Controller
 
     public function getAllCategories(){
         $oMenuItem = new MenuItem_Model();
-         return $oMenuItem->getAllCategories();
+         return $oMenuItem->getAlleCategorieen();
     }
 
     public function getAllSubCategories()
     {
         $oMenuItem = new MenuItem_Model();
-        return $oMenuItem->getAllSubCategories();
+        return $oMenuItem->getAlleSubCategorieen();
     }
     public function nieuwMenuItem(Request $request){
         $oMenuItem = new MenuItem_Model();
@@ -211,7 +266,7 @@ class Personeel_Controller extends Controller
      public function verwijderMenuItem($id){
          $menuItem = new MenuItem_Model();
 
-         $menuItem->deleteMenuItem($id);
+         $menuItem->verwijderMenuItem($id);
 
          return redirect()->back();
      }

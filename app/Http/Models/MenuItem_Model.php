@@ -67,16 +67,21 @@ class MenuItem_Model extends Model implements  Authenticatable
                     return $errorReport;
                 }
         }
-
     public function getAllCategories(){
         return DB::select('select * from menuItem_categorie ');
     }
-
     public function getAllSubCategories(){
         return DB::select('select * from menuItem_subcategorie ');
     }
 
-    public function deleteMenuItem($id){
+    public function getAlleCategorieen(){
+        return DB::select('select * from menuItem_categorie ');
+    }
+    public function getAlleSubCategorieen(){
+        return DB::select('select * from menuItem_subcategorie ');
+    }
+
+    public function verwijderMenuItem($id){
         DB::table('menuitem')->where('ID','=',$id)->delete();
     }
 
