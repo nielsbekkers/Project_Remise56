@@ -65,11 +65,11 @@
         <table class="table table-striped table-bordered table-list">
             <thead>
             <tr>
-                <th>Verwijderen</th>
-                <th>Aanpassen</th>
                 <th>Titel</th>
                 <th>Uitleg</th>
                 <th>Foto naam</th>
+                <th>Wijzigen</th>
+                <th>Verwijderen</th>
             </tr>
             </thead>
 @foreach($newsItems->all() as $newsItem)
@@ -78,12 +78,8 @@
 
     <tbody>
     <tr>
-        <td align="center">
-            <a class="btn btn-danger" href="{{url('/personeel/news/deleteNewsItem/'.$newsItem->id)}}"><em class="fa fa-trash"></em></a>
-        </td>
-        <td>
-            <a class="btn btn-warning" onclick="toggleViewUpdate('{{$newsItem->id}}', '{{$newsItem->titel}}', '{{$newsItem->uitleg}}', '{{$newsItem->padNaarFoto}}')"><em class="fa fa-pencil"></em></a>
-        </td>
+
+
         <td>{{$newsItem->titel}}</td>
         <td>{{$newsItem->uitleg}}</td>
         @if($newsItem->padNaarFoto != null)
@@ -91,9 +87,39 @@
         @else
             <td>Er is geen foto toegevoegd</td>
         @endif
+        <td>
+            <a class="btn btn-warning btn-xs" onclick="toggleViewUpdate('{{$newsItem->id}}', '{{$newsItem->titel}}', '{{$newsItem->uitleg}}', '{{$newsItem->padNaarFoto}}')"><span class="glyphicon glyphicon-remove">Wijzigen</span></a>
+        </td>
+        <td align="center">
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$newsItem->id}}">Verwijderen</button>
+        </td>
+
     </tr>
     </tbody>
-@endforeach
+
+                <!--Modal -->
+                <div id="deleteModal{{$newsItem->id}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4>menuItem <?php echo $newsItem->titel ;?></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bent u echt zeker dat u dit nieuwsitem wilt verwijderen?</p>
+                                <p>Deze actie kan niet ongedaan worden!</p>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <a class="btn btn-default" href="{{url('/personeel/news/deleteNewsItem/'.$newsItem->id)}}">Verwijderen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            @endforeach
+        </table>
     </div>
 </div>
 @endsection

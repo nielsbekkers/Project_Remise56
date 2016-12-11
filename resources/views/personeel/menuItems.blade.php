@@ -130,7 +130,7 @@
                                 };?></td>
 
                             <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig('{{$MenuItem->id}}', '{{$MenuItem->titel}}','{{$MenuItem->beschrijving}}', '{{$MenuItem->prijs}}', '{{$MenuItem->zichtbaar}}')"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
-                            <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$MenuItem->id}}">Delete</button> </td>
+                            <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$MenuItem->id}}">Verwijderen</button> </td>
                         </tr>
 
                         <!--Modal -->
@@ -144,6 +144,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Bent u echt zeker dat u dit item wilt verwijderen?</p>
+                                        <p>Deze actie kan niet ongedaan worden</p>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <a class="btn btn-default" href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}">Verwijderen</a>
                                     </div>

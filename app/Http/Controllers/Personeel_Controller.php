@@ -42,13 +42,13 @@ class Personeel_Controller extends Controller
                 return view('personeel.inloggen');
                 break;
 
-/*            case "personeel":
+            case "personeel":
                 //return view('personeel.reservaties');
                 $aPersoneel = $this->getPersoneel();
 
                 return view('personeel.personeel', compact('aPersoneel'));
 
-                break;*/
+                break;
 
 /*            case "nieuwPersoneelsLid" :
                 return view('personeel.nieuwPersoneelsLid');
@@ -127,6 +127,13 @@ class Personeel_Controller extends Controller
         $bResult = $oPersoneel->nieuwPersoneelsLid($request);
 
         return view('personeel.nieuwPersoneelsLid', compact('bResult'));
+    }
+
+    public function verwijderPersoneelsLid($id){
+        $personeelsLid = new Personeel_Model();
+        $personeelsLid->verwijderPersoneel($id);
+
+        return redirect()->back();
     }
 
 
