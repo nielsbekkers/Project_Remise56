@@ -56,6 +56,33 @@
             });
         }
 
+        function WijzigSluitingsdag(datum, titel, id, actief, beschrijving) {
+            $(document).ready(function () {
+
+                $('#wijzigSluitingsdagModal').modal('show');
+                $('#frmWijzigSluitingsdagHeader').text("Wijzigen van sluitingsdag: " + " (" + datum+ ")");
+                $('#frmWijzigSluitingsdagTitel').val(titel);
+                $('#frmWijzigSluitingsdagId').val(id);
+                $('#frmWijzigSluitingsdagBeschrijving').val(beschrijving);
+
+                if (actief == true){
+                    $('#frmWijzigSluitingsdagActief').attr('checked', true);
+                }else{
+                    $('#frmWijzigSluitingsdagActief').attr('checked', false);
+                }
+                $("#datepicker2").datepicker({
+                    inline: true,
+                    dateFormat: 'yy-mm-dd',
+                    monthNames: [ "Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December" ],
+                    dayNames: [ "Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag" ],
+                    dayNamesMin: [ "Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za" ],
+                    firstDay: 1, //maandag
+                    altField: "#datepickerhelperWijzig",
+                });
+                $( "#datepicker2" ).datepicker( "setDate", datum );
+            });
+        }
+
         function VerwijderCategorie(id, titel, soort) {
             $(document).ready(function () {
 
@@ -73,9 +100,9 @@
         }
          </script>
 
-
+    <!--Instellingen Meldingen-->
     <div class="row">
-        <!--Meldingen Sluitingsdagen-->
+        <!--Meldingen Sluitingsdagen Nieuwe-->
         @if(isset($bnieuweSluitingsdag) && $bnieuweSluitingsdag == true)
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -89,7 +116,7 @@
             </div>
         @endif
 
-        <!--Meldingen Sluitingsdagen-->
+        <!--Meldingen Sluitingsdagen  Verwijderen-->
         @if(isset($bdeleteSluitingsdag) && $bdeleteSluitingsdag == true)
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -100,6 +127,20 @@
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <strong>Fout! </strong> sluitingsdag is niet verwijderd!
+            </div>
+        @endif
+
+        <!--Meldingen Sluitingsdagen  Wijzigen  -->
+        @if(isset($bwijzigSluitingsdag) && $bwijzigSluitingsdag == true)
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Succes,</strong> sluitingsdag is aangepast.
+            </div>
+
+        @elseif(isset($bwijzigSluitingsdag) && $bwijzigSluitingsdag == false)
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Fout! </strong> sluitingsdag is niet aangepast!
             </div>
         @endif
 
@@ -130,13 +171,14 @@
             </div>
         @endif
     </div>
+    <br>
 
     <!--Instellingen Sluitingsdagen-->
     <div class="row">
 
-        <div class="col-md-1"></div>
+        {{--<div class="col-md-1"></div>--}}
 
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -174,7 +216,7 @@
                                         } else{
                                             echo "Niet actief";
                                         };?></td>
-                                    <td><a href="#" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
+                                    <td><a href="#" class="btn btn-warning btn-xs"onclick="WijzigSluitingsdag('{{$Sluitingsdag->datum}}', '{{$Sluitingsdag->titel}}','{{$Sluitingsdag->id}}','{{$Sluitingsdag->actief}}','{{$Sluitingsdag->beschrijving}}' )"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
                                     <td><a href="#" class="btn btn-danger btn-xs" onclick="VerwijderSluitingsdag('{{$Sluitingsdag->datum}}', '{{$Sluitingsdag->titel}}','{{$Sluitingsdag->id}}')"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
 
                                 </tr>
@@ -188,20 +230,18 @@
                         @endif
                     </table>
                 </div>
-
             </div>
-            <div class="col-md-1">
-            </div>
-
         </div>
+        {{--<div class="col-md-1"></div>--}}
     </div>
+    <br>
 
     <!--Instellingen Categorieën & subcategorieën-->
     <div class="row">
 
-        <div class="col-md-1"></div>
+        {{--<div class="col-md-1"></div>--}}
 
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -274,15 +314,29 @@
 
                     </table>
                 </div>
-
             </div>
-
         </div>
-
-        <div class="col-md-1"></div>
-
-        </div>
+        {{--<div class="col-md-1"></div>--}}
     </div>
+    <br>
+
+    <!--Instellingen Aantal personen per shift-->
+    <div class="row">
+
+        {{--<div class="col-md-1"></div>--}}
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Aantal bezoekers per shift</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+        {{--<div class="col-md-1"></div>--}}
+    </div>
+    <br>
 
 
     <!-- Modal Sluitingsdagen Toevoegen-->
@@ -349,7 +403,6 @@
         </div>
     </div>
 
-
     <!-- Modal Sluitingsdagen Wijzigen-->
     <div class="modal fade" id="wijzigSluitingsdagModal" role="dialog">
         <div class="modal-dialog">
@@ -358,11 +411,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="frmHeader"></h4>
+                    <h4 class="modal-title" id="frmWijzigSluitingsdagHeader"></h4>
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal"  action="{{route('nieuweSluitingsdag')}}" method="post">
+                    <form class="form-horizontal"  action="{{route('wijzigSluitingsdag')}}" method="post">
 
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Datum</label>
@@ -374,36 +427,40 @@
                                     </div>
                                 </div>
                                 <!-- Met javascript haal ik de datum uit de DataPicker en steek ik ze in de verborgen input veld-->
-                                <input type="hidden" id="datepickerhelper" name="frmNieuweSluitingsdagDatum" required/>
+                                <input type="hidden" id="datepickerhelperWijzig" name="frmWijzigSluitingsdagDatum" required/>
                             </div>
 
                         </div>
 
                         <div class="form-group" style="padding: 10px;">
                             <label for="frmMenuItemTitel">Geef een titel:</label>
-                            <input type="text" class="form-control" id="frmMenuItemTitel" name="frmNieuweSluitingsdagTitel" required>
+                            <input type="text" class="form-control" id="frmWijzigSluitingsdagTitel" name="frmWijzigSluitingsdagTitel" required>
                         </div>
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group" style="padding: 10px;">
                                     <label for="frmMenuItemBeschrijving">Geef een beschrijving:</label>
-                                    <textarea class="form-control" rows="5" id="frmMenuItemBeschrijving" name="frmNieuweSluitingsdagBeschrijving"> </textarea>
+                                    <textarea class="form-control" rows="5" id="frmWijzigSluitingsdagBeschrijving" name="frmWijzigSluitingsdagBeschrijving"> </textarea>
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group" style="padding: 10px;">
                                     <label for="frmMenuItemZichtbaar" >Actief:</label>
 
-                                    <input class="form-control" type="checkbox" value="true" id="frmNieuwSluitingsdagActief" name="frmNieuweSluitingsdagActief" >
+                                    <input class="form-control" type="checkbox" value="true" id="frmWijzigSluitingsdagActief" name="frmWijzigSluitingsdagActief" >
 
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Hierin komt het id van de sluitingsdag-->
+                        <input type="hidden" name="frmWijzigSluitingsdagId" id="frmWijzigSluitingsdagId">
+
                         <!-- Beveiliging als iemand uw session key heeft-->
                         <input type="hidden" name="_token" value="{{Session::token()}}">
 
-                        <button type="submit" name="frmNieuwMenuItemSubmit" class="btn btn-primary" style="text-align: center;">Toevoegen</button>
+                        <button type="submit" name="frmWijzigMenuItemSubmit" class="btn btn-primary" style="text-align: center;">Aanpassen</button>
 
 
                     </form>
@@ -413,7 +470,6 @@
 
         </div>
     </div>
-
 
     <!-- Modal Sluitingsdagen Verwijderen-->
     <div class="modal fade" id="deleteSluitingsdagModal" role="dialog">

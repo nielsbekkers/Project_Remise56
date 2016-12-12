@@ -98,10 +98,7 @@ class MenuItem_Model extends Model implements  Authenticatable
         }
         else{
             $bZichtbaarheid = false;
-
         }
-
-
         $bResultaat ="";
         try {
             /*DB::table('menuitem')

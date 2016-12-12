@@ -6,7 +6,7 @@ $( function() {
     var datum = null;
     var uur = null;
     var personen = null;
-
+    var datums=[];
     // Verbergen
     $("#FrmReservatieGroepUur").hide();
     $("#FrmReservatieGroepPersonen").hide();
@@ -14,7 +14,13 @@ $( function() {
     $("#FrmReservatieVolgende").hide();
     $('#FrmReservatieSubmit').hide();
 
-
+    $.get("http://localhost:8000/personeel/sluitingsdagen", function (data) {
+        var data = JSON.parse(data);
+        for (i = 0; i < data.length; i++) {
+            datums.push(data[i]["datum"]);
+        }
+        console.log(datums);
+    })
 
     $( "#datepicker" ).datepicker({
         inline: true,
@@ -26,11 +32,13 @@ $( function() {
         altField: "#datepickerhelper",
         minDate: 0,
         onSelect: function (date) {
-            //alert(date);
-            // $("#FrmReservatieGroepUur").show();
             $("#FrmReservatieGroepUur").fadeIn(1000);
-
             datum = date;
+        },
+        beforeShowDay: function(date){
+//           var disableddates = ["2017-01-15", "2017-01-16", "2017-01-17", "2017-01-18"];
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [ datums.indexOf(string) == -1 ]
         }
     });
 

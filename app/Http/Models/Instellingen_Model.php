@@ -29,10 +29,7 @@ class Instellingen_Model extends Model implements  Authenticatable
         }
         else{
             $bActief = false;
-
         }
-
-
         try {
             DB::insert('insert into sluitingsdag (datum, titel, beschrijving, actief ) values (?, ?, ?, ?)', array($dDatum, $sTitel, $sBeschrijving, $bActief));
             $bResultaat = true;
@@ -61,6 +58,26 @@ class Instellingen_Model extends Model implements  Authenticatable
         }
 
     }
+    public function getAlleActieveSluitingsdagen(){
+
+        $errorReport = "";
+        $aDagen = [];
+        try {
+            $aDagen = DB::select('select * from sluitingsdag where actief = true', [1]);
+        } catch (\PDOException $e) {
+            $aDagen = [];
+            $errorReport = "Kan geen verbinding maken met de database";
+        }
+
+        if (!empty($aDagen)){
+            return $aDagen;
+        }
+        else{
+            return $errorReport;
+        }
+
+    }
+
 
     public function deleteSluitingsdag(Request $request){
         $id = $request["frmDeleteSluitingsdagId"];
@@ -73,21 +90,37 @@ class Instellingen_Model extends Model implements  Authenticatable
         }
     }
 
-    public function wijzigSluitingsdag(Request $request,$id){
-        $sNaam = $request["frmNieuwPersoneelNaam"];
-        $sGebruikersnaam = $request["frmNieuwPersoneelGebruikersnaam"];
-        $sWachtwoord = bcrypt($request["frmNieuwPersoneelWachtwoord"]);
+    public function wijzigSluitingsdag(Request $request){
+        $sId =      $request["frmWijzigSluitingsdagId"];
+        $sTitel =   $request["frmWijzigSluitingsdagTitel"];
+        $sDatum =   $request["frmWijzigSluitingsdagDatum"];
+        $bActief =   $request["frmWijzigSluitingsdagActief"];
+        $sBeschrijving =    $request["frmWijzigSluitingsdagBeschrijving"];
 
+        if ($bActief == "true"){
+            $bActief = true;
+        }
+        else{
+            $bActief = false;
+        }
+        $bResultaat ="";
         try {
-            DB::table('personeel')->where('id','=',$id)->update(
-                ['naam'=> $sNaam,'gebruikersnaam' => $sGebruikersnaam,'wachtwoord' => $sWachtwoord]
-            );
+            /*DB::table('menuitem')
+                ->where('id', $sId)
+                ->update(['titel' => $sTitel],['prijs' => $sPrijs], ['zichtbaar' => $bZichtbaarheid], ['beschrijving' => $sBeschrijving] );*/
+
+            DB::table('sluitingsdag')
+                ->where('id', $sId)
+                ->update(array('titel' =>$sTitel , 'datum' =>$sDatum, 'actief' =>$bActief, 'beschrijving' =>$sBeschrijving));
             $bResultaat = true;
         } catch (\PDOException $e) {
+            echo $e;
             $bResultaat = false;
         }
+
         return $bResultaat;
     }
+
 
     public function nieuweCategorie(Request $request){
         $sKeuze = $request["frmNieuweCategorieKeuze"];

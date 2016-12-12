@@ -89,87 +89,77 @@
             </div>
         @endif
 
-        <div class="col-md-2"></div>
+        {{--<div class="col-md-2"></div>--}}
 
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Menu items</h3>
                 </div>
                 <div class="panel-body">
-            <table class="table table-striped custab">
-                <thead>
-                <tr>
-                    {{--<th>Categorie</th><!--class="text-center"-->--}}
-                    <th>Sub-Categorie ID</th>
-                    <th>Titel</th>
-                    <th>Beschrijving</th>
-                    <th>Prijs</th>
-                    <th>Zichtbaarheid</th>
-                    <th>Wijzigen</th>
-                    <th>Verwijderen</th>
+                <table class="table table-striped custab">
+                    <thead>
+                    <tr>
+                        <th>Sub-Categorie ID</th>
+                        <th>Titel</th>
+                        <th>Beschrijving</th>
+                        <th>Prijs</th>
+                        <th>Zichtbaarheid</th>
+                        <th>Wijzigen</th>
+                        <th>Verwijderen</th>
+                    </tr>
+                    </thead>
+                    @if(!empty($aMenuItems))
+                        @foreach($aMenuItems as $MenuItem)
+                            <tr>
+                                <td><?php echo $MenuItem->subcategorie_id; ?></td>
+                                <td><?php echo $MenuItem->titel ;?></td>
+                                <td><?php echo $MenuItem->beschrijving ;?></td>
+                                <td><?php echo $MenuItem->prijs ;?></td>
+                                <td><?php
+                                    if( $MenuItem->zichtbaar){
+                                    echo 'Zichtbaar';
+                                    } else{
+                                        echo "Niet zichtbaar";
+                                    };?></td>
 
-                </tr>
-                </thead>
-                @if(!empty($aMenuItems))
+                                <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig('{{$MenuItem->id}}', '{{$MenuItem->titel}}','{{$MenuItem->beschrijving}}', '{{$MenuItem->prijs}}', '{{$MenuItem->zichtbaar}}')"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
+                                <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$MenuItem->id}}">Verwijderen</button> </td>
+                            </tr>
 
-                    @foreach($aMenuItems as $MenuItem)
-
-                        <tr>
-
-
-                            <td><?php echo $MenuItem->subcategorie_id; ?></td>
-                            <td><?php echo $MenuItem->titel ;?></td>
-                            <td><?php echo $MenuItem->beschrijving ;?></td>
-                            <td><?php echo $MenuItem->prijs ;?></td>
-                            <td><?php
-                                if( $MenuItem->zichtbaar){
-                                echo 'Zichtbaar';
-                                } else{
-                                    echo "Niet zichtbaar";
-                                };?></td>
-
-                            <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig('{{$MenuItem->id}}', '{{$MenuItem->titel}}','{{$MenuItem->beschrijving}}', '{{$MenuItem->prijs}}', '{{$MenuItem->zichtbaar}}')"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
-                            <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$MenuItem->id}}">Verwijderen</button> </td>
-                        </tr>
-
-                        <!--Modal -->
-                        <div id="deleteModal{{$MenuItem->id}}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content -->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4>menuItem <?php echo $MenuItem->titel ;?></h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Bent u echt zeker dat u dit item wilt verwijderen?</p>
-                                        <p>Deze actie kan niet ongedaan worden</p>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <a class="btn btn-default" href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}">Verwijderen</a>
+                            <!--Modal -->
+                            <div id="deleteModal{{$MenuItem->id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4>menuItem <?php echo $MenuItem->titel ;?></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Bent u echt zeker dat u dit item wilt verwijderen?</p>
+                                            <p>Deze actie kan niet ongedaan worden</p>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <a class="btn btn-default" href="{{url('/personeel/deleteMenuItem/'.$MenuItem->id)}}">Verwijderen</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                        @endforeach
+                    @else
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>Fout! </strong> Geen menu items in het systeem.
                         </div>
 
-                    @endforeach
-                @else
-                    <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <strong>Fout! </strong> Geen menu items in het systeem.
-                    </div>
+                    @endif
 
-                @endif
-
-
-
-            </table>
+                </table>
         </div>
 
         </div>
-        <div class="col-md-2">
-
-        </div>
+        {{--<div class="col-md-2"> </div>--}}
 
     </div>
     </div>

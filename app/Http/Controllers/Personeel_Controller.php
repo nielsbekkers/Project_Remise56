@@ -112,6 +112,13 @@ class Personeel_Controller extends Controller
                 $menuTop = "Nieuws Items";
                 $newsItems = $this->getAllNews();
                 return view('personeel.newsitems',compact('menuTop','newsItems'));
+                break;
+
+            case "sluitingsdagen":
+                echo json_encode($this->getAlleActieveSluitingsdagen());
+
+                break;
+
             default :
                 return view('personeel.reservaties');
 //                return view('personeel.inloggen');
@@ -124,6 +131,22 @@ class Personeel_Controller extends Controller
 
 
     /////////////////////////       De volgende functies worden gebruikt voor de Instellingen mbv het Instellingen_Model
+
+    public function getSluitingsDagen(){
+        $oInstellingen = new Instellingen_Model();
+        $aDagen = $oInstellingen->getAlleSluitingsdagen();
+
+        return $aDagen;
+    }
+
+    public function getAlleActieveSluitingsdagen(){
+        $oInstellingen = new Instellingen_Model();
+        $aDagen = $oInstellingen->getAlleActieveSluitingsdagen();
+
+        return $aDagen;
+    }
+
+
     public function nieuweSluitingsdag(Request $request){
         $oInstellingen = new Instellingen_Model();
         $bnieuweSluitingsdag = $oInstellingen->nieuweSluitingsdag($request);
@@ -134,12 +157,18 @@ class Personeel_Controller extends Controller
         return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweSluitingsdag'));
 
     }
-    public function getSluitingsDagen(){
-        $oInstellingen = new Instellingen_Model();
-        $aDagen = $oInstellingen->getAlleSluitingsdagen();
 
-        return $aDagen;
+    public function wijzigSluitingsdag(Request $request){
+        $oInstellingen = new Instellingen_Model();
+        $bwijzigSluitingsdag = $oInstellingen->wijzigSluitingsdag($request);
+
+        $aDagen = $this->getSluitingsDagen();
+        $aCategorieen = $this->getAllCategories();
+        $aSubCategorieen = $this->getAllSubCategories();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bwijzigSluitingsdag'));
     }
+
+
 
     public function deleteSluitingsdag(Request $request){
         $oInstellingen = new Instellingen_Model();

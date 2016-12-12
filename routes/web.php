@@ -65,6 +65,12 @@ Route::post('/personeel/nieuweSluitingsdag', [
     'as' => 'nieuweSluitingsdag'
 ]);
 
+// Dashboard Instellingen wijzig sluitingsdag form POST
+Route::post('/personeel/wijzigSluitingsdag', [
+    'uses' => 'Personeel_Controller@wijzigSluitingsdag',
+    'as' => 'wijzigSluitingsdag'
+]);
+
 // Dashboard Instellingen verwijder sluitingsdag form POST
 Route::post('/personeel/deleteSluitingsdag', [
     'uses' => 'Personeel_Controller@deleteSluitingsdag',
