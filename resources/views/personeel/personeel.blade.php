@@ -21,7 +21,26 @@
 @endsection
 
 @section('content')
+<script>
+    function Wijzig(naam, gebruikersnaam, actief) {
+        $(document).ready(function(){
 
+            $('#myModal').modal('show');
+            $('#frmHeader').text("Wijzigen van personeel( " + gebruikersnaam+")");
+            $('#frmPersoneelNaam').val(naam);
+            $('#frmPersoneelGebruikersnaam').val(gebruikersnaam);
+
+
+
+            if (actief == true){
+                $('#frmPersoneelActief').attr('checked', true);
+            }else{
+                $('#frmPersoneelActief').attr('checked', false);
+            }
+        });
+    }
+
+</script>
     <div class="row">
 
         <div class="col-md-2"></div>
@@ -95,4 +114,49 @@
         </div>
 
     </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="frmHeader"></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal"  action="{{route('wijzigPersoneel')}}" method="post">
+                    <div class="form-group" style="padding: 10px;">
+                        <label for="frmPersoneelNaam">Naam:</label>
+                        <input type="text" class="form-control" id="frmPersoneelNaam" name="frmWijzigPersoneelNaam" required>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group" style="padding: 10px;">
+                                <label for="frmPersoneelGebruikersNaam">Geef een prijs:</label>
+                                <input type="text" class="form-control" id="frmPersoneelGebruikersNaam"  name="frmWijzigPersoneelGebruikersNaam" required>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label for="frmPersoneelActief" >Actief</label>
+                                <input class="form-control" type="checkbox" name="frmWijzigPersoneelActief" id="frmPersoneelActief" checked>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Beveiliging als iemand uw session key heeft-->
+                    <input type="hidden" name="_token" value="{{Session::token()}}">
+
+                    <button type="submit" name="frmPersoneelSubmit" class="btn btn-primary">Aanpassen</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 @endsection

@@ -46,7 +46,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nieuw... <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            {{--<li><a href="/personeel/nieuwPersoneelsLid">Nieuw personeelslid</a></li>--}}
+                            <li><a href="/personeel/nieuwPersoneelsLid">Nieuw personeelslid</a></li>
 
                             <li><a href="/personeel/nieuweReservatieRest">Nieuwe reservatie(restaurant)</a></li>
                             <li><a href="/personeel/nieuweReservatieRond">Nieuwe reservatie(rondleiding)</a></li>
@@ -58,7 +58,7 @@
                         </ul>
                     </li>
 
-                    {{--<li><a href="/personeel/personeel">Personeel</a></li>--}}
+                    <li><a href="/personeel/personeel">Personeel</a></li>
                     <li><a href="/personeel/reservaties">Reservaties</a></li>
                     <li><a href="/personeel/news">Nieuws items</a></li>
                     <li><a href="/personeel/menuItems">Menu items</a></li>
