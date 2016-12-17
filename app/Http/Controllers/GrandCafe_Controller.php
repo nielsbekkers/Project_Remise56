@@ -42,8 +42,8 @@ class GrandCafe_Controller extends Controller
         );
         $mailto = $request['frmReservatieRestEmail'];
 
-        //$mailresult = $oReservatie->stuurBevestigingsmail($mailto, $data);
-        $mailresult=true;
+        $mailresult = $oReservatie->stuurBevestigingsmail($mailto, $data);
+        
         if($mailresult == false) {
 
         } else {
