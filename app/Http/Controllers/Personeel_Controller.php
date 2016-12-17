@@ -98,16 +98,13 @@ class Personeel_Controller extends Controller
             case "verwijderReservatie" :
                 return 'nothing';
                 break;
-
-
             case "instellingen":
                 $aDagen = $this->getSluitingsDagen();
                 $aCategorieen = $this->getAllCategories();
                 $aSubCategorieen = $this->getAllSubCategories();
-                return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen' ));
-
+                $alleMaxAantallen = $this->getMaxAantalPersonen();
+                return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen','alleMaxAantallen' ));
                 break;
-
             case "news":
                 $menuTop = "Nieuws Items";
                 $newsItems = $this->getAllNews();
@@ -204,6 +201,29 @@ class Personeel_Controller extends Controller
         return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteCategorie'));
     }
 
+    public function getMaxAantalPersonen(){
+        $oInstellingen = new Instellingen_Model();
+        return $oInstellingen->getAlleMaxAantalPersonen();
+    }
+
+    public function wijzigLimietenAantalPersonen(Request $request){
+        $oInstellingen = new Instellingen_Model();
+        $bResult =$oInstellingen->wijzigLimietenAantalPersonen($request);
+
+        $aDagen = $this->getSluitingsDagen();
+        $aCategorieen = $this->getAllCategories();
+        $aSubCategorieen = $this->getAllSubCategories();
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
+        if($bResult){
+            return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteCategorie','alleMaxAantallen','bResult'));
+        }
+        else{
+            $bResult =false;
+            return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteCategorie','alleMaxAantallen','bResult'));
+        }
+    }
+
+
 
     /////////////////////////       De volgende functies worden gebruikt voor PERSONEEL mbv het Personeel_Model
     public function getPersoneel(){
@@ -226,7 +246,6 @@ class Personeel_Controller extends Controller
 
         return redirect()->back();
     }
-
 
     /////////////////////////       De volgende functies worden gebruikt voor RESERVATIES mbv het Reservatie_Model
     public function getReservaties(){

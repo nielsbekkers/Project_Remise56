@@ -93,6 +93,12 @@ class Reservatie_Model extends Model implements  Authenticatable
 
             $dDatetime->setTime($sTime1, $sTime2, 00);
 
+            $controleerShift = date_format($dDatetime , 'Y-m-d');
+            $controleerShift2 = new DateTime($controleerShift.' 18:00:00');
+            if($controleerShift2 <= $dDatetime){
+                $sShift="Diner";
+            }
+
             $iPersonen = $request["frmReservatieRestPersonen"];
             $sVoornaam = $request["frmReservatieRestVoornaam"];
             $sNaam = $request["frmReservatieRestAchternaam"];
@@ -100,11 +106,17 @@ class Reservatie_Model extends Model implements  Authenticatable
             $sEmail = $request["frmReservatieRestEmail"];
             $sNota = $request["frmReservatieRestNota"];
 
-            try {
-                DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift,  $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
-                $bResultaat = true;
-            } catch (\PDOException $e) {
-                $bResultaat = false;
+            $dag = date_format($dDatetime,'l');
+
+            if($this->controleerAantalPersonen($dag,$iPersonen,$dDatetime,$sShift)) {
+                try {
+                    DB::insert('insert into reservaties (datumtijd, email, shift, soort, aantal_personen, voornaam, naam, telefoon, nota, bevestigd, bevestigingscode ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array($dDatetime, $sEmail, $sShift, $sSoort, $iPersonen, $sVoornaam, $sNaam, $sTelefoon, $sNota, $sBevestigd, $sBevestingscode));
+                    $bResultaat = true;
+                } catch (\PDOException $e) {
+                    $bResultaat = false;
+                }
+            }else{
+                $bResultaat = [false];
             }
         }
 
@@ -198,6 +210,54 @@ class Reservatie_Model extends Model implements  Authenticatable
         } else {
             return false;
         }
+    }
+
+    private function controleerAantalPersonen($dagVanDeWeek,$aantalPersonen,$datum,$sShift){
+        switch ($dagVanDeWeek){
+            case "Monday":
+                $dag = "Maandag";
+                break;
+            case "Tuesday":
+                $dag = "Dinsdag";
+                break;
+            case "Wednesday":
+                $dag = "Woensdag";
+                break;
+            case "Thursday":
+                $dag = "Donderdag";
+                break;
+            case "Friday":
+                $dag = "Vrijdag";
+                break;
+            case "Saturday":
+                $dag = "Zaterdag";
+                break;
+            case "Sunday":
+                $dag = "Zondag";
+                break;
+        }
+
+        if($sShift == "Lunch"){
+            $shift =1;
+        }else{
+            $shift =2;
+        }
+
+        $sDatum = date_format($datum,'Y-m-d');
+        $sDatum2 = '%'.$sDatum.'%';
+
+        try {
+            $iAantalPersonen = DB::select('SELECT SUM(aantal_personen) as "AantalHuidigePersonen" FROM reservaties WHERE datumtijd LIKE ? AND shift = ?',array($sDatum2,$sShift));
+            $maxPersonen = DB::select('SELECT max_personen FROM maxPersonen WHERE dag=? AND shift = ?',array($dag,$shift));
+            if($iAantalPersonen[0]->AantalHuidigePersonen+$aantalPersonen > $maxPersonen[0]->max_personen){
+                return false;
+            }else{
+                return true;
+            }
+        } catch (\PDOException $e) {
+            $bResultaat = false;
+        }
+
     }
 
 }

@@ -175,6 +175,44 @@ class Instellingen_Model extends Model implements  Authenticatable
 
     }
 
+    public function getAlleMaxAantalPersonen(){
+        $errorReport = "";
+        $aMaxAantal = [];
+        try {
+            $aMaxAantal = DB::select('select * from maxPersonen');
+        } catch (\PDOException $e) {
+            $aMaxAantal = [];
+            $errorReport = "Kan geen verbinding maken met de database";
+        }
 
+        if (!empty($aMaxAantal)){
+            return $aMaxAantal;
+        }
+        else{
+            return $errorReport;
+        }
+
+    }
+
+    public function wijzigLimietenAantalPersonen(Request $request){
+        $aDagen = ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'];
+        try {
+            foreach ($aDagen as $sDag){
+                $naam = 'shift1'.$sDag;
+                DB::table('maxPersonen')
+                    ->where([['dag','=', $sDag],['shift','=',1]])
+                    ->update(array('max_personen'=>$request[$naam]));
+                $naam = 'shift2'.$sDag;
+                DB::table('maxPersonen')
+                    ->where([['dag','=', $sDag],['shift','=',2]])
+                    ->update(array('max_personen'=>$request[$naam]));
+            }
+            $bResultaat = true;
+        } catch (\PDOException $e) {
+            $bResultaat = false;
+        }
+
+        return $bResultaat;
+    }
 
 }

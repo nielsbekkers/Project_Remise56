@@ -42,14 +42,19 @@ class GrandCafe_Controller extends Controller
         );
         $mailto = $request['frmReservatieRestEmail'];
 
-        $mailresult = $oReservatie->stuurBevestigingsmail($mailto, $data);
-
+        //$mailresult = $oReservatie->stuurBevestigingsmail($mailto, $data);
+        $mailresult=true;
         if($mailresult == false) {
 
         } else {
             $request['bevestigingsCode'] = $mailresult;
-            if($oReservatie->nieuwReservatieRestKlant($request)) {
-                return view('statisch.checkMail');
+            $result =$oReservatie->nieuwReservatieRestKlant($request);
+            if(is_array($result)) {
+                return view('statisch.maxPersonenBereikt');
+            }else{
+                if($result){
+                    return view('statisch.checkMail');
+                }
             }
         }
     }

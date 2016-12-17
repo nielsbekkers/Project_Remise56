@@ -316,25 +316,71 @@
                 </div>
             </div>
         </div>
-        {{--<div class="col-md-1"></div>--}}
     </div>
     <br>
 
     <!--Instellingen Aantal personen per shift-->
     <div class="row">
 
-        {{--<div class="col-md-1"></div>--}}
 
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Aantal bezoekers per shift</h3>
+                    <div class="row">
+                        <div class="col col-xs-6">
+                            <h3 class="panel-title">Aantal bezoekers per shift</h3>
+                        </div>
+                        <div class="col col-xs-6 text-right">
+                            <label for="submit-form" class="btn btn-sm btn-primary">Wijzig de limieten</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
+
+
+                    @if(isset($bResult) && $bResult == true)
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>Succes,</strong> De limieten zijn succesvol gewijzigd
+                        </div>
+
+                    @elseif(isset($bResult) && $bResult == false)
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>Fout! </strong> er is iets misgelopen bij het wijzigen van de limieten gelieve opnieuw te proberen
+                        </div>
+                    @endif
+                    <br>
+                            <form action="{{route('wijzigLimietenAantalPersonen')}}" method="post">
+                                <table class="table table-striped custab">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Dag</th>
+                                        <th>Middag Shift</th>
+                                        <th>Avond Shift</th>
+
+                                    </tr>
+                                    </thead>
+                                @foreach($alleMaxAantallen as $dagMax)
+                                    @if($dagMax->id % 2 != 0)
+                                        <tr>
+                                        <td><p>{{$dagMax->dag}}</p></td>
+                                    @endif
+                                    @if($dagMax->shift == 1)
+                                            <td><input class="form-control" type="text" name="shift1{{$dagMax->dag}}" id="middag" value="{{$dagMax->max_personen}}"></td>
+                                    @endif
+                                    @if($dagMax->shift == 2)
+                                         <td><input class="form-control" type="text" name="shift2{{$dagMax->dag}}" id="avond" value="{{$dagMax->max_personen}}"></td>
+                                        </tr>
+                        @endif
+                        @endforeach
+                        <input type="hidden" name="_token" value="{{Session::token()}}">
+                        <input type="submit" name="submit" id="submit-form" value="Wijzig de limieten" class="hidden"/>
+                        </form>
+                    </div>
                 </div>
-            </div>
         </div>
-        {{--<div class="col-md-1"></div>--}}
     </div>
     <br>
 
@@ -586,4 +632,5 @@
 
         </div>
     </div>
+
 @endsection

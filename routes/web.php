@@ -89,6 +89,12 @@ Route::post('/personeel/deleteCategorie', [
     'as' => 'deleteCategorie'
 ]);
 
+// Dashboard Instellingen wijzigen max personen per dag form POST
+Route::post('/personeel/wijzigLimietenAantalPersonen', [
+    'uses' => 'Personeel_Controller@wijzigLimietenAantalPersonen',
+    'as' => 'wijzigLimietenAantalPersonen'
+]);
+
 
 
 // Dashboard Nieuwe reservatie restaurant form POST
