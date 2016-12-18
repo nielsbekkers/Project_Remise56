@@ -115,7 +115,9 @@ class Personeel_Controller extends Controller
                 echo json_encode($this->getAlleActieveSluitingsdagen());
 
                 break;
-
+            case "nieuwPersoneelsLid":
+                return view('personeel.nieuwPersoneelsLid', compact('bResult'));
+                break;
             default :
                 return view('personeel.reservaties');
 //                return view('personeel.inloggen');
@@ -242,7 +244,7 @@ class Personeel_Controller extends Controller
 
     public function verwijderPersoneelsLid($id){
         $personeelsLid = new Personeel_Model();
-        $personeelsLid->verwijderPersoneel($id);
+        $personeelsLid->verwijderPersoneelsLid($id);
 
         return redirect()->back();
     }
@@ -502,6 +504,16 @@ class Personeel_Controller extends Controller
 
         return redirect()->back();
 
+    }
+
+
+    public function wijzigPersoneel(Request $request){
+        $oPersoneelsLid= new Personeel_Model();
+        $bResult = $oPersoneelsLid->wijzigPersoneelsLid($request,$request["frmNieuwPersoneelid"]);
+
+        $aPersoneelsLeden = $this->getPersoneel();
+
+        return view ('personeel.personeel', compact ('bResult','aPersoneelsLeden'));
     }
 
 }

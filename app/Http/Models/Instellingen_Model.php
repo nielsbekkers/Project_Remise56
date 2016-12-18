@@ -78,7 +78,6 @@ class Instellingen_Model extends Model implements  Authenticatable
 
     }
 
-
     public function deleteSluitingsdag(Request $request){
         $id = $request["frmDeleteSluitingsdagId"];
         try{
@@ -120,7 +119,6 @@ class Instellingen_Model extends Model implements  Authenticatable
 
         return $bResultaat;
     }
-
 
     public function nieuweCategorie(Request $request){
         $sKeuze = $request["frmNieuweCategorieKeuze"];

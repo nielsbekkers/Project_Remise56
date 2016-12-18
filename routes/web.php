@@ -175,3 +175,14 @@ Route::post('/personeel/wijzigMenuItem', [
 Route::get('/personeel/personeel', 'Personeel_Controller@getPersoneel');
 
 Route::get('/personeel/verwijderPersoneelsLid/{id}', 'Personeel_Controller@verwijderPersoneelsLid');
+
+Route::post('/personeel/wijzigPersoneel', [
+    'uses' => 'Personeel_Controller@wijzigPersoneel',
+    'as' => 'wijzigPersoneel'
+]);
+
+Route::post('/personeel/nieuwPersoneelsLid', [
+    'uses' => 'Personeel_Controller@nieuwPersoneelsLid',
+    'as' => 'nieuwPersoneelsLid'
+]);
+

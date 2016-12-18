@@ -20,7 +20,6 @@ class Personeel_Model extends Model implements  Authenticatable
 
     public function getPersoneel(){
         $errorReport = "";
-        $reservaties = [];
         try {
             $reservaties = DB::select('select * from personeel', [1]);
         } catch (\PDOException $e) {
@@ -40,10 +39,11 @@ class Personeel_Model extends Model implements  Authenticatable
 
         $sNaam = $request["frmNieuwPersoneelNaam"];
         $sGebruikersnaam = $request["frmNieuwPersoneelGebruikersnaam"];
+        $sAccessLevel = $request["frmNieuwPersoneelAccesLevel"];
         $sWachtwoord = bcrypt($request["frmNieuwPersoneelWachtwoord"]);
 
         try {
-            DB::insert('insert into personeel (naam, gebruikersnaam, wachtwoord) values (?, ?, ?)', array($sNaam, $sGebruikersnaam, $sWachtwoord));
+            DB::insert('insert into personeel (naam, gebruikersnaam, wachtwoord,accesslevel) values (?, ?, ?,?)', array($sNaam, $sGebruikersnaam, $sWachtwoord,$sAccessLevel));
             $bResultaat = true;
         } catch (\PDOException $e) {
             $bResultaat = false;
@@ -57,13 +57,14 @@ class Personeel_Model extends Model implements  Authenticatable
     }
 
     public function wijzigPersoneelsLid(Request $request,$id){
-        $sNaam = $request["frmNieuwPersoneelNaam"];
-        $sGebruikersnaam = $request["frmNieuwPersoneelGebruikersnaam"];
-        $sWachtwoord = bcrypt($request["frmNieuwPersoneelWachtwoord"]);
+        $sNaam = $request["frmPersoneelNaam"];
+        $sGebruikersnaam = $request["frmPersoneelGebruikersnaam"];
+        $sWachtwoord = bcrypt($request["frmPersoneelWachtwoord"]);
+        $sAccessLevel = $request["frmPersoneelAccesLevel"];
 
         try {
             DB::table('personeel')->where('id','=',$id)->update(
-                ['naam'=> $sNaam,'gebruikersnaam' => $sGebruikersnaam,'wachtwoord' => $sWachtwoord]
+                ['naam'=> $sNaam,'gebruikersnaam' => $sGebruikersnaam,'wachtwoord' => $sWachtwoord,'acceslevel' => $sAccessLevel]
             );
             $bResultaat = true;
         } catch (\PDOException $e) {

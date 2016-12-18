@@ -58,7 +58,6 @@
                         </ul>
                     </li>
 
-                    <li><a href="/personeel/personeel">Personeel</a></li>
                     <li><a href="/personeel/reservaties">Reservaties</a></li>
                     <li><a href="/personeel/news">Nieuws items</a></li>
                     <li><a href="/personeel/menuItems">Menu items</a></li>

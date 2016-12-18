@@ -48,7 +48,14 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Personeelsleden</h3>
+                <div class="row">
+                    <div class="col col-xs-6">
+                        <h3 class="panel-title">Personeelsleden</h3>
+                    </div>
+                    <div class="col col-xs-6 text-right">
+                        <a type="button" class="btn btn-sm btn-primary" href="{{route("nieuwPersoneelsLid")}}">Voeg Personeelslid toe</a>
+                    </div>
+                </div>
                 </div>
             <div class="panel-body">
             <table class="table table-striped custab">
@@ -70,8 +77,13 @@
                             <td><?php echo $persoon->id ;?></td>
                             <td><?php echo $persoon->naam;?></td>
                             <td><?php echo $persoon->gebruikersnaam; ?></td>
-                            <td>1 (Personeelslid) </td>
-                            <td><a href="#" class="btn btn-warning btn-xs" onclick="Wijzig()"><span class="glyphicon glyphicon-remove"></span> Wijzigen</a></td>
+                            @if($persoon->accesslevel ==1)
+                                <td>{{"1 (Personeelslid)"}}</td>
+                            @else
+                                <td>{{"2 (Administrator)"}}</td>
+                            @endif
+
+                            <td><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#wijzigModal{{$persoon->id}}"><span class="glyphicon glyphicon-remove"></span> Wijzigen</button></td>
                             <td><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$persoon->id}}"><span class="glyphicon glyphicon-remove"></span> Verwijderen</button></td>
                         </tr>
 
@@ -115,48 +127,69 @@
 
     </div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+@if(!empty($aPersoneel))
+    @foreach($aPersoneel as $persoon)
+        <div class="modal fade" id="wijzigModal{{$persoon->id}}" role="dialog">
+            <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="frmHeader"></h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal"  action="{{route('wijzigPersoneel')}}" method="post">
-                    <div class="form-group" style="padding: 10px;">
-                        <label for="frmPersoneelNaam">Naam:</label>
-                        <input type="text" class="form-control" id="frmPersoneelNaam" name="frmWijzigPersoneelNaam" required>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="frmHeader"> Wijzigen van {{$persoon->naam}}</h4>
                     </div>
-
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="modal-body">
+                        <form class="form-horizontal"  action="{{route('wijzigPersoneel')}}" method="post">
                             <div class="form-group" style="padding: 10px;">
-                                <label for="frmPersoneelGebruikersNaam">Geef een prijs:</label>
-                                <input type="text" class="form-control" id="frmPersoneelGebruikersNaam"  name="frmWijzigPersoneelGebruikersNaam" required>
+                                <label for="frmPersoneelNaam">Naam:</label>
+                                <input type="text" class="form-control" id="frmPersoneelNaam" name="frmWijzigPersoneelNaam" value="{{$persoon->naam}}" required>
                             </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="frmPersoneelActief" >Actief</label>
-                                <input class="form-control" type="checkbox" name="frmWijzigPersoneelActief" id="frmPersoneelActief" checked>
+
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group" style="padding: 10px;">
+                                        <label for="frmPersoneelGebruikersNaam">Gebruikersnaam:</label>
+                                        <input type="text" class="form-control" id="frmPersoneelGebruikersNaam"  name="frmWijzigPersoneelGebruikersNaam" value="{{$persoon->gebruikersnaam}}" required>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group" style="padding: 10px;">
+                                    <label for="wachtwoord" >Wachtwoord</label>
+                                    <input type="password" name="frmPersoneelWachtwoord" id="wachtwoord" value="{{$persoon->wachtwoord}}" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group" style="padding: 10px;">
+                            <label for="Level" >Access level</label>
+                                    <select name="frmPersoneelAccesLevel" id="Level" required>
+                                        <option value="1">1 (Personeelslid)</option>
+                                        <option value="2">2 (Admin)</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group" style="display:none;">
+                                    <input type="password" name="frmPersoneelid" id="id" value="{{$persoon->id}}" required>
+                                </div>
+                            </div>
+
+                            <!-- Beveiliging als iemand uw session key heeft-->
+                            <input type="hidden" name="_token" value="{{Session::token()}}">
+
+                            <button type="submit" name="submit" class="btn btn-primary">Wijzigen</button>
+                        </form>
                     </div>
 
+                </div>
 
-                    <!-- Beveiliging als iemand uw session key heeft-->
-                    <input type="hidden" name="_token" value="{{Session::token()}}">
-
-                    <button type="submit" name="frmPersoneelSubmit" class="btn btn-primary">Aanpassen</button>
-                </form>
             </div>
-
         </div>
-
-    </div>
-</div>
+@endforeach
+@endif
 @endsection

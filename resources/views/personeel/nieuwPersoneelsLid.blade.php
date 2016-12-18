@@ -39,11 +39,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Actief" >Actief</label>
-                    <input class="form-control" type="checkbox" name="frmNieuwPersoneelActief" id="actief" checked>
-                </div>
-
-                <div class="form-group">
                     <label for="Level" >Acces level</label>
                     <select class="form-control" name="frmNieuwPersoneelAccesLevel" id="Level" required>
                         <option value="1">1 (Personeelslid)</option>
