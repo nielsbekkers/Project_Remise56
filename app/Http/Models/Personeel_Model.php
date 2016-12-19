@@ -42,8 +42,11 @@ class Personeel_Model extends Model implements  Authenticatable
         $sAccessLevel = $request["frmNieuwPersoneelAccesLevel"];
         $sWachtwoord = bcrypt($request["frmNieuwPersoneelWachtwoord"]);
 
+        $now   = new \DateTime();
+        $modifiedDate = $now->format('Y-m-d H:i:s');
+
         try {
-            DB::insert('insert into personeel (naam, gebruikersnaam, wachtwoord,accesslevel) values (?, ?, ?,?)', array($sNaam, $sGebruikersnaam, $sWachtwoord,$sAccessLevel));
+            DB::insert('insert into personeel (created_at,updated_at,naam, gebruikersnaam, wachtwoord,accesslevel) values (?,?,?, ?, ?,?)', array($modifiedDate,$modifiedDate,$sNaam, $sGebruikersnaam, $sWachtwoord,$sAccessLevel));
             $bResultaat = true;
         } catch (\PDOException $e) {
             $bResultaat = false;
@@ -57,14 +60,15 @@ class Personeel_Model extends Model implements  Authenticatable
     }
 
     public function wijzigPersoneelsLid(Request $request,$id){
-        $sNaam = $request["frmPersoneelNaam"];
-        $sGebruikersnaam = $request["frmPersoneelGebruikersnaam"];
-        $sWachtwoord = bcrypt($request["frmPersoneelWachtwoord"]);
-        $sAccessLevel = $request["frmPersoneelAccesLevel"];
+        $sNaam = $request["frmWijzigPersoneelNaam"];
+        $sGebruikersnaam = $request["frmWijzigPersoneelGebruikersNaam"];
+        $sAccessLevel = $request["frmWijzigPersoneelAccesLevel"];
+        $now   = new \DateTime();
+        $modifiedDate = $now->format('Y-m-d H:i:s');
 
         try {
-            DB::table('personeel')->where('id','=',$id)->update(
-                ['naam'=> $sNaam,'gebruikersnaam' => $sGebruikersnaam,'wachtwoord' => $sWachtwoord,'acceslevel' => $sAccessLevel]
+            DB::table('personeel')->where('id',$id)->update(array(
+                'naam'=> $sNaam,'updated_at'=>$modifiedDate,'gebruikersnaam' => $sGebruikersnaam,'accesslevel' => $sAccessLevel)
             );
             $bResultaat = true;
         } catch (\PDOException $e) {

@@ -509,11 +509,11 @@ class Personeel_Controller extends Controller
 
     public function wijzigPersoneel(Request $request){
         $oPersoneelsLid= new Personeel_Model();
-        $bResult = $oPersoneelsLid->wijzigPersoneelsLid($request,$request["frmNieuwPersoneelid"]);
+        $bResult = $oPersoneelsLid->wijzigPersoneelsLid($request,$request["frmWijzigPersoneelid"]);
 
-        $aPersoneelsLeden = $this->getPersoneel();
+        $aPersoneel = $this->getPersoneel();
 
-        return view ('personeel.personeel', compact ('bResult','aPersoneelsLeden'));
+        return view ('personeel.personeel', compact ('aPersoneel','bResult'));
     }
 
 }
