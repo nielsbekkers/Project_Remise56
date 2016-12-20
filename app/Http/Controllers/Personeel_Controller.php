@@ -154,7 +154,8 @@ class Personeel_Controller extends Controller
         $aDagen = $this->getSluitingsDagen();
         $aCategorieen = $this->getAllCategories();
         $aSubCategorieen = $this->getAllSubCategories();
-        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweSluitingsdag'));
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweSluitingsdag','alleMaxAantallen'));
 
     }
 
@@ -165,7 +166,8 @@ class Personeel_Controller extends Controller
         $aDagen = $this->getSluitingsDagen();
         $aCategorieen = $this->getAllCategories();
         $aSubCategorieen = $this->getAllSubCategories();
-        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bwijzigSluitingsdag'));
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bwijzigSluitingsdag','alleMaxAantallen'));
     }
 
 
@@ -177,7 +179,8 @@ class Personeel_Controller extends Controller
         $aDagen = $this->getSluitingsDagen();
         $aCategorieen = $this->getAllCategories();
         $aSubCategorieen = $this->getAllSubCategories();
-        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteSluitingsdag'));
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteSluitingsdag','alleMaxAantallen'));
     }
 
 
@@ -201,7 +204,8 @@ class Personeel_Controller extends Controller
         $aDagen = $this->getSluitingsDagen();
         $aCategorieen = $this->getAllCategories();
         $aSubCategorieen = $this->getAllSubCategories();
-        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteCategorie'));
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bdeleteCategorie','alleMaxAantallen'));
     }
 
     public function getMaxAantalPersonen(){
