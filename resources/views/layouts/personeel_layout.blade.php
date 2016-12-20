@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <title>
         @yield('title')
     </title>
+
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     @yield('extra_css')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+
+
     {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
 
     <script src="../js/jquery-ui.js"></script>
+
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="../css/reservatiestyle.css">
+
+
+
+
+
     @yield('scripts')
+
+
+    <script>
+        setInterval(function(){
+
+            $.get( "/melding" , function( data ) {
+                //console.log(data);
+                if(data.length == 0){
+                    console.log('Nope');
+                }else{
+                    for(var i = 0; i < data.length; i++){
+                        //console.log('Om ' + data[i].datumtijd + ' hebben ' + data[i].aantal_personen +' personen gereserveerd');
+                        alert('Om ' + data[i].datumtijd + ' hebben ' + data[i].aantal_personen +' personen gereserveerd');
+                    }
+                }
+            });
+
+        }, 60000);
+    </script>
+
+
+
 
 </head>
 <body>

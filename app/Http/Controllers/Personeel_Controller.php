@@ -21,6 +21,7 @@ use App\Http\Models\News_Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -514,6 +515,37 @@ class Personeel_Controller extends Controller
         $aPersoneel = $this->getPersoneel();
 
         return view ('personeel.personeel', compact ('aPersoneel','bResult'));
+    }
+
+    public function melding()
+    {
+        $errorReport = "";
+
+        try{
+            $reservaties = DB::select('select id,aantal_personen, datumtijd, melding from reservaties where datumtijd - INTERVAL 30 MINUTE < NOW() and melding = 0', [1]);
+        } catch (\PDOException $e) {
+            $reservaties = [];
+            $errorReport = "Kan geen verbinding maken met de database";
+        }
+
+        if($reservaties != null) {
+            try{
+                for($i = 0; $i < count($reservaties); $i++){
+                    $reservatiesUpdate = DB::table('reservaties')
+                        ->where('id', $reservaties[$i]->id)
+                        ->update(['melding' => 1]);
+                }
+            }
+            catch (\PDOException $e) {
+                $reservaties = [];
+                $errorReport = "Kan geen verbinding maken met de database";
+            }
+            return $reservaties;
+        }
+        else {
+            return $reservaties;
+        }
+
     }
 
 }

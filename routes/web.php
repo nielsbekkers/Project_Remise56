@@ -186,3 +186,7 @@ Route::post('/personeel/nieuwPersoneelsLid', [
     'as' => 'nieuwPersoneelsLid'
 ]);
 
+
+//Melding genereren in het /personeel dashboard, 30 minuten voor reservatie
+Route::get('melding','Personeel_Controller@melding');
+
