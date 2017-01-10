@@ -58,6 +58,18 @@
                 </div>
                 </div>
             <div class="panel-body">
+                @if(isset($bResult) && $bResult == true)
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Succes,</strong> De wijziging is succesvol doorgevoerd
+                    </div>
+
+                @elseif(isset($bResult) && $bResult == false)
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Fout! </strong> er is iets misgelopen bij het wijzigen van de persoon gelieve opnieuw te proberen
+                    </div>
+                @endif
             <table class="table table-striped custab">
                 <thead>
                 <tr>
@@ -142,7 +154,7 @@
                         <form class="form-horizontal"  action="{{route('wijzigPersoneel')}}" method="post">
                             <div class="form-group" style="padding: 10px;">
                                 <label for="frmPersoneelNaam">Naam:</label>
-                                <input type="text" class="form-control" id="frmPersoneelNaam" name="frmWijzigPersoneelNaam" value="{{$persoon->naam}}" required>
+                                <input type="text" class="form-control" id="frmWijzigPersoneelNaam" name="frmWijzigPersoneelNaam" value="{{$persoon->naam}}" required>
                             </div>
 
 
@@ -150,24 +162,22 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group" style="padding: 10px;">
                                         <label for="frmPersoneelGebruikersNaam">Gebruikersnaam:</label>
-                                        <input type="text" class="form-control" id="frmPersoneelGebruikersNaam"  name="frmWijzigPersoneelGebruikersNaam" value="{{$persoon->gebruikersnaam}}" required>
+                                        <input type="text" class="form-control" id="frmWijzigPersoneelGebruikersNaam"  name="frmWijzigPersoneelGebruikersNaam" value="{{$persoon->gebruikersnaam}}" required>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group" style="padding: 10px;">
-                                    <label for="wachtwoord" >Wachtwoord</label>
-                                    <input type="password" name="frmPersoneelWachtwoord" id="wachtwoord" value="{{$persoon->wachtwoord}}" required>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group" style="padding: 10px;">
                             <label for="Level" >Access level</label>
-                                    <select name="frmPersoneelAccesLevel" id="Level" required>
-                                        <option value="1">1 (Personeelslid)</option>
-                                        <option value="2">2 (Admin)</option>
+                                    <select name="frmWijzigPersoneelAccesLevel" id="Level" required>
+                                        @if($persoon->accesslevel == 1)
+                                            <option value="1" selected>1 (Personeelslid)</option>
+                                            <option value="2">2 (Admin)</option>
+                                        @else
+                                            <option value="1">1 (Personeelslid)</option>
+                                            <option value="2" selected>2 (Admin)</option>
+                                        @endif
 
                                     </select>
                                 </div>
@@ -175,7 +185,7 @@
 
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group" style="display:none;">
-                                    <input type="password" name="frmPersoneelid" id="id" value="{{$persoon->id}}" required>
+                                    <input type="password" name="frmWijzigPersoneelid" id="frmWijzigPersoneelid" value="{{$persoon->id}}" required>
                                 </div>
                             </div>
 
