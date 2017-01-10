@@ -25,18 +25,23 @@ Route::get('rondleiding','rondleiding_Controller@home');
 
 Route::get('editMenu' , 'Menu_Controller@editMenu');
 
+Route::post('/createReservationClient', [
+    'uses' => 'Reservation_Controller@createReservationClient',
+    'as' => 'createReservationClient'
+]);
 
 //////GrandCafe//////
-Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
 Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
-
+Route::get('/grandcafe', 'GrandCafe_Controller@getPagina');
 Route::post('/grandcafe/nieuweReservatieRestKlant', [
     'uses' => 'GrandCafe_Controller@nieuweReservatie',
     'as' => 'nieuweReservatieRestKlant'
 ]);
 
 
-/////// BROUWERIJ /////////
+
+
+//////// BROUWERIJ /////////
 Route::get('/brouwerij', 'Brouwerij_Controller@getPagina');
 Route::get('/brouwerij/{paginaNaam}', 'Brouwerij_Controller@getPagina');
 
@@ -186,3 +191,16 @@ Route::post('/personeel/nieuwPersoneelsLid', [
     'as' => 'nieuwPersoneelsLid'
 ]);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+//Route::group(['middleware' => 'web'], function () {
+//    Route::auth();
+//    //Route::get('/', 'PagesController@index');
+//    Route::get('terms-of-service', 'PagesController@terms');
+//    Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
+//    Route::get('privacy', 'PagesController@privacy');
+//    Route::get('combo', 'PagesController@combo');
+//});
