@@ -98,7 +98,7 @@
                     <li><a href="/personeel/personeel">Personeelsleden</a></li>
                     <li><a href="/personeel/instellingen">Instellingen</a></li>
                     {{--<li><a href="/personeel/inloggen">Inloggen</a></li>--}}
-                    {{--<li><a href="/">Uitloggen</a></li>--}}
+                    <li><a href="/personeel/logout">Uitloggen</a></li>
 
 
                 </ul>

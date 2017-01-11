@@ -59,6 +59,7 @@ Route::get('personeel/gallery/delete/{id}', 'Personeel_Controller@deleteGallery'
 
 /////// DASHBOARD (Personeel_Controller)/////////
 
+Route::get('/personeel/logout', 'Personeel_Controller@logout');
 Route::get('/personeel', 'Personeel_Controller@getHome');
 Route::get('/personeel/{paginaNaam}', 'Personeel_Controller@getPagina');
 

@@ -31,6 +31,10 @@ use Illuminate\Support\Facades\Validator;
 class Personeel_Controller extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function getHome(){
         return view('personeel.nieuweReservatieRestaurant');
@@ -550,6 +554,11 @@ class Personeel_Controller extends Controller
             return $reservaties;
         }
 
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/');
     }
 
 }
