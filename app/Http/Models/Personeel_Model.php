@@ -23,14 +23,15 @@ class Personeel_Model extends Model implements  Authenticatable
     public function getPersoneel(){
         $errorReport = "";
         try {
-            $reservaties = DB::select('select * from personeel', [1]);
+            //$aPersoneel = DB::select('select * from personeel', [1]);
+            $aPersoneel = DB::select('select * from users', [1]);
         } catch (\PDOException $e) {
-            $reservaties = [];
+            $aPersoneel = [];
             $errorReport = "Kan geen verbinding maken met de database";
         }
 
-        if (!empty($reservaties)){
-            return $reservaties;
+        if (!empty($aPersoneel)){
+            return $aPersoneel;
         }
         else{
             return $errorReport;
@@ -60,9 +61,11 @@ class Personeel_Model extends Model implements  Authenticatable
                 'password' => bcrypt($data['password']),
                 'editor' => $data['function']
             ]);
-            //var_dump($user->hidden);
+            var_dump($user->hidden);
+            echo 'ok';
         } else {
-            //var_dump($obj->invalid());
+            var_dump($obj->invalid());
+            echo 'nietok';
         }
 
 //        $sNaam = $request["frmNieuwPersoneelNaam"];
@@ -84,19 +87,16 @@ class Personeel_Model extends Model implements  Authenticatable
     }
 
     public function verwijderPersoneelsLid($id){
-        DB::table('personeel')->where('id','=',$id)->delete();
+        DB::table('users')->where('id','=',$id)->delete();
     }
 
     public function wijzigPersoneelsLid(Request $request,$id){
         $sNaam = $request["frmWijzigPersoneelNaam"];
         $sGebruikersnaam = $request["frmWijzigPersoneelGebruikersNaam"];
-        $sAccessLevel = $request["frmWijzigPersoneelAccesLevel"];
-        $now   = new \DateTime();
-        $modifiedDate = $now->format('Y-m-d H:i:s');
 
         try {
-            DB::table('personeel')->where('id',$id)->update(array(
-                'naam'=> $sNaam,'updated_at'=>$modifiedDate,'gebruikersnaam' => $sGebruikersnaam,'accesslevel' => $sAccessLevel)
+            DB::table('users')->where('id',$id)->update(array(
+                    'name'=> $sNaam, 'email' => $sGebruikersnaam,)
             );
             $bResultaat = true;
         } catch (\PDOException $e) {

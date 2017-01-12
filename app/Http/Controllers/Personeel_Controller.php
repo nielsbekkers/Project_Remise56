@@ -56,9 +56,9 @@ class Personeel_Controller extends Controller
 
                 break;
 
-/*            case "nieuwPersoneelsLid" :
-                return view('personeel.nieuwPersoneelsLid');
-                break;*/
+            /*            case "nieuwPersoneelsLid" :
+                            return view('personeel.nieuwPersoneelsLid');
+                            break;*/
 
             case "nieuweReservatieRest" :
                 return view('personeel.nieuweReservatieRestaurant');
@@ -259,7 +259,7 @@ class Personeel_Controller extends Controller
         $personeelsLid = new Personeel_Model();
         $personeelsLid->verwijderPersoneelsLid($id);
 
-        return redirect()->back();
+        return redirect('/personeel/personeel');
     }
 
     /////////////////////////       De volgende functies worden gebruikt voor RESERVATIES mbv het Reservatie_Model
@@ -297,7 +297,7 @@ class Personeel_Controller extends Controller
 
     public function getAllCategories(){
         $oMenuItem = new MenuItem_Model();
-         return $oMenuItem->getAlleCategorieen();
+        return $oMenuItem->getAlleCategorieen();
     }
 
     public function getAllSubCategories()
@@ -311,8 +311,7 @@ class Personeel_Controller extends Controller
         $categorien = $oMenuItem->getAllCategories();
         $subcategorien = $oMenuItem->getAllSubCategories();
         $alleMaxAantallen = $this->getMaxAantalPersonen();
-
-       return view('personeel.nieuwMenuItem', compact('bResult','categorien','subcategorien','alleMaxAantallen'));
+        return view('personeel.nieuwMenuItem', compact('bResult','categorien','subcategorien','alleMaxAantallen'));
     }
 
     public function wijzigMenuItem(Request $request){
@@ -326,13 +325,13 @@ class Personeel_Controller extends Controller
 
 
 
-     public function verwijderMenuItem($id){
-         $menuItem = new MenuItem_Model();
+    public function verwijderMenuItem($id){
+        $menuItem = new MenuItem_Model();
 
-         $menuItem->verwijderMenuItem($id);
+        $menuItem->verwijderMenuItem($id);
 
-         return redirect()->back();
-     }
+        return redirect()->back();
+    }
 
 
 
@@ -369,7 +368,7 @@ class Personeel_Controller extends Controller
         $newsItems = $this->getAllNews();
         if($countOfNewsitems == 3) {
             $countError = "Er zijn al 3 nieuws items aangemaakt dit is het maximum";
-           return view('personeel.newsitems',compact('newsItems','countError','menuTop'));
+            return view('personeel.newsitems',compact('newsItems','countError','menuTop'));
         }else{
             if ($request['foto'] != null) {
                 if (Input::file('foto')->isValid()) {
