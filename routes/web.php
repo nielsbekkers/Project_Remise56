@@ -192,14 +192,17 @@ Route::post('/personeel/nieuwPersoneelsLid', [
     'as' => 'nieuwPersoneelsLid'
 ]);
 
+Route::post('/personeel/registreer', 'Auth\RegisterController@register');
+
 
 //Melding genereren in het /personeel dashboard, 30 minuten voor reservatie
 Route::get('melding','Personeel_Controller@melding');
 
 
 Auth::routes();
+//Route::get('/register','Home_Controller@home');
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'Home_Controller@home');
 
 //Route::group(['middleware' => 'web'], function () {
 //    Route::auth();
