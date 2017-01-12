@@ -22,3 +22,10 @@ php artisan config:cache
 Daarna de database dump installeren
 
 Als er fouten zijn met de database verbinding, controleer dan in config/shop.php of de database instellingen juist staan.
+
+## Login doen werken:
+
+Voer dit commando uit:
+```
+php artisan make:auth
+```
