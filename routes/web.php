@@ -200,15 +200,6 @@ Route::get('melding','Personeel_Controller@melding');
 
 
 Auth::routes();
-//Route::get('/register','Home_Controller@home');
+Route::get('/register','Home_Controller@home');
 
 Route::get('/home', 'Home_Controller@home');
-
-//Route::group(['middleware' => 'web'], function () {
-//    Route::auth();
-//    //Route::get('/', 'PagesController@index');
-//    Route::get('terms-of-service', 'PagesController@terms');
-//    Route::get('/grandcafe/{paginaNaam}', 'GrandCafe_Controller@getPagina');
-//    Route::get('privacy', 'PagesController@privacy');
-//    Route::get('combo', 'PagesController@combo');
-//});

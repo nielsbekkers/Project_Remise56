@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Jan 12, 2017 at 04:00 PM
+-- Generation Time: Jan 12, 2017 at 11:05 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -27,7 +27,7 @@ CREATE TABLE `gallery` (
   `published` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `gallery`
@@ -35,7 +35,8 @@ CREATE TABLE `gallery` (
 
 INSERT INTO `gallery` (`id`, `name`, `created_by`, `published`, `created_at`, `updated_at`) VALUES
 (7, 'Test gallerij', 1, 1, '2016-12-06 18:27:37', '2016-12-06 18:27:37'),
-(8, 'Winter 2016', 1, 1, '2016-12-06 18:59:38', '2016-12-06 18:59:38');
+(8, 'Winter 2016', 1, 1, '2016-12-06 18:59:38', '2016-12-06 18:59:38'),
+(9, 'Zomer in zicht', 1, 1, '2017-01-12 15:42:12', '2017-01-12 15:42:12');
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,7 @@ INSERT INTO `maxPersonen` (`id`, `dag`, `shift`, `max_personen`) VALUES
 (6, 'Woensdag', 2, 22),
 (7, 'Dondedag', 1, 11),
 (8, 'Donderdag', 2, 22),
-(9, 'Vrijdag', 1, 11),
+(9, 'Vrijdag', 1, 111),
 (10, 'Vrijdag', 2, 22),
 (11, 'Zaterdag', 1, 11),
 (12, 'Zaterdag', 2, 22),
@@ -380,7 +381,7 @@ CREATE TABLE `menuitem` (
   `beschrijving` varchar(255) NOT NULL,
   `zichtbaar` tinyint(1) NOT NULL,
   `prijs` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menuitem`
@@ -512,7 +513,8 @@ INSERT INTO `menuitem` (`id`, `subcategorie_id`, `titel`, `beschrijving`, `zicht
 (125, 13, 'Milkshake Vanille', ' ', 1, '4.00'),
 (126, 13, 'Milkshake Chocolade', ' ', 1, '4.00'),
 (127, 4, 'TestWijn', ' test wijn', 1, '3'),
-(129, 12, 'mosselen', ' ', 0, '1');
+(129, 12, 'mosselen', ' ', 0, '1'),
+(130, 2, 'bubbelbad', ' Dit is een bad vol bubbels', 1, '68');
 
 -- --------------------------------------------------------
 
@@ -543,7 +545,7 @@ CREATE TABLE `menuItem_subcategorie` (
   `id` int(11) NOT NULL,
   `categorie_id` int(11) NOT NULL,
   `subcategorie` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menuItem_subcategorie`
@@ -562,7 +564,8 @@ INSERT INTO `menuItem_subcategorie` (`id`, `categorie_id`, `subcategorie`) VALUE
 (10, 1, 'Aperitieven'),
 (11, 2, 'Fingerfood'),
 (12, 2, 'Hoofdgerechten'),
-(13, 2, 'Desserts');
+(13, 2, 'Desserts'),
+(14, 2, 'Ei op bord');
 
 -- --------------------------------------------------------
 
@@ -2285,7 +2288,7 @@ CREATE TABLE `mshop_product` (
   `mtime` datetime NOT NULL,
   `ctime` datetime NOT NULL,
   `editor` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `mshop_product`
@@ -2315,7 +2318,7 @@ CREATE TABLE `mshop_product_list` (
   `mtime` datetime NOT NULL,
   `ctime` datetime NOT NULL,
   `editor` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `mshop_product_list`
@@ -2383,7 +2386,7 @@ CREATE TABLE `mshop_product_property` (
   `mtime` datetime NOT NULL,
   `ctime` datetime NOT NULL,
   `editor` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3079,14 +3082,14 @@ CREATE TABLE `news` (
   `titel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `uitleg` text COLLATE utf8_unicode_ci NOT NULL,
   `padNaarFoto` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `titel`, `uitleg`, `padNaarFoto`) VALUES
-(16, 'Winter 2016', 'Het winterbier is uit', 'remiseblond2.jpeg');
+(17, 'Gelukkig nieuwjaar!', 'Gelukkig nieuwjaar!', 'image001.jpeg');
 
 -- --------------------------------------------------------
 
@@ -3148,7 +3151,7 @@ CREATE TABLE `reservaties` (
   `nota` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `bevestigd` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `bevestigingscode` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `reservaties`
@@ -3160,7 +3163,8 @@ INSERT INTO `reservaties` (`id`, `datumtijd`, `email`, `shift`, `soort`, `aantal
 (4, '2017-01-13 11:00:00', 'bielenalexander@gmail.com', 'Lunch', 'Restaurant', 1, 'alexander', 'bielen', '0000000000', '', '0', '6f0473643df1220df554717f9757ceaf'),
 (5, '2017-01-13 14:30:00', 'bielenalexander@gmail.com', 'Lunch', 'Restaurant', 2, 'alexander', 'bielen', '0000000000', '', '0', '6fada957bbc962d2640eb25c6f797447'),
 (6, '2017-01-13 16:00:00', 'bielenalexander@gmail.com', 'Lunch', 'Restaurant', 7, 'Alexander', 'Bielen', '0000000000', '', '1', '5a96621644ed0c5c649efa4e4f9ad9c6'),
-(7, '2017-01-12 18:00:00', 'bielenalexander@gmail.com', 'Diner', 'Restaurant', 1, 'Alexander', 'bielen', '0000000000', '', '1', 'ad6eb26ca0f07a3adc8462fa68186bb4');
+(7, '2017-01-12 18:00:00', 'bielenalexander@gmail.com', 'Diner', 'Restaurant', 1, 'Alexander', 'bielen', '0000000000', '', '1', 'ad6eb26ca0f07a3adc8462fa68186bb4'),
+(8, '2017-01-31 11:00:00', 'bielenalexander@gmail.com', 'Lunch', 'Restaurant', 1, 'Alexander', 'Bielen', '0000000000', '', '1', '5f94caefa5f56f1bba2e320fb06fabce');
 
 -- --------------------------------------------------------
 
@@ -3174,14 +3178,14 @@ CREATE TABLE `sluitingsdag` (
   `titel` varchar(255) NOT NULL,
   `beschrijving` varchar(255) NOT NULL,
   `actief` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sluitingsdag`
 --
 
 INSERT INTO `sluitingsdag` (`id`, `datum`, `titel`, `beschrijving`, `actief`) VALUES
-(1, '2016-12-14', 'Test', 'Test', 1);
+(2, '2017-01-31', 'Einde blok', 'De blok is gedaan! ', 1);
 
 -- --------------------------------------------------------
 
@@ -3275,7 +3279,7 @@ CREATE TABLE `users` (
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `editor` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -3283,8 +3287,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `label`, `name`, `remember_token`, `salutation`, `company`, `vatid`, `title`, `firstname`, `lastname`, `address1`, `address2`, `address3`, `postal`, `city`, `state`, `langid`, `countryid`, `telephone`, `telefax`, `website`, `email`, `password`, `birthday`, `vdate`, `status`, `updated_at`, `created_at`, `editor`) VALUES
 (1, 'Test user', 'demo-test', NULL, 'mr', 'Test company', 'DE999999999', '', 'Test', 'User', 'Test street', '1', '', '10000', 'Test city', 'CA', 'en', 'US', '', '', '', 'demo@example.com', '$2y$10$T91r.OD8tW3vYBo3KYdyNOZEM2ZXEGOjkWcPfnsB4BFkq0cTCaPx2', NULL, NULL, 1, '2016-12-08 08:34:41', '2016-12-08 08:34:41', 'core:setup'),
-(2, 'test@test.be', 'test@test.be', 'DILx7Yq3vqWygjJUEAha2qXcfjJRwa6zF01E9Hp07jZCVhXhcPtAbHBku01y', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '', '', '', 'test@test.be', '$2y$10$NpY8R8pa2eNIdBlzIj89ROT.bsu9YZfH2Q8cmPVG1AUECG9lfoOim', NULL, NULL, 1, '2016-12-20 11:32:27', '2016-12-18 17:40:16', 'aimeos:account'),
-(3, 'admin@remise.be', 'admin@remise.be', '0E1gKksxONLga9arZ51o14Fe7x6UzBD4np5OqcyBKQ3sLdyhUZCGV9tp73Zb', 'mr', '', '', '', 'Admin', 'Admin', 'Admin', '', '', '0000', 'Admin', '', 'en', 'BE', '', '', '', 'admin@remise.be', '$2y$10$He2zC0Ej0P37otC9mUYoPOs67/LeIXOkt/u5RK.lM66fue3srQ9ca', NULL, NULL, 1, '2017-01-12 14:04:56', '2017-01-10 15:26:58', 'admin@remise.be'),
+(3, 'admin@remise.be', 'admin@remise.be', 'G0GJI31wGztysqVfTwnDeIuiKUIOVXjl0ftQdM7cq5woa8ipZlXRxa4MI5B1', 'mr', '', '', '', 'Admin', 'Admin', 'Admin', '', '', '0000', 'Admin', '', 'en', 'BE', '', '', '', 'admin@remise.be', '$2y$10$He2zC0Ej0P37otC9mUYoPOs67/LeIXOkt/u5RK.lM66fue3srQ9ca', NULL, NULL, 1, '2017-01-12 22:02:33', '2017-01-10 15:26:58', 'admin@remise.be'),
 (4, NULL, 'alexander', 'fUgpeslrSs35FfE1iPYh99RjIBj1yzcDE1wDGTsCYrrueXofKOPmvtZshP1k', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ik@user.com', '$2y$10$pFlDFcBzjpnvXaoNYoPbNuTzTjoaeRRG/wfshLxFXqIvEwtwmdf3i', NULL, NULL, NULL, '2017-01-12 12:06:09', '2017-01-11 20:10:26', NULL),
 (5, NULL, 'Alessio', 'qqlRyokmBpdeKo56yOerTtit5x4XCG3N0eHVyMOtiyRZc7OE8KWkcSZuszq5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a@alessio.com', '$2y$10$YX4tMU6mEdMmc67lKFfRAOK8CduQlhmDeBW7Ni1VcG6675uWO07E6', NULL, NULL, NULL, '2017-01-12 13:20:44', '2017-01-12 12:20:34', NULL);
 
@@ -4180,6 +4183,12 @@ ALTER TABLE `reservaties`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sluitingsdag`
+--
+ALTER TABLE `sluitingsdag`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `templates_inhoud`
 --
 ALTER TABLE `templates_inhoud`
@@ -4249,7 +4258,7 @@ ALTER TABLE `users_list_type`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `images`
 --
@@ -4279,7 +4288,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `menuitem`
 --
 ALTER TABLE `menuitem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=131;
 --
 -- AUTO_INCREMENT for table `menuItem_categorie`
 --
@@ -4289,7 +4298,7 @@ ALTER TABLE `menuItem_categorie`
 -- AUTO_INCREMENT for table `menuItem_subcategorie`
 --
 ALTER TABLE `menuItem_subcategorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -4474,12 +4483,12 @@ ALTER TABLE `mshop_price_type`
 -- AUTO_INCREMENT for table `mshop_product`
 --
 ALTER TABLE `mshop_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `mshop_product_list`
 --
 ALTER TABLE `mshop_product_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT for table `mshop_product_list_type`
 --
@@ -4489,7 +4498,7 @@ ALTER TABLE `mshop_product_list_type`
 -- AUTO_INCREMENT for table `mshop_product_property`
 --
 ALTER TABLE `mshop_product_property`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mshop_product_property_type`
 --
@@ -4584,7 +4593,7 @@ ALTER TABLE `mshop_text_type`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `paginas`
 --
@@ -4599,7 +4608,12 @@ ALTER TABLE `personeel`
 -- AUTO_INCREMENT for table `reservaties`
 --
 ALTER TABLE `reservaties`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `sluitingsdag`
+--
+ALTER TABLE `sluitingsdag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `templates_inhoud`
 --
@@ -4609,7 +4623,7 @@ ALTER TABLE `templates_inhoud`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `users_address`
 --
