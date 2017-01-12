@@ -31,7 +31,7 @@ class Instellingen_Model extends Model implements  Authenticatable
             $bActief = false;
         }
         try {
-            DB::insert('insert into sluitingsdag (datum, titel, beschrijving, actief ) values (?, ?, ?, ?)', array($dDatum, $sTitel, $sBeschrijving, $bActief));
+            DB::insert('insert into sluitingsdag (datum, titel, beschrijving, actief) values (?, ?, ?, ?)', array($dDatum, $sTitel, $sBeschrijving, $bActief));
             $bResultaat = true;
         } catch (\PDOException $e) {
             $bResultaat = false;
@@ -125,7 +125,7 @@ class Instellingen_Model extends Model implements  Authenticatable
         $sTitel = $request["frmNieuweCategorieTitel"];
         $sBijhorend = $request["frmNieuweCategorieBijhorend"];
 
-        var_dump($sTitel, $sKeuze, $sBijhorend);
+        //var_dump($sTitel, $sKeuze, $sBijhorend);
 
         if ($sKeuze == "categorie"){
             try{
@@ -133,7 +133,7 @@ class Instellingen_Model extends Model implements  Authenticatable
                 return true;
             }
             catch (\PDOException $e){
-                var_dump($e);
+                //var_dump($e);
                 return false;
             }
         }elseif ($sKeuze == "subcategorie"){

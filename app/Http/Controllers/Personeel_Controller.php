@@ -199,7 +199,8 @@ class Personeel_Controller extends Controller
         $aDagen = $this->getSluitingsDagen();
         $aCategorieen = $this->getAllCategories();
         $aSubCategorieen = $this->getAllSubCategories();
-        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweCategorie'));
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
+        return view('personeel.instellingen',compact('menuTop', 'aDagen', 'aCategorieen', 'aSubCategorieen', 'bnieuweCategorie','alleMaxAantallen'));
     }
 
 
@@ -309,9 +310,9 @@ class Personeel_Controller extends Controller
         $bResult = $oMenuItem->nieuwMenuItem($request);
         $categorien = $oMenuItem->getAllCategories();
         $subcategorien = $oMenuItem->getAllSubCategories();
-        var_dump($categorien);
+        $alleMaxAantallen = $this->getMaxAantalPersonen();
 
-       return view('personeel.nieuwMenuItem', compact('bResult','categorien','subcategorien'));
+       return view('personeel.nieuwMenuItem', compact('bResult','categorien','subcategorien','alleMaxAantallen'));
     }
 
     public function wijzigMenuItem(Request $request){

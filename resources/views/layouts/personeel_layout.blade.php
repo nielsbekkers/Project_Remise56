@@ -97,7 +97,7 @@
                     <li><a href="/personeel/foto">Media</a> </li>
                     <li><a href="/personeel/personeel">Personeelsleden</a></li>
                     <li><a href="/personeel/instellingen">Instellingen</a></li>
-                    {{--<li><a href="/personeel/inloggen">Inloggen</a></li>--}}
+                    <li><a href="/extadm?site=default">Webshop admin</a></li>
                     <li><a href="/personeel/logout">Uitloggen</a></li>
 
 
