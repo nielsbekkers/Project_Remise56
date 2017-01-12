@@ -123,6 +123,9 @@ class Personeel_Controller extends Controller
             case "nieuwPersoneelsLid":
                 return view('personeel.nieuwPersoneelsLid', compact('bResult'));
                 break;
+            case "registreer":
+                return view('personeel.inloggen');
+                break;
             default :
                 return view('personeel.reservaties');
 //                return view('personeel.inloggen');
@@ -560,5 +563,6 @@ class Personeel_Controller extends Controller
         Auth::logout();
         return redirect('/');
     }
+
 
 }

@@ -34,15 +34,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="gebruikersnaam" >Gebruikersnaam</label>
-                    <input class="form-control" type="text" name="frmNieuwPersoneelGebruikersnaam" id="gebruikersnaam" required>
+                    <label for="gebruikersnaam" >E-mail</label>
+                    <input class="form-control" type="email" name="frmNieuwPersoneelEmail" id="gebruikersnaam" required>
                 </div>
 
                 <div class="form-group">
                     <label for="Level" >Acces level</label>
                     <select class="form-control" name="frmNieuwPersoneelAccesLevel" id="Level" required>
-                        <option value="1">1 (Personeelslid)</option>
-                        <option value="2">2 (Admin)</option>
+                        <option value="personeel">1 (Personeelslid)</option>
+                        <option value="">2 (Admin)</option>
 
                     </select>
                 </div>
